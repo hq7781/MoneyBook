@@ -22,8 +22,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let count:Int = appUserDefault.integer(forKey: "VisitCount") + 1
-        appUserDefault.set(count,forKey:"VisitCount")
+        let appVisitCount:Int = 1 //appUserDefault.integer(forKey: "VisitCount") + 1
+        if (appVisitCount == 1) {
+            //let notification =
+            //发送通知
+        //NotificationCenter.default.post(name:kNotificationNameAgreementViewWillShow, object: nil, userInfo: nil /*Notification.userInfo*/ )
+        } else {
+        }
+        appUserDefault.set(appVisitCount,forKey:"VisitCount")
+        /////// for startup process
+        //self.checkAgreement()
+        self.checkSignin()
+        //self.checkLockOnOff()
+        //////
         return true
     }
 
@@ -48,7 +59,71 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
+    ////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////
+    func checkAgreement() {
+        let appUserDefault:UserDefaults = UserDefaults()
+        let agreementFlag:Bool = appUserDefault.bool(forKey: "AgreementFlag")
+        //appUserDefault.set(agreementFlag,forKey:"AgreementFlag")
+        
+        //個人情報同意がない場合同意提示画面に遷移
+        if (agreementFlag == false) {
+            //windowを生成
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            //Storyboardを指定
+            let storyboard = UIStoryboard(name: "Startup", bundle: nil)
+            //Viewcontrollerを指定
+            let initialViewController = storyboard.instantiateViewController(withIdentifier: "Agreement")
+            //rootViewControllerに入れる
+            self.window?.rootViewController = initialViewController
+            //表示
+            self.window?.makeKeyAndVisible()
+        }else{
+            //同意済みの場合その他処理、例え：Storyboardでチェックの入っているIs Initial View Controllerに遷移する
+        }
+    }
+    func checkSignin() {
+        let appUserDefault:UserDefaults = UserDefaults()
+        let currentUser:String? = appUserDefault.string(forKey: "CurrentUser")
+        //appUserDefault.set(currentUser,forKey:"CurrentUser")
+        
+        //ユーザーがいない場合サインイン画面に遷移
+        if (currentUser == nil){
+            //windowを生成
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            //Storyboardを指定
+            let storyboard = UIStoryboard(name: "Startup", bundle: nil)
+            //Viewcontrollerを指定
+            let initialViewController = storyboard.instantiateViewController(withIdentifier: "Signin")
+            //rootViewControllerに入れる
+            self.window?.rootViewController = initialViewController
+            //表示
+            self.window?.makeKeyAndVisible()
+        }else{
+            //ユーザーがいる場合Storyboardでチェックの入っているIs Initial View Controllerに遷移する
+        }
+    }
+    func checkLockOnOff() {
+        let appUserDefault:UserDefaults = UserDefaults()
+        let lockOnOffFlag:Bool = appUserDefault.bool(forKey: "LockOnOffFlag")
+        //appUserDefault.set(lockOnOffFlag,forKey:"AgreementFlag")
+        
+        //ユーザーがいない場合サインイン画面に遷移
+        if (lockOnOffFlag == true){
+            //windowを生成
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            //Storyboardを指定
+            let storyboard = UIStoryboard(name: "Startup", bundle: nil)
+            //Viewcontrollerを指定
+            let initialViewController = storyboard.instantiateViewController(withIdentifier: "TouchToUnlock")
+            //rootViewControllerに入れる
+            self.window?.rootViewController = initialViewController
+            //表示
+            self.window?.makeKeyAndVisible()
+        }else{
+            //ユーザーがいる場合Storyboardでチェックの入っているIs Initial View Controllerに遷移する
+        }
+    }
 
 }
 

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C24D5DD1EDB29890003EC75 /* AgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24D5DC1EDB29890003EC75 /* AgreementViewController.swift */; };
+		9C24D5DF1EDC74CF0003EC75 /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24D5DE1EDC74CF0003EC75 /* SigninViewController.swift */; };
+		9C24D5E11EDC752E0003EC75 /* TouchToUnlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24D5E01EDC752D0003EC75 /* TouchToUnlockViewController.swift */; };
+		9C2A74901EDB2039002384F6 /* Startup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C2A748F1EDB2038002384F6 /* Startup.storyboard */; };
 		B04974271ECB74DE00B3AC28 /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04974261ECB74DE00B3AC28 /* AppUtils.swift */; };
 		B04A13FE1EB8F075008EEFCE /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B04A13FD1EB8F075008EEFCE /* libsqlite3.tbd */; };
 		B04A14011EB8FE4C008EEFCE /* EventDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04A14001EB8FE4C008EEFCE /* EventDAO.swift */; };
@@ -23,9 +27,6 @@
 		B0A86B491EB5FE6600A82C0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0A86B471EB5FE6600A82C0C /* LaunchScreen.storyboard */; };
 		B0A86B541EB5FE6600A82C0C /* MoneyBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A86B531EB5FE6600A82C0C /* MoneyBookTests.swift */; };
 		B0A86B5F1EB5FE6600A82C0C /* MoneyBookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A86B5E1EB5FE6600A82C0C /* MoneyBookUITests.swift */; };
-		B0A86B741EB6022700A82C0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0A86B731EB6022700A82C0C /* Assets.xcassets */; };
-		B0A86B781EB602FD00A82C0C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B0A86B771EB602FD00A82C0C /* Info.plist */; };
-		B0A86B7A1EB6033A00A82C0C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0A86B791EB6033A00A82C0C /* Default-568h@2x.png */; };
 		B0A86B801EB6111D00A82C0C /* HistoryMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A86B7F1EB6111D00A82C0C /* HistoryMasterViewController.swift */; };
 		B0A86B821EB6114500A82C0C /* HistoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A86B811EB6114500A82C0C /* HistoryDetailViewController.swift */; };
 		B0A86B881EB611FF00A82C0C /* AnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A86B871EB611FF00A82C0C /* AnalysisViewController.swift */; };
@@ -997,6 +998,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9C24D5DC1EDB29890003EC75 /* AgreementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AgreementViewController.swift; path = Controller/Startup/AgreementViewController.swift; sourceTree = "<group>"; };
+		9C24D5DE1EDC74CF0003EC75 /* SigninViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SigninViewController.swift; path = Controller/Startup/SigninViewController.swift; sourceTree = "<group>"; };
+		9C24D5E01EDC752D0003EC75 /* TouchToUnlockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TouchToUnlockViewController.swift; path = Controller/Startup/TouchToUnlockViewController.swift; sourceTree = "<group>"; };
+		9C2A748F1EDB2038002384F6 /* Startup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Startup.storyboard; path = View/Startup.storyboard; sourceTree = "<group>"; };
 		AB408967DBB5FC91A47E3C8E /* Pods_MoneyBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoneyBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B04974261ECB74DE00B3AC28 /* AppUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppUtils.swift; path = Utils/AppUtils.swift; sourceTree = "<group>"; };
 		B04A13FD1EB8F075008EEFCE /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -1020,9 +1025,6 @@
 		B0A86B5A1EB5FE6600A82C0C /* MoneyBookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoneyBookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A86B5E1EB5FE6600A82C0C /* MoneyBookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyBookUITests.swift; sourceTree = "<group>"; };
 		B0A86B601EB5FE6600A82C0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B0A86B731EB6022700A82C0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B0A86B771EB602FD00A82C0C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B0A86B791EB6033A00A82C0C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../../Default-568h@2x.png"; sourceTree = "<group>"; };
 		B0A86B7F1EB6111D00A82C0C /* HistoryMasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryMasterViewController.swift; sourceTree = "<group>"; };
 		B0A86B811EB6114500A82C0C /* HistoryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryDetailViewController.swift; sourceTree = "<group>"; };
 		B0A86B871EB611FF00A82C0C /* AnalysisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisViewController.swift; sourceTree = "<group>"; };
@@ -2013,6 +2015,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9C24D5DB1EDB28DB0003EC75 /* Startup */ = {
+			isa = PBXGroup;
+			children = (
+				9C24D5DC1EDB29890003EC75 /* AgreementViewController.swift */,
+				9C24D5DE1EDC74CF0003EC75 /* SigninViewController.swift */,
+				9C24D5E01EDC752D0003EC75 /* TouchToUnlockViewController.swift */,
+			);
+			name = Startup;
+			sourceTree = "<group>";
+		};
 		B04A13FC1EB8F074008EEFCE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2105,6 +2117,7 @@
 				B0A86B8D1EB6165D00A82C0C /* InputInComeMoneyView.xib */,
 				B0A86B8F1EB6168600A82C0C /* InputOutgoMoneyView.xib */,
 				B0A86B471EB5FE6600A82C0C /* LaunchScreen.storyboard */,
+				9C2A748F1EDB2038002384F6 /* Startup.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -2112,6 +2125,7 @@
 		B0A86B6F1EB5FFD800A82C0C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9C24D5DB1EDB28DB0003EC75 /* Startup */,
 				B0A86B841EB611AB00A82C0C /* Records */,
 				B0A86B851EB611B500A82C0C /* Analysis */,
 				B0A86B831EB6115500A82C0C /* History */,
@@ -2147,9 +2161,6 @@
 			isa = PBXGroup;
 			children = (
 				B0A86BAF1EB7446800A82C0C /* icon */,
-				B0A86B771EB602FD00A82C0C /* Info.plist */,
-				B0A86B731EB6022700A82C0C /* Assets.xcassets */,
-				B0A86B791EB6033A00A82C0C /* Default-568h@2x.png */,
 			);
 			name = Resource;
 			path = Resource/Assets.xcassets;
@@ -3552,7 +3563,6 @@
 				B0A86FE61EB7446C00A82C0C /* position@2x.png in Resources */,
 				B0A86FC01EB7446C00A82C0C /* _old_tel_02@2x.png in Resources */,
 				B0A870B31EB7446D00A82C0C /* Icon-40@2x.png in Resources */,
-				B0A86B781EB602FD00A82C0C /* Info.plist in Resources */,
 				B0A86FC41EB7446C00A82C0C /* _old_url@2x.png in Resources */,
 				B0A872A81EB7446E00A82C0C /* toolbar_mail_reply@2x.png in Resources */,
 				B0A872C11EB7446E00A82C0C /* ファイル変換実行.png in Resources */,
@@ -3663,7 +3673,6 @@
 				B0A872321EB7446E00A82C0C /* securematrix_number52.png in Resources */,
 				B0A8712F1EB7446D00A82C0C /* _old_clock.png in Resources */,
 				B0A871D61EB7446D00A82C0C /* makeiOSLaunchImage.bat in Resources */,
-				B0A86B741EB6022700A82C0C /* Assets.xcassets in Resources */,
 				B0A8713E1EB7446D00A82C0C /* _old_ext_txt@2x.png in Resources */,
 				B0A8702D1EB7446C00A82C0C /* invoices.png in Resources */,
 				B0A871301EB7446D00A82C0C /* _old_clock@2x.png in Resources */,
@@ -3680,6 +3689,7 @@
 				B0A8713A1EB7446D00A82C0C /* _old_ext_pdf@2x.png in Resources */,
 				B0A872111EB7446D00A82C0C /* securematrix_number19.png in Resources */,
 				B0A870181EB7446C00A82C0C /* ico16_1070@2x.png in Resources */,
+				9C2A74901EDB2039002384F6 /* Startup.storyboard in Resources */,
 				B0A870031EB7446C00A82C0C /* cases.png in Resources */,
 				B0A86FA81EB7446C00A82C0C /* _old_group@2x.png in Resources */,
 				B0A870FF1EB7446D00A82C0C /* check_on@2x.png in Resources */,
@@ -3700,7 +3710,6 @@
 				B0A870771EB7446C00A82C0C /* dial_7_on.png in Resources */,
 				B0A872351EB7446E00A82C0C /* securematrix_number55.png in Resources */,
 				B0A86FC31EB7446C00A82C0C /* _old_url.png in Resources */,
-				B0A86B7A1EB6033A00A82C0C /* Default-568h@2x.png in Resources */,
 				B0A8701C1EB7446C00A82C0C /* ico16_1083@2x.png in Resources */,
 				B0A872771EB7446E00A82C0C /* _old_toolbar_zoomin.png in Resources */,
 				B0A8711F1EB7446D00A82C0C /* _old_attach_status02.png in Resources */,
@@ -4437,7 +4446,10 @@
 				B04A140E1EBAB776008EEFCE /* CategoryPickerView.swift in Sources */,
 				B0A86BAA1EB65C8E00A82C0C /* AccountTableViewCell.swift in Sources */,
 				B0A86B9E1EB64CE400A82C0C /* CalculatorViewController.swift in Sources */,
+				9C24D5DF1EDC74CF0003EC75 /* SigninViewController.swift in Sources */,
+				9C24D5DD1EDB29890003EC75 /* AgreementViewController.swift in Sources */,
 				B04A140A1EB9418E008EEFCE /* EventService.swift in Sources */,
+				9C24D5E11EDC752E0003EC75 /* TouchToUnlockViewController.swift in Sources */,
 				B0A86B8C1EB6121700A82C0C /* SettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

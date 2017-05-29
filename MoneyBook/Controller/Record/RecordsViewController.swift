@@ -113,15 +113,43 @@ class RecordsViewController: UIViewController,
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+
+        
         self.view.setNeedsDisplay()
         self.hideKeyboard()
         self.setUpUserNotification()
         self.setUpUI()
     }
-
+    
+    required init?(coder aDecoder: NSCoder) {
+        //fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        //发送通知
+        //NotificationCenter.default.post(name:kNotificationNameAgreementViewWillShow, object: nil, userInfo: notification.userInfo)
+        //接受通知监听
+        NotificationCenter.default.addObserver(self, selector: #selector(onAgreementViewWillShow),
+                                               name: kNotificationNameAgreementViewWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onAgreementViewWillHide),
+                                               name: kNotificationNameAgreementViewWillHide, object: nil)
+    }
+    deinit {
+        
+        NotificationCenter.default.removeObserver(self)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func onAgreementViewWillShow() {
+        let story_agree = UIStoryboard(name: "Startup", bundle: nil)
+        //let story_agree: UIStoryboard = self.storyboard!
+        let agreementVC = story_agree.instantiateViewController(withIdentifier:"Agreement") as! AgreementViewController
+        //self.present(agreementVC, animated: true, completion: nil)
+        self.show(agreementVC, sender: true)
+    }
+    
+    func onAgreementViewWillHide() {
     }
     
 //MARK: - ========== Init methods ==========

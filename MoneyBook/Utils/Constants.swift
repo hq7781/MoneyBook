@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+//通知名称常量
+let kNotificationNameAgreementViewWillShow = NSNotification.Name(rawValue:"NotificationNameAgreementViewWillShow")
+let kNotificationNameAgreementViewWillHide = NSNotification.Name(rawValue:"NotificationNameAgreementViewWillHide")
