@@ -17,8 +17,7 @@ class SigninViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.white
         
-        self.setMyLabel(text: "Sign in Please!", point: CGPoint(x: 0, y: 400))
-        
+        self.setMyLabel(text: "Sign in Please!", point: CGPoint(x: 0, y: 300))
     }
 
     override func didReceiveMemoryWarning() {

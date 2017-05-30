@@ -95,7 +95,8 @@ class TouchToUnlockViewController: UIViewController {
             
             //let storyboard: UIStoryboard = self.storyboard!
             let storyboard = UIStoryboard(name: kUIStoryboardName_Main, bundle: nil)
-            let nextView = storyboard.instantiateViewController(withIdentifier:kUIViewControllerId_MainTabBarVC) as! UINavigationController
+            let nextView = storyboard.instantiateViewController(withIdentifier:kUIViewControllerId_MainTabBarVC) as! UITabBarController
+            //let nextView = storyboard.instantiateViewController(withIdentifier:kUIViewControllerId_NewRecordsVC) as! UINavigationController
             self.present(nextView, animated: true, completion: nil)
         })
         
