@@ -18,6 +18,8 @@ let kUIViewControllerId_Agreement     = "Agreement"
 let kUIViewControllerId_Signin        = "Signin"
 let kUIViewControllerId_TouchToUnlock = "TouchToUnlock"
 
+let kUIViewControllerId_MainTabBarVC = "MainTabBarVC"
+let kUIViewControllerId_NewRecordsVC = "NewRecordsVC"
 
 // 通知名称常量
 let kNotificationNameAgreementViewWillShow = NSNotification.Name(rawValue:"NotificationNameAgreementViewWillShow")
