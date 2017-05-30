@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let appDatabaseManager = AppDatabaseManager()
     
     /// Manager fot the application UserDefault data. Info.plist
-    var appUserDefault:UserDefaults = UserDefaults()
+    let appUserDefaultManager = AppUserDefaultManager()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -27,14 +27,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //let notification =
             //发送通知
         //NotificationCenter.default.post(name:kNotificationNameAgreementViewWillShow, object: nil, userInfo: nil /*Notification.userInfo*/ )
-        } else {
         }
-        appUserDefault.set(appVisitCount,forKey:"VisitCount")
-        /////// for startup process
-        //self.checkAgreement()
-        self.checkSignin()
-        //self.checkLockOnOff()
-        //////
+        // for startup process
+      /*  if !AppUtils.isUserAgreed() {
+            self.setRootViewControllerToAgreement()
+        } else */if !AppUtils.isUserSignined() {
+            self.setRootViewControllerToSignin()
+        } else if AppUtils.isUserLocked() {
+            self.setRootViewControllerToLockOnOff()
+        }
         return true
     }
 
@@ -59,71 +60,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
     ////////////////////////////////////////////////////////////////////
+    func appSetRootViewController(initialViewController: UIViewController? ) {
+        //windowを生成
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        //rootViewControllerに入れる
+        self.window?.rootViewController = initialViewController
+        //表示
+        self.window?.makeKeyAndVisible()
+    }
+    func setRootViewControllerToAgreement() {
+        let storyboard = UIStoryboard(name: kUIStoryboardName_Startup, bundle: nil)
+        //Viewcontrollerを指定
+        let initialViewController = storyboard.instantiateViewController(withIdentifier: kUIViewControllerId_Agreement)
+        self.appSetRootViewController(initialViewController: initialViewController)
+    }
+    func setRootViewControllerToSignin() {
+        let storyboard = UIStoryboard(name: kUIStoryboardName_Startup, bundle: nil)
+        //Viewcontrollerを指定
+        let initialViewController = storyboard.instantiateViewController(withIdentifier: kUIViewControllerId_Signin)
+        self.appSetRootViewController(initialViewController: initialViewController)
+    }
+    func setRootViewControllerToLockOnOff() {
+        let storyboard = UIStoryboard(name: kUIStoryboardName_Startup, bundle: nil)
+        //Viewcontrollerを指定
+        let initialViewController = storyboard.instantiateViewController(withIdentifier: kUIViewControllerId_TouchToUnlock)
+        self.appSetRootViewController(initialViewController: initialViewController)
+    }
     ////////////////////////////////////////////////////////////////////
-    func checkAgreement() {
-        let appUserDefault:UserDefaults = UserDefaults()
-        let agreementFlag:Bool = appUserDefault.bool(forKey: "AgreementFlag")
-        //appUserDefault.set(agreementFlag,forKey:"AgreementFlag")
-        
-        //個人情報同意がない場合同意提示画面に遷移
-        if (agreementFlag == false) {
-            //windowを生成
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            //Storyboardを指定
-            let storyboard = UIStoryboard(name: "Startup", bundle: nil)
-            //Viewcontrollerを指定
-            let initialViewController = storyboard.instantiateViewController(withIdentifier: "Agreement")
-            //rootViewControllerに入れる
-            self.window?.rootViewController = initialViewController
-            //表示
-            self.window?.makeKeyAndVisible()
-        }else{
-            //同意済みの場合その他処理、例え：Storyboardでチェックの入っているIs Initial View Controllerに遷移する
-        }
-    }
-    func checkSignin() {
-        let appUserDefault:UserDefaults = UserDefaults()
-        let currentUser:String? = appUserDefault.string(forKey: "CurrentUser")
-        //appUserDefault.set(currentUser,forKey:"CurrentUser")
-        
-        //ユーザーがいない場合サインイン画面に遷移
-        if (currentUser == nil){
-            //windowを生成
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            //Storyboardを指定
-            let storyboard = UIStoryboard(name: "Startup", bundle: nil)
-            //Viewcontrollerを指定
-            let initialViewController = storyboard.instantiateViewController(withIdentifier: "Signin")
-            //rootViewControllerに入れる
-            self.window?.rootViewController = initialViewController
-            //表示
-            self.window?.makeKeyAndVisible()
-        }else{
-            //ユーザーがいる場合Storyboardでチェックの入っているIs Initial View Controllerに遷移する
-        }
-    }
-    func checkLockOnOff() {
-        let appUserDefault:UserDefaults = UserDefaults()
-        let lockOnOffFlag:Bool = appUserDefault.bool(forKey: "LockOnOffFlag")
-        //appUserDefault.set(lockOnOffFlag,forKey:"AgreementFlag")
-        
-        //ユーザーがいない場合サインイン画面に遷移
-        if (lockOnOffFlag == true){
-            //windowを生成
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            //Storyboardを指定
-            let storyboard = UIStoryboard(name: "Startup", bundle: nil)
-            //Viewcontrollerを指定
-            let initialViewController = storyboard.instantiateViewController(withIdentifier: "TouchToUnlock")
-            //rootViewControllerに入れる
-            self.window?.rootViewController = initialViewController
-            //表示
-            self.window?.makeKeyAndVisible()
-        }else{
-            //ユーザーがいる場合Storyboardでチェックの入っているIs Initial View Controllerに遷移する
-        }
-    }
-
 }
 

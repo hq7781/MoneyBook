@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86E7D6BF1EDD4E9F0010AF09 /* AppUserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E7D6BE1EDD4E9F0010AF09 /* AppUserDefaultManager.swift */; };
 		9C24D5DD1EDB29890003EC75 /* AgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24D5DC1EDB29890003EC75 /* AgreementViewController.swift */; };
 		9C24D5DF1EDC74CF0003EC75 /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24D5DE1EDC74CF0003EC75 /* SigninViewController.swift */; };
 		9C24D5E11EDC752E0003EC75 /* TouchToUnlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24D5E01EDC752D0003EC75 /* TouchToUnlockViewController.swift */; };
@@ -998,6 +999,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		86E7D6BE1EDD4E9F0010AF09 /* AppUserDefaultManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppUserDefaultManager.swift; path = Model/AppUserDefaultManager.swift; sourceTree = "<group>"; };
 		9C24D5DC1EDB29890003EC75 /* AgreementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AgreementViewController.swift; path = Controller/Startup/AgreementViewController.swift; sourceTree = "<group>"; };
 		9C24D5DE1EDC74CF0003EC75 /* SigninViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SigninViewController.swift; path = Controller/Startup/SigninViewController.swift; sourceTree = "<group>"; };
 		9C24D5E01EDC752D0003EC75 /* TouchToUnlockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TouchToUnlockViewController.swift; path = Controller/Startup/TouchToUnlockViewController.swift; sourceTree = "<group>"; };
@@ -2106,6 +2108,7 @@
 				B04A14021EB8FE9B008EEFCE /* Event */,
 				B0A86B711EB6002300A82C0C /* Database */,
 				B04A140B1EB9A035008EEFCE /* AppDatabaseManager.swift */,
+				86E7D6BE1EDD4E9F0010AF09 /* AppUserDefaultManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -3370,6 +3373,7 @@
 				TargetAttributes = {
 					B0A86B381EB5FE6600A82C0C = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 58V87X55PH;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -4432,6 +4436,7 @@
 				B04A14121EC7F346008EEFCE /* EasyTipView.swift in Sources */,
 				B04A14081EB93874008EEFCE /* EventCache.swift in Sources */,
 				B0A86BA81EB65A2A00A82C0C /* AccountViewController.swift in Sources */,
+				86E7D6BF1EDD4E9F0010AF09 /* AppUserDefaultManager.swift in Sources */,
 				B0A86BAC1EB663F500A82C0C /* Object.swift in Sources */,
 				B04974271ECB74DE00B3AC28 /* AppUtils.swift in Sources */,
 				B0A86BA61EB6591C00A82C0C /* StatusViewController.swift in Sources */,
@@ -4608,8 +4613,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				DEVELOPMENT_TEAM = 58V87X55PH;
 				GCC_WARN_MISSING_PARENTHESES = NO;
 				INFOPLIST_FILE = MoneyBook/Resource/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.enixsoft.MoneyBook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4624,8 +4631,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				DEVELOPMENT_TEAM = 58V87X55PH;
 				GCC_WARN_MISSING_PARENTHESES = NO;
 				INFOPLIST_FILE = MoneyBook/Resource/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.enixsoft.MoneyBook;
 				PRODUCT_NAME = "$(TARGET_NAME)";

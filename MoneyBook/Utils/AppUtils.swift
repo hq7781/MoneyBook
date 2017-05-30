@@ -10,17 +10,45 @@ import Foundation
 
 public class AppUtils {
     
-    func getAppVersionInfo() -> String {
+    static func getAppVersionInfo() -> String {
         // Versionを取得.
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
         return version
     }
-    func getAppBuildNumberInfo() -> String {
+    static func getAppBuildNumberInfo() -> String {
         // Build番号を取得.
         let build = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
         return build
     }
+    static func isUserVisited() ->Bool {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        let vistedCount = app.appUserDefaultManager.getVisitCount()
+        if vistedCount > 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    static func isUserAgreed() ->Bool {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        return app.appUserDefaultManager.getUserAgreement()
+    }
+    static func isUserSignined() ->Bool {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        let currentUser = app.appUserDefaultManager.getCurrentUser()
+        if (currentUser == nil) || (currentUser == "") {
+            return false
+        } else {
+            return true
+        }
+    }
+    static func isUserLocked() ->Bool {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        return app.appUserDefaultManager.getUserLock()
+    }
 }
+
 extension UIViewController {
     public func getVersionInfo() {
         self.getVersionInfo()
