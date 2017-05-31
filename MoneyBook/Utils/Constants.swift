@@ -25,8 +25,19 @@ let kUIViewControllerId_NewRecordsVC = "NewRecordsVC"
 let kNotificationNameAgreementViewWillShow = NSNotification.Name(rawValue:"NotificationNameAgreementViewWillShow")
 let kNotificationNameAgreementViewWillHide = NSNotification.Name(rawValue:"NotificationNameAgreementViewWillHide")
 
+let kNotificationNameUserAuthencationStart = NSNotification.Name(rawValue:"NotificationNameUserAuthencationStart")
+let kNotificationNameUserAuthencationStop  = NSNotification.Name(rawValue:"NotificationNameUserAuthencationStop")
+let kNotificationNameUserAuthencationSuccessed = NSNotification.Name(rawValue:"NotificationNameUserAuthencationSuccessed")
+let kNotificationNameUserAuthencationFailed  = NSNotification.Name(rawValue:"NotificationNameUserAuthencationFailed")
+
+let kNotificationUserInfoKey_UserTryLimit = "UserTryLimit"
+let kNotificationUserInfoKey_ErrorMessage = "ErrorMessage"
+
 // User Default Key 名称常量
 let kUserDefaultKey_VisitCount  = "VisitCount"
 let kUserDefaultKey_Agreement   = "AgreementFlag"
 let kUserDefaultKey_CurrentUser = "CurrentUser"
 let kUserDefaultKey_UserLock    = "UserLockFlag"
+
+
+let kTryUserAuthenticateMaxCount = 5

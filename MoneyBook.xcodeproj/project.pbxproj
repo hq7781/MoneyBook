@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		86E7D6BF1EDD4E9F0010AF09 /* AppUserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E7D6BE1EDD4E9F0010AF09 /* AppUserDefaultManager.swift */; };
+		86E7D6C11EDE9F350010AF09 /* UserAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E7D6C01EDE9F350010AF09 /* UserAuthentication.swift */; };
 		9C24D5DD1EDB29890003EC75 /* AgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24D5DC1EDB29890003EC75 /* AgreementViewController.swift */; };
 		9C24D5DF1EDC74CF0003EC75 /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24D5DE1EDC74CF0003EC75 /* SigninViewController.swift */; };
 		9C24D5E11EDC752E0003EC75 /* TouchToUnlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24D5E01EDC752D0003EC75 /* TouchToUnlockViewController.swift */; };
@@ -1000,6 +1001,7 @@
 
 /* Begin PBXFileReference section */
 		86E7D6BE1EDD4E9F0010AF09 /* AppUserDefaultManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppUserDefaultManager.swift; path = Model/AppUserDefaultManager.swift; sourceTree = "<group>"; };
+		86E7D6C01EDE9F350010AF09 /* UserAuthentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAuthentication.swift; path = Utils/UserAuthentication.swift; sourceTree = "<group>"; };
 		9C24D5DC1EDB29890003EC75 /* AgreementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AgreementViewController.swift; path = Controller/Startup/AgreementViewController.swift; sourceTree = "<group>"; };
 		9C24D5DE1EDC74CF0003EC75 /* SigninViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SigninViewController.swift; path = Controller/Startup/SigninViewController.swift; sourceTree = "<group>"; };
 		9C24D5E01EDC752D0003EC75 /* TouchToUnlockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TouchToUnlockViewController.swift; path = Controller/Startup/TouchToUnlockViewController.swift; sourceTree = "<group>"; };
@@ -2146,6 +2148,7 @@
 				B0A86B931EB6362800A82C0C /* Extension_String.swift */,
 				B0A86BAD1EB6682200A82C0C /* Constants.swift */,
 				B04974261ECB74DE00B3AC28 /* AppUtils.swift */,
+				86E7D6C01EDE9F350010AF09 /* UserAuthentication.swift */,
 			);
 			name = Utilis;
 			sourceTree = "<group>";
@@ -4432,6 +4435,7 @@
 				B0A86B3D1EB5FE6600A82C0C /* AppDelegate.swift in Sources */,
 				B0A86B881EB611FF00A82C0C /* AnalysisViewController.swift in Sources */,
 				B0A86B941EB6362800A82C0C /* Extension_String.swift in Sources */,
+				86E7D6C11EDE9F350010AF09 /* UserAuthentication.swift in Sources */,
 				B04A14011EB8FE4C008EEFCE /* EventDAO.swift in Sources */,
 				B04A14121EC7F346008EEFCE /* EasyTipView.swift in Sources */,
 				B04A14081EB93874008EEFCE /* EventCache.swift in Sources */,

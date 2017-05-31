@@ -12,7 +12,6 @@ import LocalAuthentication
 @available(iOS 8.0, *)
 class TouchToUnlockViewController: UIViewController {
     // 認証用コンテキスト.
-    var myAuthContext : LAContext!
     var mySecurityLabel : UILabel!
     var myButton : UIButton!
     
@@ -28,8 +27,21 @@ class TouchToUnlockViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
+    required init?(coder aDecoder: NSCoder) {
+        //fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(OnUserAuthencationSuccessed),
+                                               name: kNotificationNameUserAuthencationSuccessed, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(OnUserAuthencationFailed),
+                                               name: kNotificationNameUserAuthencationFailed, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -41,7 +53,6 @@ class TouchToUnlockViewController: UIViewController {
     */
     // MARK: - show Default User View
     func showDefaultUserView() {
-        myAuthContext = LAContext()
         // 背景色を設定.
         self.view.backgroundColor = UIColor.white
         
@@ -106,64 +117,28 @@ class TouchToUnlockViewController: UIViewController {
     
     func checkSuccess() {
         self.mySecurityLabel.text = ""
-        if myAuthContext.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: nil) {
-            myAuthContext.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics,
-                                         localizedReason: "このアプリの利用には認証が必要です",
-                                         reply: {
-                                            (success: Bool, error: Error?) -> Void in
-                                            self.updateMySecurityLabel(success)
-                                            print("Touch ID Auth result: %@", error.debugDescription)
-                                            if (success) {
-                                                self.showOKAlert()
-                                            } else {
-                                                print("Touch ID Auth Failed!")
-                                                let nserror = error as! NSError
-                                                switch nserror._code {
-                                                case LAError.authenticationFailed.rawValue: //kLAErrorAuthenticationFailed:
-                                                    print("Touch ID Auth result: kSecUseAuthenticationUIFail")
-                                                case LAError.userCancel.rawValue: //kLAErrorUserCancel:
-                                                    print("Touch ID Auth result: kLAErrorUserCancel")
-                                                case LAError.userFallback.rawValue: //kLAErrorUserFallback:
-                                                    print("Touch ID Auth result: kLAErrorUserFallback")
-                                                    self.myAuthContext.evaluatePolicy(LAPolicy.deviceOwnerAuthentication,
-                                                                                      localizedReason: "パスコードを入力してください",
-                                                                                      reply: {
-                                                                                        (success: Bool, error: Error?) -> Void in
-                                                                                        self.updateMySecurityLabel(success)
-                                                                                        print("passcode Auth result: %@", error.debugDescription)
-                                                                                        if (success) {
-                                                                                        } else {
-                                                                                            print("Passcode Auth Failed!")
-                                                                                        }
-                                                    })
-                                                case LAError.systemCancel.rawValue: //kLAErrorSystemCancel:
-                                                    print("Touch ID Auth result: kLAErrorSystemCancel")
-                                                case LAError.passcodeNotSet.rawValue: //kLAErrorPasscodeNotSet:
-                                                    print("Touch ID Auth result: kLAErrorPasscodeNotSet")
-                                                case LAError.touchIDNotAvailable.rawValue:// kLAErrorTouchIDNotAvailable:
-                                                    print("Touch ID Auth result: kLAErrorTouchIDNotAvailable")
-                                                case LAError.touchIDNotEnrolled.rawValue: //kLAErrorTouchIDNotEnrolled:
-                                                    print("Touch ID Auth result: kLAErrorTouchIDNotEnrolled")
-                                                default: break
-                                                }
-                                                
-                                            }
-            })
-        } else {
-            print("not support Touch ID Auth ")
-            self.myAuthContext.evaluatePolicy(LAPolicy.deviceOwnerAuthentication,
-                                              localizedReason: "パスコードを入力してください",
-                                              reply: {
-                                                (success: Bool, error: Error?) -> Void in
-                                                self.updateMySecurityLabel(success)
-                                                print("passcode Auth result: %@", error.debugDescription)
-                                                if (success) {
-                                                    self.showOKAlert()
-                                                } else {
-                                                    print("Passcode Auth Failed!")
-                                                }
-            })
-        }
+//        if canAuthenticateByTouchId() {
+//            let result = self.authenticateByTouchId()
+//        } else {
+//            print("not support Touch ID Auth ")
+//            let result = self.authenticateByPasscode()
+//        }
+    }
+
+
+    func OnUserAuthencationSuccessed(notification: NSNotification) {
+        DispatchQueue.main.async(execute: {
+            self.mySecurityLabel.text = "認証成功"
+        })
+    }
+    func OnUserAuthencationFailed(notification: NSNotification) {
+        let userInfo = notification.userInfo
+        DispatchQueue.main.async(execute: {
+            let errorMessage = userInfo?[kNotificationUserInfoKey_ErrorMessage] as? String
+            if errorMessage != nil {
+                self.mySecurityLabel.text = errorMessage
+            }
+        })
     }
     
     func updateMySecurityLabel(_ success: Bool) {
