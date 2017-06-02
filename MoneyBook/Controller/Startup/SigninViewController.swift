@@ -54,11 +54,11 @@ class SigninViewController: UIViewController {
         labelSignin.textAlignment = NSTextAlignment.center
         labelSignin.layer.position = CGPoint(x: self.view.bounds.width/2, y: 300)
         
-        self.setMyLabel(text: "Sign in Please!", point: CGPoint(x: 0, y: 300))
-        
-        //buttonSignin = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+        self.setMyLabel(text: "Sign in Please!", point: CGPoint(x: 0, y: 50))
+
+        //let buttonSignin: UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
         buttonSignin.backgroundColor = UIColor.blue
-        buttonSignin.setTitle("認証開始", for: UIControlState())
+        buttonSignin.setTitle("ログイン", for: UIControlState())
         buttonSignin.setTitleColor(UIColor.white, for: UIControlState())
         buttonSignin.layer.masksToBounds = true
         buttonSignin.layer.cornerRadius = 20.0
@@ -96,12 +96,12 @@ class SigninViewController: UIViewController {
         backButton.addTarget(self, action: #selector(self.onClickBackButton(_:)), for: .touchUpInside)
         self.view.addSubview(backButton);
     }
+    
     func onClickBackButton(_ sender: UIButton){
-        // 遷移するViewを定義.
-        let prevController: UIViewController = SigninViewController()
-        // アニメーションを設定.
-        prevController.modalTransitionStyle = UIModalTransitionStyle.partialCurl
-        // Viewの移動.
-        self.present(prevController, animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: kUIStoryboardName_Startup, bundle: nil)
+        let prevViewController = storyboard.instantiateViewController(withIdentifier:kUIViewControllerId_Agreement)
+        
+        prevViewController.modalTransitionStyle = UIModalTransitionStyle.partialCurl
+        self.present(prevViewController, animated: true, completion: nil)
     }
 }

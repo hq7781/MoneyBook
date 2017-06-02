@@ -18,7 +18,7 @@ protocol SpentViewControllerDelegate {
 class SpentViewController: UIViewController, UITableViewDataSource,UITableViewDelegate, SpentViewControllerDelegate {
     //MARK: - ========== internal methods ==========
     internal func reloadData() {
-        data = DB.share().queryIndex()
+    //    data = DB.share().queryIndex()
         //print(data)
         tableView.reloadData()
     }
@@ -28,7 +28,7 @@ class SpentViewController: UIViewController, UITableViewDataSource,UITableViewDe
     
     @IBOutlet var addButton: UIButton!
     @IBOutlet var backButton: UIButton!
-    var data = DB.share().queryIndex()
+    //var data = DB.share().queryIndex()
     
     //MARK: - ========== override methods ==========
     override func viewDidLoad() {
@@ -45,7 +45,7 @@ class SpentViewController: UIViewController, UITableViewDataSource,UITableViewDe
     //MARK: - ========== Init methods ==========
     //MARK: - ========== IBACtions ==========
     @IBAction func backDidTap(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
 
     @IBAction func addDidTap(_ sender: Any) {
@@ -76,7 +76,7 @@ class SpentViewController: UIViewController, UITableViewDataSource,UITableViewDe
         let currentCell = tableView.cellForRow(at: indexPath!)! as UITableViewCell
         print(currentCell.textLabel!.text!)
         self.delegate?.sendValue(value: (currentCell.textLabel?.text)!, view: D_spentVC_name)
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
 
     /*

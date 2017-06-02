@@ -54,13 +54,13 @@ class AddSpentViewController: UIViewController, AddSpentViewControllerDelegate {
     //MARK: - ========== IBACtions ==========
     @IBAction func doneDidTap(_ sender: UIButton) {
         if checkBoo() {
-            let child = ChildIndex()
+         /*   let child = ChildIndex()
             child.childName = tfName.text!
             child.status = tfStatus.text!
             DB.share().insertChildToParentIndex( lblParent.text!, child : child)
-
+             */
             self.delegate?.reloadData()
-            self.navigationController?.popViewController(animated: true)
+            _ = self.navigationController?.popViewController(animated: true)
         } else {
             let alert = UIAlertController(title: "Ops!!", message: "Something went wrong", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
@@ -69,7 +69,7 @@ class AddSpentViewController: UIViewController, AddSpentViewControllerDelegate {
     }
     
     @IBAction func backButton(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
 
     //MARK: - ========== privete methods ==========

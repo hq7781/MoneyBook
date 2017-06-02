@@ -31,11 +31,11 @@ class StatusViewController: UIViewController {
     //MARK: - ========== IBACtions ==========
     @IBAction func doneDidTap(_ sender: UIButton) {
         self.delegate?.sendValue(value: tfStatus.text!, view: D_statusVC_name)
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func backDidTap(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     /*

@@ -18,12 +18,14 @@ class EventDAO: NSObject {
         "author TEXT, " +
         "title TEXT, " +
         "release_date INTEGER" +
+        "updated_date INTEGER" +
+        "category TEXT" +
     ");"
     
     /// Query for the inssert row.
     private static let SQLSelect = "" +
         "SELECT " +
-        "id, author, title, release_date " +
+        "id, author, title, release_date, updated_date, category " +
         "FROM " +
         "events;" +
         "ORDER BY " +
@@ -32,16 +34,16 @@ class EventDAO: NSObject {
     /// Query for the inssert row.
     private static let SQLInsert = "" +
         "INSERT INTO " +
-        "events (author, title, release_date) " +
+        "events (author, title, release_date, updated_date, category) " +
         "VALUES " +
-    "(?, ?, ?);"
+    "(?, ?, ?, ?, ?);"
     
     /// Query for the update row.
     private static let SQLUpdate = "" +
         "UPDATE " +
         "events " +
         "SET " +
-        "author = ?, title = ?, release_date = ? " +
+        "author = ?, title = ?, release_date = ?, updated_date = ?, category = ? " +
         "WHERE " +
     "id = ?;"
     
@@ -77,11 +79,16 @@ class EventDAO: NSObject {
     ///   - title:       Title.
     ///   - releaseDate: Release date.
     /// - Returns: Added the event.
-    func add(author: String, title: String, releaseDate: Date) -> Event? {
+    func add(author: String, title: String, releaseDate: Date, updatedDate: Date, eventCategory: String) -> Event? {
         var event: Event? = nil
-        if self.db.executeUpdate(EventDAO.SQLInsert, withArgumentsIn: [author, title, releaseDate]) {
+        if self.db.executeUpdate(EventDAO.SQLInsert, withArgumentsIn: [author, title, releaseDate, updatedDate, eventCategory]) {
             let eventId = db.lastInsertRowId()
-            event = Event(eventId: Int(eventId), author: author, title: title, releaseDate: releaseDate)
+            event = Event(eventId:      Int(eventId),
+                          author:       author,
+                          title:        title,
+                          releaseDate:  releaseDate,
+                          updatedDate:  updatedDate,
+                          eventCategory:eventCategory)
         }
         
         return event
@@ -94,10 +101,13 @@ class EventDAO: NSObject {
         var events = Array<Event>()
         if let results = self.db.executeQuery(EventDAO.SQLSelect, withArgumentsIn: nil) {
             while results.next() {
-                let event = Event(eventId: results.long(forColumnIndex: 0),
-                                author: results.string(forColumnIndex: 1),
-                                title: results.string(forColumnIndex: 2),
-                                releaseDate: results.date(forColumnIndex: 3))
+                let event = Event(eventId:      results.long(forColumnIndex: 0),
+                                  author:       results.string(forColumnIndex: 1),
+                                  title:        results.string(forColumnIndex: 2),
+                                  releaseDate:  results.date(forColumnIndex: 3),
+                                  updatedDate:  results.date(forColumnIndex: 4),
+                                  eventCategory:results.string(forColumnIndex: 5)
+                )
                 events.append(event)
             }
         }
@@ -123,6 +133,8 @@ class EventDAO: NSObject {
                                     event.author,
                                     event.title,
                                     event.releaseDate,
+                                    event.updatedDate,
+                                    event.eventCategory,
                                     event.eventId])
     }
 }

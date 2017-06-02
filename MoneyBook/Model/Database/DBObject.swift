@@ -5,7 +5,7 @@
 //  Created by HongQuan on 2017/05/01.
 //  Copyright © 2017年 Roan.Hong. All rights reserved.
 //
-
+/*
 import Foundation
 
 class ChildIndex: Object {
@@ -38,3 +38,4 @@ class Record : Object {
 class Results : NSObject {
 
 }
+*/

@@ -12,7 +12,7 @@ let D_ParentVC_name = "ParentVC"
 class ParentViewController: UIViewController {
     //MARK: - ==========  var define ==========
     var delegate : AddSpentViewControllerDelegate? = nil
-    let data = DB.share().queryIndex()
+    //let data = DB.share().queryIndex()
 
     @IBOutlet var tableView: UITableView!
     
@@ -30,7 +30,7 @@ class ParentViewController: UIViewController {
     
     //MARK: - ========== IBACtions ==========
     @IBAction func backButton(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     //MARK: - ========== UITableViewDelegate ==========
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -55,7 +55,7 @@ class ParentViewController: UIViewController {
         
         print(currentCell.textLabel!.text!)
         self.delegate?.setData(str: currentCell.textLabel!.text!)
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     /*

@@ -92,12 +92,11 @@ class TouchToUnlockViewController: UIViewController {
         self.view.addSubview(backButton);
     }
     func onClickBackButton(_ sender: UIButton){
-        // 遷移するViewを定義.
-        let prevController: UIViewController = SigninViewController()
-        // アニメーションを設定.
-        prevController.modalTransitionStyle = UIModalTransitionStyle.partialCurl
-        // Viewの移動.
-        self.present(prevController, animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: kUIStoryboardName_Startup, bundle: nil)
+        let backView = storyboard.instantiateViewController(withIdentifier:kUIViewControllerId_Signin)
+        
+        backView.modalTransitionStyle = UIModalTransitionStyle.partialCurl
+        self.present(backView, animated: true, completion: nil)
     }
     
     func showOKAlert() {

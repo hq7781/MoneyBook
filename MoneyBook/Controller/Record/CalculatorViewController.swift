@@ -51,7 +51,7 @@ class CalculatorViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             } else {
                 self.delegate?.sendValue(value: lblResult.text!,view: D_calVC_name)
-                self.navigationController?.popViewController(animated: true)
+                _ = self.navigationController?.popViewController(animated: true)
             }
         } else if doneButton.titleLabel?.text == "=" {
             self.checkBoo = false

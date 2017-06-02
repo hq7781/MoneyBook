@@ -16,7 +16,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet var tableView: UITableView!
     
-    var data = DB.share().queryAccount()
+    //var data = DB.share().queryAccount()
     
     //MARK: - ========== override methods ==========
     override func viewDidLoad() {

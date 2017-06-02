@@ -265,7 +265,9 @@ class RecordsViewController: UIViewController,
                                 self.originalEvent!.eventId: Event.EventIdNone,
                                                     author: "testAuthor",//self.authorTextField.text!,
                                                     title: "testtitle", //self.titleTextField.text!,
-                                                    releaseDate: self.releaseDatePicker.date)
+                                                    releaseDate: self.releaseDatePicker.date,
+                                                    updatedDate: self.releaseDatePicker.date,
+                                                    eventCategory: "testCategory")
                 self.didFinishEditEvent(viewController: self, oldEvent: self.originalEvent, newEvent: newEvent)
                 
                 if UIApplication.shared.applicationIconBadgeNumber > 9 {

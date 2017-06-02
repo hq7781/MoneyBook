@@ -5,7 +5,7 @@
 //  Created by HongQuan on 2017/05/01.
 //  Copyright © 2017年 Roan.Hong. All rights reserved.
 //
-
+/*
 import Foundation
 class DB {
 //    let sqlLite3 = try! SqlLite3()
@@ -92,3 +92,4 @@ class DB {
 //        }
     }
 }
+ */

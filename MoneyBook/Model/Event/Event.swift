@@ -36,21 +36,24 @@ class Event: NSObject {
     private(set) var eventPayment: Int64
     /// Payment Currency.
     private(set) var currencyType: String
+    
     /// Initialize the instance.
     ///
     /// - Parameters:
     ///   - eventId:     Identifier
     ///   - author:      Author.
     ///   - title:       Title.
-    ///   - releaseDate: Release Date
-    init(eventId: Int, author: String, title: String, releaseDate: Date) {
+    ///   - releaseDate:   Release Date
+    ///   - updatedDate:   Updated Date
+    ///   - eventCategory: Event category Date
+    init(eventId: Int, author: String, title: String, releaseDate: Date, updatedDate: Date, eventCategory: String) {
         self.eventId     = eventId
         self.author      = author
         self.title       = title
         self.releaseDate = releaseDate
-        self.updatedDate = releaseDate
+        self.updatedDate = updatedDate
         self.eventType      = true
-        self.eventCategory  = ""
+        self.eventCategory  = eventCategory
         self.eventSubCategory = ""
         self.eventAccountType = ""
         self.eventPayment   = 0
