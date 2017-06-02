@@ -101,13 +101,10 @@ class TouchToUnlockViewController: UIViewController {
     }
     
     func showOKAlert() {
-        let alertController = UIAlertController(title: "成功",message: "指紋認証に成功",preferredStyle: .alert)
+        let alertController = UIAlertController(title:"成功", message:"認証に成功しました", preferredStyle:.alert)
         let okButton:UIAlertAction = UIAlertAction(title: "OK",style: UIAlertActionStyle.default,handler:{(action:UIAlertAction!) -> Void in
-            
-            //let storyboard: UIStoryboard = self.storyboard!
             let storyboard = UIStoryboard(name: kUIStoryboardName_Main, bundle: nil)
             let nextView = storyboard.instantiateViewController(withIdentifier:kUIViewControllerId_MainTabBarVC) as! UITabBarController
-            //let nextView = storyboard.instantiateViewController(withIdentifier:kUIViewControllerId_NewRecordsVC) as! UINavigationController
             self.present(nextView, animated: true, completion: nil)
         })
         
@@ -116,19 +113,16 @@ class TouchToUnlockViewController: UIViewController {
     }
     
     func checkSuccess() {
-        self.mySecurityLabel.text = ""
-//        if canAuthenticateByTouchId() {
-//            let result = self.authenticateByTouchId()
-//        } else {
-//            print("not support Touch ID Auth ")
-//            let result = self.authenticateByPasscode()
-//        }
+        self.updateMySecurityLabel(nil)
+        let tryCount = 2
+        let userInfo = [kNotificationUserInfoKey_UserTryLimit : "\(tryCount)"]
+        NotificationCenter.default.post(name:kNotificationNameUserAuthencationStart, object: nil, userInfo: userInfo )
     }
-
 
     func OnUserAuthencationSuccessed(notification: NSNotification) {
         DispatchQueue.main.async(execute: {
-            self.mySecurityLabel.text = "認証成功"
+            self.updateMySecurityLabel("認証成功")
+            self.showOKAlert()
         })
     }
     func OnUserAuthencationFailed(notification: NSNotification) {
@@ -136,19 +130,17 @@ class TouchToUnlockViewController: UIViewController {
         DispatchQueue.main.async(execute: {
             let errorMessage = userInfo?[kNotificationUserInfoKey_ErrorMessage] as? String
             if errorMessage != nil {
-                self.mySecurityLabel.text = errorMessage
+                self.updateMySecurityLabel(errorMessage)
             }
         })
     }
     
-    func updateMySecurityLabel(_ success: Bool) {
+    func updateMySecurityLabel(_ message: String?) {
         DispatchQueue.main.async(execute: {
-            if success {
-                print("認証成功")
-                self.mySecurityLabel.text = "認証成功"
+            if message != nil {
+                self.mySecurityLabel.text = message
             } else {
-                print("認証失敗")
-                self.mySecurityLabel.text = "認証失敗"
+                self.mySecurityLabel.text = ""
             }
         })
     }

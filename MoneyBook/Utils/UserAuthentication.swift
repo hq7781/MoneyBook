@@ -34,7 +34,6 @@ class UserAuthentication: NSObject {
     /// Initialize the instance.
     override init() {
         super.init()
-        self.context = LAContext()
         self.tryCount = kTryUserAuthenticateMaxCount
 
         NotificationCenter.default.addObserver(self, selector: #selector(OnUserAuthencationStart),
@@ -50,174 +49,162 @@ class UserAuthentication: NSObject {
     func OnUserAuthencationStart(notification: NSNotification) {
         let userInfo = notification.userInfo
         if (userInfo?[kNotificationUserInfoKey_UserTryLimit] as? String) != nil {
+            let count = userInfo?[kNotificationUserInfoKey_UserTryLimit] as! String
+            self.tryCount = Int(count)!
         }
         if canAuthenticateByTouchId() {
-            let result = authenticateByTouchId()
-            switch result {
-            case .authenticationSuccessed:
-                NotificationCenter.default.post(name:kNotificationNameUserAuthencationSuccessed, object: nil, userInfo: nil)
-                break
-            case .authenticationFailed:
-                if self.tryCount > 0 {
-                    tryCount = tryCount - 1
-                    let userInfo = [kNotificationUserInfoKey_ErrorMessage : "検証失敗、検証可能回数\(tryCount)"]
-                    NotificationCenter.default.post(name:kNotificationNameUserAuthencationFailed, object: nil, userInfo: userInfo )
-                }
-            case .authenticationUserCanceled:
-                let userInfo = [kNotificationUserInfoKey_ErrorMessage : "検証を取り消しました"]
-                NotificationCenter.default.post(name:kNotificationNameUserAuthencationFailed, object: nil, userInfo: userInfo )
-            case .authenticationUserTryLimited:
-                let userInfo = [kNotificationUserInfoKey_ErrorMessage : "検証の回数多すぎです"]
-                NotificationCenter.default.post(name:kNotificationNameUserAuthencationFailed, object: nil, userInfo: userInfo )
-            case .authenticationUserFallback:
-                let result = self.authenticateByPasscode()
-                switch result {
-                case .authenticationSuccessed:
-                    NotificationCenter.default.post(name:kNotificationNameUserAuthencationSuccessed, object: nil, userInfo: nil)
-                case .authenticationUserCanceled, .authenticationUserFallback, .authenticationUserTryLimited:
-                    let userInfo = [kNotificationUserInfoKey_ErrorMessage : "検証に失敗しました"]
-                    NotificationCenter.default.post(name:kNotificationNameUserAuthencationFailed, object: nil, userInfo: userInfo )
-                default:
-                    break
-                }
-            default:
-                break
-            }
+            authenticateByTouchId()
         } else {
-            let result = authenticateByPasscode()
-            switch result {
-            case .authenticationSuccessed:
-                NotificationCenter.default.post(name:kNotificationNameUserAuthencationSuccessed, object: nil, userInfo: nil)
-                break
-            case .authenticationUserCanceled, .authenticationUserFallback, .authenticationUserTryLimited:
-                break
-            default:
-                break
-            }
-            
+            authenticateByPasscode()
         }
     }
     
     func OnUserAuthencationStop(notification: NSNotification) {
     }
 
-    func authenticateByTouchId() -> AuthenticationResult {
-        var result = .authenticationUnknownError as AuthenticationResult
+    func actionWithAuthenticationSuccessed() {
+        NotificationCenter.default.post(name:kNotificationNameUserAuthencationSuccessed, object: nil, userInfo: nil)
+    }
+    func actionWithAuthenticationFailed() {
+        if self.tryCount == 0 {
+            actionWithAuthenticationUserTryLimited()
+            return
+        }
+        tryCount = tryCount - 1
+        let userInfo = [kNotificationUserInfoKey_ErrorMessage : "検証失敗、検証可能回数\(tryCount)"]
+        NotificationCenter.default.post(name:kNotificationNameUserAuthencationFailed, object: nil, userInfo: userInfo )
+
+    }
+    func actionWithAuthenticationUserCanceled() {
+        let userInfo = [kNotificationUserInfoKey_ErrorMessage : "ユーザから検証を取り消しました"]
+        NotificationCenter.default.post(name:kNotificationNameUserAuthencationFailed, object: nil, userInfo: userInfo )
+    }
+
+    func actionWithTouchIdAuthenticationUserFallback() {
+        self.authenticateByPasscode()
+    }
+    func actionWithAuthenticationSystemCanceled() {
+        let userInfo = [kNotificationUserInfoKey_ErrorMessage : "システムから検証を取消されました"]
+        NotificationCenter.default.post(name:kNotificationNameUserAuthencationFailed, object: nil, userInfo: userInfo )
+    }
+    func actionWithAuthenticationPasscodeNotSet() {
+        let userInfo = [kNotificationUserInfoKey_ErrorMessage : "Passcode Not Set"]
+        NotificationCenter.default.post(name:kNotificationNameUserAuthencationFailed, object: nil, userInfo: userInfo )
+    }
+    func actionWithAuthenticationTouchIdNotAvailable() {
+        let userInfo = [kNotificationUserInfoKey_ErrorMessage : "Touch Id Not Available"]
+        NotificationCenter.default.post(name:kNotificationNameUserAuthencationFailed, object: nil, userInfo: userInfo )
+    }
+    func actionWithAuthenticationTouchIDNotEnrolled() {
+        let userInfo = [kNotificationUserInfoKey_ErrorMessage : "Touch Id Not Enrolled"]
+        NotificationCenter.default.post(name:kNotificationNameUserAuthencationFailed, object: nil, userInfo: userInfo )
+    }
+    func actionWithAuthenticationUnknownError() {
+        let userInfo = [kNotificationUserInfoKey_ErrorMessage : "不明エラー"]
+        NotificationCenter.default.post(name:kNotificationNameUserAuthencationFailed, object: nil, userInfo: userInfo )
+    }
+    func actionWithAuthenticationUserTryLimited() {
+        let userInfo = [kNotificationUserInfoKey_ErrorMessage : "検証可能回数制限"]
+        NotificationCenter.default.post(name:kNotificationNameUserAuthencationFailed, object: nil, userInfo: userInfo )
+    }
+
+    func authenticateByTouchId() {
         let policy = LAPolicy.deviceOwnerAuthenticationWithBiometrics
-        DispatchQueue.main.async {
-            self.context.evaluatePolicy(policy,
+        
+        LAContext().evaluatePolicy(policy,
                                    localizedReason: "このアプリの利用には認証が必要です",
                                    reply: {
                                     (success: Bool, error: Error?) -> Void in
-                                    //self.updateMySecurityLabel(success)
-                                    print("Touch ID Auth result: %@", error.debugDescription)
                                     guard success else {
-                                        let nserror = error as? NSError
-                                        switch nserror!._code {
-                                        case LAError.authenticationFailed.rawValue: //kLAErrorAuthenticationFailed:
-                                            print("Touch ID Auth result: kSecUseAuthenticationUIFail")
-                                            result = .authenticationFailed
-                                        case LAError.userCancel.rawValue: //kLAErrorUserCancel:
-                                            print("Touch ID Auth result: kLAErrorUserCancel")
-                                            result = .authenticationUserCanceled
-                                        case LAError.userFallback.rawValue: //kLAErrorUserFallback:
-                                            print("Touch ID Auth result: kLAErrorUserFallback")
-                                            //result = self.authenticateByPasscode()
-                                            result = .authenticationUserFallback
-                                        case LAError.systemCancel.rawValue: //kLAErrorSystemCancel:
-                                            print("Touch ID Auth result: kLAErrorSystemCancel")
-                                            result = .authenticationSystemCanceled
-                                        case LAError.passcodeNotSet.rawValue: //kLAErrorPasscodeNotSet:
-                                            print("Touch ID Auth result: kLAErrorPasscodeNotSet")
-                                            result = .authenticationPasscodeNotSet
-                                        case LAError.touchIDNotAvailable.rawValue:// kLAErrorTouchIDNotAvailable:
-                                            print("Touch ID Auth result: kLAErrorTouchIDNotAvailable")
-                                        case LAError.touchIDNotEnrolled.rawValue: //kLAErrorTouchIDNotEnrolled:
-                                            result = .authenticationTouchIDNotEnrolled
-                                            print("Touch ID Auth result: kLAErrorTouchIDNotEnrolled")
-                                        default:
-                                            result = .authenticationUnknownError
-                                            break
-                                        }
-                                        return
-                                    }
-                                    result = .authenticationSuccessed
-            })
-        }
-        return result
-    }
-    
-    func authenticateByPasscode() -> AuthenticationResult {
-        var result = .authenticationUnknownError as AuthenticationResult
-        let policy = LAPolicy.deviceOwnerAuthentication
-        DispatchQueue.main.async {
-            self.context.evaluatePolicy(policy,
-                                   localizedReason: "パスコードを入力してください",
-                                   reply: {
-                                    (success: Bool, error: Error?) -> Void in
-                                    //self.updateMySecurityLabel(success)
-                                    print("Passcode Auth result: %@", error.debugDescription)
-                                    guard success else {
+                                        print("Touch ID Auth result: %@", error.debugDescription)
                                         let nserror = error as? NSError
                                         switch nserror!._code {
                                         case LAError.authenticationFailed.rawValue:
-                                            result = .authenticationFailed
+                                            self.actionWithAuthenticationFailed()
                                         case LAError.userCancel.rawValue:
-                                            result = .authenticationUserCanceled
+                                            self.actionWithAuthenticationUserCanceled()
                                         case LAError.userFallback.rawValue:
-                                            //result = self.authenticateByPasscode()
-                                            result = .authenticationUserFallback
+                                            self.actionWithTouchIdAuthenticationUserFallback()
                                         case LAError.systemCancel.rawValue:
-                                            result = .authenticationSystemCanceled
+                                            self.actionWithAuthenticationSystemCanceled()
                                         case LAError.passcodeNotSet.rawValue:
-                                            result = .authenticationPasscodeNotSet
+                                            self.actionWithAuthenticationPasscodeNotSet()
                                         case LAError.touchIDNotAvailable.rawValue:
-                                            result = .authenticationTouchIDNotAvailable
+                                            self.actionWithAuthenticationTouchIdNotAvailable()
                                         case LAError.touchIDNotEnrolled.rawValue:
-                                            result = .authenticationTouchIDNotEnrolled
+                                            self.actionWithAuthenticationTouchIDNotEnrolled()
                                         default:
-                                            result = .authenticationUnknownError
+                                            self.actionWithAuthenticationUnknownError()
                                             break
                                         }
                                         return
                                     }
-                                    result = .authenticationSuccessed
-
-            })
-        }
-        return result
+                                    self.actionWithAuthenticationSuccessed()
+        })
+    }
+    
+    func authenticateByPasscode() {
+        let policy = LAPolicy.deviceOwnerAuthentication
+        LAContext().evaluatePolicy(policy,
+                                   localizedReason: "パスコードを入力してください",
+                                   reply: {
+                                    (success: Bool, error: Error?) -> Void in
+                                    guard success else {
+                                        print("Passcode Auth result: %@", error.debugDescription)
+                                        let nserror = error as? NSError
+                                        switch nserror!._code {
+                                        case LAError.authenticationFailed.rawValue:
+                                            self.actionWithAuthenticationFailed()
+                                        case LAError.userCancel.rawValue:
+                                            self.actionWithAuthenticationUserCanceled()
+                                        case LAError.userFallback.rawValue:
+                                            self.actionWithTouchIdAuthenticationUserFallback()
+                                        case LAError.systemCancel.rawValue:
+                                            self.actionWithAuthenticationFailed()
+                                        case LAError.passcodeNotSet.rawValue:
+                                            self.actionWithAuthenticationFailed()
+                                        case LAError.touchIDNotAvailable.rawValue:
+                                            self.actionWithAuthenticationFailed()
+                                        case LAError.touchIDNotEnrolled.rawValue:
+                                            self.actionWithAuthenticationFailed()
+                                        default:
+                                            self.actionWithAuthenticationUnknownError()
+                                            break
+                                        }
+                                        return
+                                    }
+                                    self.actionWithAuthenticationSuccessed()
+                                    
+        })
     }
     
     func canAuthenticateByTouchId() -> Bool {
         // Touch ID API が利用できるかをチェック
-        var result = true as Bool
         var authError: NSError?
         let policy = LAPolicy.deviceOwnerAuthenticationWithBiometrics
-        DispatchQueue.main.async {
-            guard self.context.canEvaluatePolicy(policy, error: &authError) else {
+
+        guard LAContext().canEvaluatePolicy(policy, error: &authError) else {
                 let nserror = authError
+                print("Touch ID support check result: \(nserror?.localizedDescription)")
                 switch nserror!._code {
                 case LAError.authenticationFailed.rawValue:
-                    print("Touch ID Auth result: kLAErrorAuthenticationFailed")
+                    print("Touch ID support check result: kLAErrorAuthenticationFailed")
                 case LAError.userCancel.rawValue:
-                    print("Touch ID Auth result: kLAErrorUserCancel")
+                    print("Touch ID support check result: kLAErrorUserCancel")
                 case LAError.userFallback.rawValue:
-                    print("Touch ID Auth result: kLAErrorUserFallback")
+                    print("Touch ID support check result: kLAErrorUserFallback")
                 case LAError.systemCancel.rawValue:
-                    print("Touch ID Auth result: kLAErrorSystemCancel")
+                    print("Touch ID support check result: kLAErrorSystemCancel")
                 case LAError.passcodeNotSet.rawValue:
-                    print("Touch ID Auth result: kLAErrorPasscodeNotSet")
+                    print("Touch ID support check result: kLAErrorPasscodeNotSet")
                 case LAError.touchIDNotAvailable.rawValue:
-                    print("Touch ID Auth result: kLAErrorTouchIDNotAvailable")
+                    print("Touch ID support check result: kLAErrorTouchIDNotAvailable")
                 case LAError.touchIDNotEnrolled.rawValue:
-                    print("Touch ID Auth result: kLAErrorTouchIDNotEnrolled")
+                    print("Touch ID support check result: kLAErrorTouchIDNotEnrolled")
                 default: break
                 }
-                print("Touch ID support check result: \(nserror?.localizedDescription)")
-                result = false
-                return
+                return false
             }
-        }
-        return result
+        return true
     }
 }

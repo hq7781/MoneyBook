@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     /// Manager fot the application UserDefault data. Info.plist
     let appUserDefaultManager = AppUserDefaultManager()
+    let appUserAuthentication = UserAuthentication()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

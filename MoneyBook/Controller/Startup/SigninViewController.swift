@@ -11,13 +11,19 @@ import UIKit
 class SigninViewController: UIViewController {
     var myLabel: UILabel!
     
+    @IBOutlet weak var labelSignin: UILabel!
+    @IBOutlet weak var buttonSignin: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.white
         
-        self.setMyLabel(text: "Sign in Please!", point: CGPoint(x: 0, y: 300))
+
+        self.showDefaultUserView()
+        self.showOpreationView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,6 +43,30 @@ class SigninViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    func showDefaultUserView() {
+        // 背景色を設定.
+        labelSignin.backgroundColor = UIColor.orange
+        labelSignin.layer.masksToBounds = true
+        labelSignin.layer.cornerRadius = 75.0
+        labelSignin.textColor = UIColor.white
+        labelSignin.shadowColor = UIColor.gray
+        labelSignin.font = UIFont.systemFont(ofSize: CGFloat(30))
+        labelSignin.textAlignment = NSTextAlignment.center
+        labelSignin.layer.position = CGPoint(x: self.view.bounds.width/2, y: 300)
+        
+        self.setMyLabel(text: "Sign in Please!", point: CGPoint(x: 0, y: 300))
+        
+        //buttonSignin = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+        buttonSignin.backgroundColor = UIColor.blue
+        buttonSignin.setTitle("認証開始", for: UIControlState())
+        buttonSignin.setTitleColor(UIColor.white, for: UIControlState())
+        buttonSignin.layer.masksToBounds = true
+        buttonSignin.layer.cornerRadius = 20.0
+        buttonSignin.layer.position = CGPoint(x: self.view.bounds.width / 2, y:self.view.bounds.height-200)
+        //buttonSignin.addTarget(self, action: #selector(self.checkSuccess), for: .touchUpInside)
+        //self.view.addSubview(buttonSignin)
+    }
+    
     func setMyLabel(text: NSString, point: CGPoint){
         //let
         myLabel = UILabel(frame: CGRect(x: point.x, y: point.y, width:self.view.bounds.width, height:50))
@@ -52,5 +82,26 @@ class SigninViewController: UIViewController {
         
         self.view.addSubview(myLabel)
     }
-
+    
+    // MARK: - show Opreation View
+    func showOpreationView() {
+        // ボタンを作成.
+        let backButton: UIButton = UIButton(frame: CGRect(x: 0,y: 0,width: 120,height: 50))
+        backButton.backgroundColor = UIColor.red;
+        backButton.setTitle("Back", for: UIControlState())
+        backButton.setTitleColor(UIColor.white, for: UIControlState())
+        backButton.layer.masksToBounds = true
+        backButton.layer.cornerRadius = 20.0
+        backButton.layer.position = CGPoint(x: self.view.bounds.width/2 , y:self.view.bounds.height-100)
+        backButton.addTarget(self, action: #selector(self.onClickBackButton(_:)), for: .touchUpInside)
+        self.view.addSubview(backButton);
+    }
+    func onClickBackButton(_ sender: UIButton){
+        // 遷移するViewを定義.
+        let prevController: UIViewController = SigninViewController()
+        // アニメーションを設定.
+        prevController.modalTransitionStyle = UIModalTransitionStyle.partialCurl
+        // Viewの移動.
+        self.present(prevController, animated: true, completion: nil)
+    }
 }
