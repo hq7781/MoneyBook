@@ -8,6 +8,7 @@ PODS:
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
+  - Persei (3.0)
   - Realm (2.6.2):
     - Realm/Headers (= 2.6.2)
   - Realm/Headers (2.6.2)
@@ -18,14 +19,16 @@ DEPENDENCIES:
   - Charts
   - ChartsRealm
   - FMDB
+  - Persei (~> 3.0)
 
 SPEC CHECKSUMS:
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
   ChartsRealm: ed0332fd409298188a2b71e9548604165c987d42
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  Persei: 2fa633362b1686ec53f8d2d1368ee523b8630742
   Realm: 29222766425b9f831228f81b63f0e38a97a4d700
   RealmSwift: d161a80f96cb91ae88391a7d5a9cf08024a7bc8e
 
-PODFILE CHECKSUM: a9cd7bc3ce2503bfa397fd04b45d39d7af7d4726
+PODFILE CHECKSUM: edef3b4034d692704b112957ba18cc6d36d732f7
 
 COCOAPODS: 1.2.1

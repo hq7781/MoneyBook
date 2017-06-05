@@ -2,7 +2,7 @@
 //  TouchToUnlockViewController.swift
 //  MoneyBook
 //
-//  Created by Roan Hong on 2017/5/30.
+//  Created by HongQuan on 2017/5/30.
 //  Copyright © 2017年 Roan.Hong. All rights reserved.
 //
 

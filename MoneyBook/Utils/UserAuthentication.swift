@@ -2,7 +2,7 @@
 //  UserAuthentication.swift
 //  MoneyBook
 //
-//  Created by HONGQUAN on 5/31/17.
+//  Created by HongQuan on 5/31/17.
 //  Copyright © 2017 Roan.Hong. All rights reserved.
 //
 

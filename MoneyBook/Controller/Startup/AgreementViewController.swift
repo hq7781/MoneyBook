@@ -2,7 +2,7 @@
 //  AgreementViewController.swift
 //  MoneyBook
 //
-//  Created by Roan Hong on 2017/5/29.
+//  Created by HongQuan on 2017/5/29.
 //  Copyright © 2017年 Roan.Hong. All rights reserved.
 //
 

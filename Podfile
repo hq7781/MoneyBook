@@ -6,4 +6,5 @@ target 'MoneyBook' do
   pod 'FMDB'
   pod 'Charts'
   pod 'ChartsRealm'
+  pod 'Persei', '~> 3.0'
 end

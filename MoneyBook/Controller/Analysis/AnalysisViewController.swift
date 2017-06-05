@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import Persei
 
-class AnalysisViewController: UIViewController, UIScrollViewDelegate,
-UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
+class AnalysisViewController: UIViewController,
+    UITableViewDelegate,
+    UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     private var pageControl: UIPageControl!
     private var scrollView: UIScrollView!
+
+    fileprivate var menu: MenuView!
+    @IBOutlet var imageView: UIImageView!
+    @IBOutlet var tableView: UITableView!
     
     //MARK: - ========== override methods ==========
     override func viewDidLoad() {
@@ -21,6 +27,8 @@ UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFl
         self.view.backgroundColor = UIColor.cyan
         
         // Do any additional setup after loading the view, typically from a nib.
+        title = model.description
+        LoadMenuView()
         self.showPageScrollView()
     }
 
@@ -28,6 +36,53 @@ UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFl
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    fileprivate func LoadMenuView() {
+        imageView = UIImageView()
+        imageView.image = model.image
+        
+        menu = {
+            let menu = MenuView()
+            menu.delegate = self
+            menu.items = items
+            return menu
+        }()
+        
+        tableView.addSubview(menu)
+    
+    }
+    // MARK: - Items
+    fileprivate let items = (0..<7).map {
+        MenuItem(image: UIImage(named: "menu_icon_\($0)")!)
+    }
+    // MARK: - Model
+    fileprivate var model: ContentType = .films {
+        didSet {
+            title = model.description
+            
+            if isViewLoaded {
+                let center: CGPoint = {
+                    let itemFrame = menu.frameOfItem(at: menu.selectedIndex!)
+                    let itemCenter = CGPoint(x: itemFrame.midX, y: itemFrame.midY)
+                    var convertedCenter = imageView.convert(itemCenter, from: menu)
+                    convertedCenter.y = 0
+                    
+                    return convertedCenter
+                }()
+                
+                let transition = CircularRevealTransition(layer: imageView.layer, center: center)
+                transition.start()
+                
+                imageView.image = model.image
+            }
+        }
+    }
+    
+    // MARK: - Actions
+    @IBAction fileprivate func switchMenu() {
+        menu.setRevealed(!menu.revealed, animated: true)
+    }
+    
     
     // MARK: - show PageScrollview View
     func showPageScrollView() {
@@ -192,3 +247,11 @@ UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFl
 
 }
 
+// MARK: - MenuViewDelegate
+
+extension AnalysisViewController: MenuViewDelegate {
+    
+    func menu(_ menu: MenuView, didSelectItemAt index: Int) {
+        model = model.next()
+    }
+}
