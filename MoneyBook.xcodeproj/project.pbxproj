@@ -20,6 +20,9 @@
 		8692B7FF1EE55C04005CCE03 /* content_music@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8692B7F71EE55C04005CCE03 /* content_music@3x.png */; };
 		8692B8041EE55F13005CCE03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8692B8001EE55F13005CCE03 /* LaunchScreen.storyboard */; };
 		8692B8051EE55F13005CCE03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8692B8021EE55F13005CCE03 /* Main.storyboard */; };
+		8692B8071EE56506005CCE03 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8692B8061EE56506005CCE03 /* Images.xcassets */; };
+		8692B8091EE6795E005CCE03 /* AnalysisMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692B8081EE6795C005CCE03 /* AnalysisMenuTableViewCell.swift */; };
+		8692B80B1EE69BE0005CCE03 /* Extension+Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692B80A1EE69BE0005CCE03 /* Extension+Float.swift */; };
 		86E7D6BF1EDD4E9F0010AF09 /* AppUserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E7D6BE1EDD4E9F0010AF09 /* AppUserDefaultManager.swift */; };
 		86E7D6C11EDE9F350010AF09 /* UserAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E7D6C01EDE9F350010AF09 /* UserAuthentication.swift */; };
 		86E7D6C41EE540370010AF09 /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E7D6C31EE540370010AF09 /* ContentType.swift */; };
@@ -1024,6 +1027,9 @@
 		8692B7F71EE55C04005CCE03 /* content_music@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "content_music@3x.png"; path = "MoneyBook/Resource/Content Images/content_music@3x.png"; sourceTree = SOURCE_ROOT; };
 		8692B8011EE55F13005CCE03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = MoneyBook/Resource/UI/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		8692B8031EE55F13005CCE03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = MoneyBook/Resource/UI/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		8692B8061EE56506005CCE03 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MoneyBook/Resource/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		8692B8081EE6795C005CCE03 /* AnalysisMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisMenuTableViewCell.swift; sourceTree = "<group>"; };
+		8692B80A1EE69BE0005CCE03 /* Extension+Float.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Extension+Float.swift"; path = "Misc/Extension/Extension+Float.swift"; sourceTree = "<group>"; };
 		86E7D6BE1EDD4E9F0010AF09 /* AppUserDefaultManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUserDefaultManager.swift; sourceTree = "<group>"; };
 		86E7D6C01EDE9F350010AF09 /* UserAuthentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAuthentication.swift; path = Utils/UserAuthentication.swift; sourceTree = "<group>"; };
 		86E7D6C31EE540370010AF09 /* ContentType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentType.swift; sourceTree = "<group>"; };
@@ -2092,6 +2098,7 @@
 				86E7D6CA1EE543AA0010AF09 /* Extension+CGRect.swift */,
 				B0A86B911EB635D100A82C0C /* Extension+UIColor.swift */,
 				B0A86B931EB6362800A82C0C /* Extension+String.swift */,
+				8692B80A1EE69BE0005CCE03 /* Extension+Float.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -2238,6 +2245,7 @@
 		B0A86B721EB6006500A82C0C /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				8692B8061EE56506005CCE03 /* Images.xcassets */,
 				86E7D6C61EE542B90010AF09 /* Content Images */,
 				86E7D6C51EE542AE0010AF09 /* UI */,
 				B0A86BAF1EB7446800A82C0C /* icon */,
@@ -2277,6 +2285,7 @@
 			isa = PBXGroup;
 			children = (
 				B0A86B871EB611FF00A82C0C /* AnalysisViewController.swift */,
+				8692B8081EE6795C005CCE03 /* AnalysisMenuTableViewCell.swift */,
 			);
 			name = Analysis;
 			path = Controller/Analysis;
@@ -3977,6 +3986,7 @@
 				B0A871271EB7446D00A82C0C /* _old_attach_status_loading.png in Resources */,
 				B0A872141EB7446D00A82C0C /* securematrix_number22.png in Resources */,
 				B0A871B11EB7446D00A82C0C /* mail_compression.png in Resources */,
+				8692B8071EE56506005CCE03 /* Images.xcassets in Resources */,
 				B0A86FD31EB7446C00A82C0C /* kana.png in Resources */,
 				B0A871931EB7446D00A82C0C /* ext_xls@2x.png in Resources */,
 				B0A86F861EB7446C00A82C0C /* bow_prev.png in Resources */,
@@ -4517,6 +4527,7 @@
 				B0A86B961EB6375B00A82C0C /* DB.swift in Sources */,
 				B0A86B3D1EB5FE6600A82C0C /* AppDelegate.swift in Sources */,
 				B0A86B881EB611FF00A82C0C /* AnalysisViewController.swift in Sources */,
+				8692B8091EE6795E005CCE03 /* AnalysisMenuTableViewCell.swift in Sources */,
 				B0A86B941EB6362800A82C0C /* Extension+String.swift in Sources */,
 				86E7D6C11EDE9F350010AF09 /* UserAuthentication.swift in Sources */,
 				B04A14011EB8FE4C008EEFCE /* EventDAO.swift in Sources */,
@@ -4544,6 +4555,7 @@
 				9C24D5DD1EDB29890003EC75 /* AgreementViewController.swift in Sources */,
 				B04A140A1EB9418E008EEFCE /* EventService.swift in Sources */,
 				9C24D5E11EDC752E0003EC75 /* TouchToUnlockViewController.swift in Sources */,
+				8692B80B1EE69BE0005CCE03 /* Extension+Float.swift in Sources */,
 				B0A86B8C1EB6121700A82C0C /* SettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

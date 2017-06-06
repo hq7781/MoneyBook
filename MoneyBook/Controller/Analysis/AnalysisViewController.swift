@@ -9,6 +9,8 @@
 import UIKit
 import Persei
 
+let k_CELLNAME_AnalysisMenuTableViewCell: String = "AnalysisMenuCell"
+
 class AnalysisViewController: UIViewController,
     UITableViewDelegate,
     UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -16,9 +18,10 @@ class AnalysisViewController: UIViewController,
     private var pageControl: UIPageControl!
     private var scrollView: UIScrollView!
 
-    fileprivate var menu: MenuView!
-    @IBOutlet var imageView: UIImageView!
-    @IBOutlet var tableView: UITableView!
+    fileprivate weak var menu: MenuView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var tableView: UITableView!
+    //@IBOutlet weak var AnalysisMenuCell: UITableViewCell!
     
     //MARK: - ========== override methods ==========
     override func viewDidLoad() {
@@ -28,7 +31,7 @@ class AnalysisViewController: UIViewController,
         
         // Do any additional setup after loading the view, typically from a nib.
         title = model.description
-        LoadMenuView()
+        //self.LoadMenuView()
         self.showPageScrollView()
     }
 
@@ -38,18 +41,19 @@ class AnalysisViewController: UIViewController,
     }
     
     fileprivate func LoadMenuView() {
-        imageView = UIImageView()
-        imageView.image = model.image
-        
-        menu = {
-            let menu = MenuView()
-            menu.delegate = self
-            menu.items = items
-            return menu
-        }()
-        
-        tableView.addSubview(menu)
-    
+        DispatchQueue.main.async(execute: {
+            self.imageView = UIImageView()
+            self.imageView.image = self.model.image
+            
+            self.menu = {
+                let menu = MenuView()
+                menu.delegate = self
+                menu.items = self.items
+                return menu
+            }()
+            
+            self.tableView.addSubview(self.menu)
+        })
     }
     // MARK: - Items
     fileprivate let items = (0..<7).map {
@@ -83,6 +87,39 @@ class AnalysisViewController: UIViewController,
         menu.setRevealed(!menu.revealed, animated: true)
     }
     
+    // MARK: - Table view data source ========== UITableViewDelegate ==========
+    /// Asks the data source to return the number of sections in the table view.
+    func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    /// Tells the data source to return the number of rows in a given section of a table view.
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return 1
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: k_CELLNAME_AnalysisMenuTableViewCell, for: indexPath) as? AnalysisMenuTableViewCell
+            //let cell = self.AnalysisMenuCell as UITableViewCell
+            //cell?.imgView.image = nil //UIImage(named: data[indexPath.row].image)
+            cell?.textLabel?.text = "Text"
+            cell?.detailTextLabel?.text = "detailText"
+            return cell!
+        }
+        return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let indexPath = tableView.indexPathForSelectedRow
+        _ = tableView.cellForRow(at: indexPath!)! 
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return self.view.frame.size.height / 12
+    }
+
     
     // MARK: - show PageScrollview View
     func showPageScrollView() {

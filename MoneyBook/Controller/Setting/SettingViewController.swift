@@ -18,12 +18,13 @@ class SettingViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.view.backgroundColor = UIColor.white
+        //self.view.backgroundColor = UIColor.enixOrange() // UIColor.white
         self.setUpUI()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //self.setUpUI()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

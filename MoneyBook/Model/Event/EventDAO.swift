@@ -17,8 +17,8 @@ class EventDAO: NSObject {
         "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
         "author TEXT, " +
         "title TEXT, " +
-        "release_date INTEGER" +
-        "updated_date INTEGER" +
+        "release_date INTEGER, " +
+        "updated_date INTEGER, " +
         "category TEXT" +
     ");"
     

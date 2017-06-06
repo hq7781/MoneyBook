@@ -30,9 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //NotificationCenter.default.post(name:kNotificationNameAgreementViewWillShow, object: nil, userInfo: nil /*Notification.userInfo*/ )
         }
         // for startup process
-      /*  if !AppUtils.isUserAgreed() {
+        if !AppUtils.isUserAgreed() {
             self.setRootViewControllerToAgreement()
-        } else */if !AppUtils.isUserSignined() {
+        } else if !AppUtils.isUserSignined() {
             self.setRootViewControllerToSignin()
         } else if AppUtils.isUserLocked() {
             self.setRootViewControllerToLockOnOff()

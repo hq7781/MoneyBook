@@ -32,20 +32,23 @@ public class AppUtils {
     
     static func isUserAgreed() ->Bool {
         let app = UIApplication.shared.delegate as! AppDelegate
-        return app.appUserDefaultManager.getUserAgreement()
+        //return app.appUserDefaultManager.getUserAgreement()
+        return true // for debug
     }
     static func isUserSignined() ->Bool {
         let app = UIApplication.shared.delegate as! AppDelegate
         let currentUser = app.appUserDefaultManager.getCurrentUser()
-        if (currentUser == nil) || (currentUser == "") {
-            return false
-        } else {
-            return true
-        }
+        //if (currentUser == nil) || (currentUser == "") {
+        //    return false
+        //} else {
+        //    return true
+        //}
+        return true // for debug
     }
     static func isUserLocked() ->Bool {
         let app = UIApplication.shared.delegate as! AppDelegate
-        return app.appUserDefaultManager.getUserLock()
+        //return app.appUserDefaultManager.getUserLock()
+        return false // for debug
     }
 }
 

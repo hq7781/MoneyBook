@@ -180,6 +180,14 @@ open class EasyTipView: UIView {
         super.init(frame: CGRect.zero)
         
         self.backgroundColor = UIColor.clear
+        
+        // for shadow effect
+        layer.cornerRadius = 3
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.2
+        layer.shadowOffset = CGSize(width: 1, height: 1)
+        layer.shadowRadius = 2
+        
         NotificationCenter.default.addObserver(self, selector: #selector(handleRotation), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
     

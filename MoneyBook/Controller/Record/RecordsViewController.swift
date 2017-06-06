@@ -214,14 +214,16 @@ class RecordsViewController: UIViewController,
     }
 
     func setUpUserNotification() {
-        let center:UNUserNotificationCenter = UNUserNotificationCenter.current()
-        center.requestAuthorization(options: [.badge, .sound, .alert, .carPlay],
-                                    completionHandler: {(permit, error) in
-            if permit {
-                self.showMessage("通知が許可されました", type: .success, options: [.autoHideDelay(2)])
-            } else {
-                self.showMessage("通知が拒否されました", type: .error, options: [.autoHideDelay(2)])
-            }
+        DispatchQueue.main.async(execute: {
+            let center:UNUserNotificationCenter = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.badge, .sound, .alert, .carPlay],
+                                        completionHandler: {(permit, error) in
+                                            if permit {
+                                              //  self.showMessage("通知が許可されました", type: .success, options: [.autoHideDelay(2)])
+                                            } else {
+                                                self.showMessage("通知が拒否されました", type: .error, options: [.autoHideDelay(2)])
+                                            }
+            })
         })
     }
 //MARK: - ========== IBACtions ==========

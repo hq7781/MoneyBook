@@ -41,7 +41,7 @@ class HistoryDetailViewController: UIViewController {
     }
     func configureView() {
         // Update the user interface for the detail item.
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = UIColor.enixOrange() // UIColor.white
         if let detail = self.detailItem {
             if let label = self.historyDetailLabel {
                 label.text = (detail.value(forKey: "timeStamp") as! NSObject).description

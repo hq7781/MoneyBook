@@ -15,7 +15,8 @@ class HistoryMasterViewController: UITableViewController
         super.viewDidLoad()
         
         self.title = "Event History"
-        self.view.backgroundColor = UIColor.white
+        //self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = UIColor.enixOrange() // UIColor.white
         self.navigationItem.leftBarButtonItem = self.editButtonItem
         
         //let addButton = UIBarButtonItem()
