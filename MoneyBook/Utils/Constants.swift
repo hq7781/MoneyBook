@@ -34,6 +34,7 @@ let kNotificationUserInfoKey_UserTryLimit = "UserTryLimit"
 let kNotificationUserInfoKey_ErrorMessage = "ErrorMessage"
 
 // User Default Key 名称常量
+let kUserDefaultKey_versionStr  = "CFBundleShortVersionString"
 let kUserDefaultKey_VisitCount  = "VisitCount"
 let kUserDefaultKey_Agreement   = "AgreementFlag"
 let kUserDefaultKey_CurrentUser = "CurrentUser"

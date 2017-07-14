@@ -20,6 +20,17 @@ public class AppUtils {
         let build = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
         return build
     }
+    
+    static func isAppVersionChanged() ->Bool {
+        //let versionStr = "CFBundleShortVersionString"
+        //let cureentVersion = NSBundle.mainBundle().infoDictionary![versionStr] as! String
+        //let oldVersion = (NSUserDefaults.standardUserDefaults().objectForKey(versionStr) as? String) ?? ""
+        let cureentVersion = getAppVersionInfo()
+        let app = UIApplication.shared.delegate as! AppDelegate
+        let oldVersion = app.appUserDefaultManager.getCurrentVerion()
+        
+        return (cureentVersion.compare(oldVersion) != NSComparisonResult.OrderedDescending)
+    }
     static func isUserVisited() ->Bool {
         let app = UIApplication.shared.delegate as! AppDelegate
         let vistedCount = app.appUserDefaultManager.getVisitCount()
@@ -29,26 +40,35 @@ public class AppUtils {
             return false
         }
     }
-    
+
     static func isUserAgreed() ->Bool {
-        let app = UIApplication.shared.delegate as! AppDelegate
-        //return app.appUserDefaultManager.getUserAgreement()
+        #if DEBUG
         return true // for debug
+        #else
+        let app = UIApplication.shared.delegate as! AppDelegate
+        return app.appUserDefaultManager.getUserAgreement()
+        #endif
     }
     static func isUserSignined() ->Bool {
+        #if DEBUG
+        return true // for debug
+        #else
         let app = UIApplication.shared.delegate as! AppDelegate
         let currentUser = app.appUserDefaultManager.getCurrentUser()
-        //if (currentUser == nil) || (currentUser == "") {
-        //    return false
-        //} else {
-        //    return true
-        //}
-        return true // for debug
+        if (currentUser == nil) || (currentUser == "") {
+            return false
+        } else {
+            return true
+        }
+        #endif
     }
     static func isUserLocked() ->Bool {
-        let app = UIApplication.shared.delegate as! AppDelegate
-        //return app.appUserDefaultManager.getUserLock()
+        #if DEBUG
         return false // for debug
+        #else
+        let app = UIApplication.shared.delegate as! AppDelegate
+        return app.appUserDefaultManager.getUserLock()
+        #endif
     }
 }
 

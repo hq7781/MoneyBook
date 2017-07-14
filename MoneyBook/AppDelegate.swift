@@ -29,14 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //发送通知
         //NotificationCenter.default.post(name:kNotificationNameAgreementViewWillShow, object: nil, userInfo: nil /*Notification.userInfo*/ )
         }
+        
         // for startup process
-        if !AppUtils.isUserAgreed() {
-            self.setRootViewControllerToAgreement()
-        } else if !AppUtils.isUserSignined() {
-            self.setRootViewControllerToSignin()
-        } else if AppUtils.isUserLocked() {
-            self.setRootViewControllerToLockOnOff()
-        }
+        setAppStartKeyWindow()
+
         return true
     }
 
@@ -63,31 +59,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     ////////////////////////////////////////////////////////////////////
-    func appSetRootViewController(initialViewController: UIViewController? ) {
+    func setAppStartKeyWindow() {
         //windowを生成
         self.window = UIWindow(frame: UIScreen.main.bounds)
         //rootViewControllerに入れる
-        self.window?.rootViewController = initialViewController
+        self.window?.rootViewController = setRootViewController()
         //表示
         self.window?.makeKeyAndVisible()
     }
-    func setRootViewControllerToAgreement() {
-        let storyboard = UIStoryboard(name: kUIStoryboardName_Startup, bundle: nil)
-        //Viewcontrollerを指定
-        let initialViewController = storyboard.instantiateViewController(withIdentifier: kUIViewControllerId_Agreement)
-        self.appSetRootViewController(initialViewController: initialViewController)
+    
+    //MARK: - 引导页设置
+    private func setRootViewController() -> UIViewController {
+        if AppUtils.isAppVersionChanged() {
+            appUserDefaultManager.setCurrentVersion(currentVersion: AppUtils.getAppVersionInfo())
+            return ViewControllerLeadpage()
+        } else if !AppUtils.isUserAgreed() {
+            return ViewControllerToAgreement()
+        } else if !AppUtils.isUserSignined() {
+            return ViewControllerToSignin()
+        } else if AppUtils.isUserLocked() {
+            return ViewControllerToLockOnOff()
+        }
+        return ViewControllerMainTabBar()
     }
-    func setRootViewControllerToSignin() {
+    func ViewControllerLeadpage() -> UIViewController {
         let storyboard = UIStoryboard(name: kUIStoryboardName_Startup, bundle: nil)
-        //Viewcontrollerを指定
-        let initialViewController = storyboard.instantiateViewController(withIdentifier: kUIViewControllerId_Signin)
-        self.appSetRootViewController(initialViewController: initialViewController)
+        return storyboard.instantiateViewController(withIdentifier: kUIViewControllerId_Agreement)
     }
-    func setRootViewControllerToLockOnOff() {
+    func ViewControllerToAgreement() -> UIViewController {
         let storyboard = UIStoryboard(name: kUIStoryboardName_Startup, bundle: nil)
-        //Viewcontrollerを指定
-        let initialViewController = storyboard.instantiateViewController(withIdentifier: kUIViewControllerId_TouchToUnlock)
-        self.appSetRootViewController(initialViewController: initialViewController)
+        return storyboard.instantiateViewController(withIdentifier: kUIViewControllerId_Agreement)
+    }
+    func ViewControllerToSignin() -> UIViewController {
+        let storyboard = UIStoryboard(name: kUIStoryboardName_Startup, bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: kUIViewControllerId_Signin)
+    }
+    func ViewControllerToLockOnOff() {
+        let storyboard = UIStoryboard(name: kUIStoryboardName_Startup, bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: kUIViewControllerId_TouchToUnlock)
+    }
+    func ViewControllerMainTabBar() {
+        let storyboard = UIStoryboard(name: kUIStoryboardName_Startup, bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: kUIViewControllerId_TouchToUnlock)
     }
     ////////////////////////////////////////////////////////////////////
 }
