@@ -29,7 +29,7 @@ public class AppUtils {
         let app = UIApplication.shared.delegate as! AppDelegate
         let oldVersion = app.appUserDefaultManager.getCurrentVerion()
         
-        return (cureentVersion.compare(oldVersion) != NSComparisonResult.OrderedDescending)
+        return (cureentVersion.compare(oldVersion!) != ComparisonResult.orderedDescending)
     }
     static func isUserVisited() ->Bool {
         let app = UIApplication.shared.delegate as! AppDelegate

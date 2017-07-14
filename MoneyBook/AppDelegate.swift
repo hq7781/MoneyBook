@@ -71,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK: - 引导页设置
     private func setRootViewController() -> UIViewController {
         if AppUtils.isAppVersionChanged() {
-            appUserDefaultManager.setCurrentVersion(currentVersion: AppUtils.getAppVersionInfo())
+            _ = appUserDefaultManager.setCurrentVersion(currentVersion: AppUtils.getAppVersionInfo())
             return ViewControllerLeadpage()
         } else if !AppUtils.isUserAgreed() {
             return ViewControllerToAgreement()
@@ -94,13 +94,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: kUIStoryboardName_Startup, bundle: nil)
         return storyboard.instantiateViewController(withIdentifier: kUIViewControllerId_Signin)
     }
-    func ViewControllerToLockOnOff() {
+    func ViewControllerToLockOnOff() -> UIViewController {
         let storyboard = UIStoryboard(name: kUIStoryboardName_Startup, bundle: nil)
         return storyboard.instantiateViewController(withIdentifier: kUIViewControllerId_TouchToUnlock)
     }
-    func ViewControllerMainTabBar() {
-        let storyboard = UIStoryboard(name: kUIStoryboardName_Startup, bundle: nil)
-        return storyboard.instantiateViewController(withIdentifier: kUIViewControllerId_TouchToUnlock)
+    func ViewControllerMainTabBar() -> UIViewController {
+        let storyboard = UIStoryboard(name: kUIStoryboardName_Main, bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: kUIViewControllerId_MainTabBarVC)
     }
     ////////////////////////////////////////////////////////////////////
 }

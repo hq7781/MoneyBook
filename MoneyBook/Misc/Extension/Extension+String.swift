@@ -7,11 +7,33 @@
 //
 
 import Foundation
+
+
 extension String {
     
     var length: Int {
         return self.characters.count
     }
+    /*
+    /// return string of the MD5 result
+    var md5: String! {
+        let str = self.cString(using: String.Encoding.utf8)
+        let strLen = CC_LONG(self.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+        let digestLen = Int(CC_MD5_DIGEST_LENGTH)
+        let result = UnsafeMutablePointer<CUnsignedChar>.alloc(digestLen)
+        
+        CC_MD5(str!, strLen, result)
+        
+        let hash = NSMutableString()
+        for i in 0..<digestLen {
+            hash.appendFormat("%02x", result[i])
+        }
+        
+        result.dealloc(digestLen)
+        
+        return hash.copy() as! String
+    }
+    */
     
     subscript (i: Int) -> String {
         return self[Range(i ..< i + 1)]

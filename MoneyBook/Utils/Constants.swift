@@ -40,5 +40,7 @@ let kUserDefaultKey_Agreement   = "AgreementFlag"
 let kUserDefaultKey_CurrentUser = "CurrentUser"
 let kUserDefaultKey_UserLock    = "UserLockFlag"
 
+// chache path
+let kAppImageCachePath = "com.enixsoft.imagecache"
 
 let kTryUserAuthenticateMaxCount = 5

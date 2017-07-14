@@ -28,6 +28,8 @@
 		86E7D6C41EE540370010AF09 /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E7D6C31EE540370010AF09 /* ContentType.swift */; };
 		86E7D6CB1EE543AA0010AF09 /* Extension+CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E7D6CA1EE543AA0010AF09 /* Extension+CGRect.swift */; };
 		86E7D6CE1EE543FA0010AF09 /* CircularRevealTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E7D6CD1EE543FA0010AF09 /* CircularRevealTransition.swift */; };
+		86F9E9F31F1892EE007A87B9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F9E9F21F1892EB007A87B9 /* NetworkManager.swift */; };
+		86F9E9F51F1895F8007A87B9 /* SimpleNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F9E9F41F1895F8007A87B9 /* SimpleNetwork.swift */; };
 		9C24D5DD1EDB29890003EC75 /* AgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24D5DC1EDB29890003EC75 /* AgreementViewController.swift */; };
 		9C24D5DF1EDC74CF0003EC75 /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24D5DE1EDC74CF0003EC75 /* SigninViewController.swift */; };
 		9C24D5E11EDC752E0003EC75 /* TouchToUnlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24D5E01EDC752D0003EC75 /* TouchToUnlockViewController.swift */; };
@@ -1035,6 +1037,8 @@
 		86E7D6C31EE540370010AF09 /* ContentType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentType.swift; sourceTree = "<group>"; };
 		86E7D6CA1EE543AA0010AF09 /* Extension+CGRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Extension+CGRect.swift"; path = "Misc/Extension/Extension+CGRect.swift"; sourceTree = "<group>"; };
 		86E7D6CD1EE543FA0010AF09 /* CircularRevealTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularRevealTransition.swift; path = Misc/Animation/CircularRevealTransition.swift; sourceTree = "<group>"; };
+		86F9E9F21F1892EB007A87B9 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = Utils/NetworkManager.swift; sourceTree = "<group>"; };
+		86F9E9F41F1895F8007A87B9 /* SimpleNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleNetwork.swift; path = Utils/SimpleNetwork.swift; sourceTree = "<group>"; };
 		9C24D5DC1EDB29890003EC75 /* AgreementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AgreementViewController.swift; path = Controller/Startup/AgreementViewController.swift; sourceTree = "<group>"; };
 		9C24D5DE1EDC74CF0003EC75 /* SigninViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SigninViewController.swift; path = Controller/Startup/SigninViewController.swift; sourceTree = "<group>"; };
 		9C24D5E01EDC752D0003EC75 /* TouchToUnlockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TouchToUnlockViewController.swift; path = Controller/Startup/TouchToUnlockViewController.swift; sourceTree = "<group>"; };
@@ -2228,6 +2232,8 @@
 				B0A86BAD1EB6682200A82C0C /* Constants.swift */,
 				B04974261ECB74DE00B3AC28 /* AppUtils.swift */,
 				86E7D6C01EDE9F350010AF09 /* UserAuthentication.swift */,
+				86F9E9F21F1892EB007A87B9 /* NetworkManager.swift */,
+				86F9E9F41F1895F8007A87B9 /* SimpleNetwork.swift */,
 			);
 			name = Utilis;
 			sourceTree = "<group>";
@@ -4535,6 +4541,8 @@
 				86E7D6CB1EE543AA0010AF09 /* Extension+CGRect.swift in Sources */,
 				B04A14081EB93874008EEFCE /* EventCache.swift in Sources */,
 				B0A86BA81EB65A2A00A82C0C /* AccountViewController.swift in Sources */,
+				86F9E9F51F1895F8007A87B9 /* SimpleNetwork.swift in Sources */,
+				86F9E9F31F1892EE007A87B9 /* NetworkManager.swift in Sources */,
 				86E7D6BF1EDD4E9F0010AF09 /* AppUserDefaultManager.swift in Sources */,
 				B0A86BAC1EB663F500A82C0C /* Object.swift in Sources */,
 				86E7D6C41EE540370010AF09 /* ContentType.swift in Sources */,
