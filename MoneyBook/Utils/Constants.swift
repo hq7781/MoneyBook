@@ -39,6 +39,8 @@ let kUserDefaultKey_VisitCount  = "VisitCount"
 let kUserDefaultKey_Agreement   = "AgreementFlag"
 let kUserDefaultKey_CurrentUser = "CurrentUser"
 let kUserDefaultKey_UserLock    = "UserLockFlag"
+let kUserDefaultKey_Account    = "UserAccount"
+let kUserDefaultKey_Password    = "UserPassword"
 
 // chache path
 let kAppImageCachePath = "com.enixsoft.imagecache"

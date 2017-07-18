@@ -122,20 +122,18 @@ public class SimpleNetwork {
         if let request = request(method:method, urlString, _params: params) {
             session!.dataTask(with: request as URLRequest, completionHandler: {
                 (data, _, error) -> Void in
+                
                 if error != nil {
                     completion(nil, error as NSError?)
                     return
                 }
                 
                 let json: AnyObject? = try! JSONSerialization.jsonObject(with:data!, options: .allowFragments) as AnyObject?//JSONReadingOptions)
-                //let json: AnyObject? = try! JSONSerialization.jsonObject(with: data!, options: .allowFragments) as AnyObject?
                 
                 if json == nil {
                     let error = NSError(domain:SimpleNetwork.errorDomain, code:-1, userInfo:["error":"JSON Serialization Failed!"])
                     completion(nil,error)
                 } else {
-//                    let queue1 = DispatchQueue.main
-//                    let queue = DispatchQueue.global()
                     DispatchQueue.main.async {
                         () -> Void in
                         completion(json, nil)

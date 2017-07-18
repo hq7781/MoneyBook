@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return ViewControllerLeadpage()
         } else if !AppUtils.isUserAgreed() {
             return ViewControllerToAgreement()
-        } else if !AppUtils.isUserSignined() {
+        } else if !AppUtils.isUserLogin() {
             return ViewControllerToSignin()
         } else if AppUtils.isUserLocked() {
             return ViewControllerToLockOnOff()

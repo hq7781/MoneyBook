@@ -49,6 +49,7 @@ public class AppUtils {
         return app.appUserDefaultManager.getUserAgreement()
         #endif
     }
+    /*
     static func isUserSignined() ->Bool {
         #if DEBUG
         return true // for debug
@@ -60,6 +61,23 @@ public class AppUtils {
         } else {
             return true
         }
+        #endif
+    }*/
+    // get login status
+    class func isUserLogin() -> Bool {
+        #if DEBUG
+        return true // for debug
+        #else
+        let app = UIApplication.shared.delegate as! AppDelegate
+        let account = app.appUserDefaultManager.getUserAccount()
+        let password = app.appUserDefaultManager.getUserPassword()
+            
+        if account != nil && password != nil {
+            if !account!.isEmpty && !password!.isEmpty {
+                return true
+            }
+        }
+        return false
         #endif
     }
     static func isUserLocked() ->Bool {

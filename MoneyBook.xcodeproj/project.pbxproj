@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		868012091F1DE745000A2302 /* ShareUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868012081F1DE745000A2302 /* ShareUtils.swift */; };
+		8680120B1F1DE81C000A2302 /* ShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680120A1F1DE81C000A2302 /* ShareModel.swift */; };
+		8680120E1F1DEFD7000A2302 /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680120D1F1DEFD7000A2302 /* FileUtils.swift */; };
+		868012101F1E0174000A2302 /* UserAccountUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680120F1F1E0174000A2302 /* UserAccountUtils.swift */; };
 		8692B7EB1EE556B7005CCE03 /* InputInComeMoneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8692B7EA1EE556B7005CCE03 /* InputInComeMoneyView.xib */; };
 		8692B7ED1EE556D0005CCE03 /* InputOutgoMoneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8692B7EC1EE556D0005CCE03 /* InputOutgoMoneyView.xib */; };
 		8692B7EF1EE556E0005CCE03 /* Startup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8692B7EE1EE556E0005CCE03 /* Startup.storyboard */; };
@@ -1016,6 +1020,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		868012081F1DE745000A2302 /* ShareUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShareUtils.swift; path = Utils/ShareUtils.swift; sourceTree = "<group>"; };
+		8680120A1F1DE81C000A2302 /* ShareModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareModel.swift; sourceTree = "<group>"; };
+		8680120D1F1DEFD7000A2302 /* FileUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileUtils.swift; path = Utils/FileUtils.swift; sourceTree = "<group>"; };
+		8680120F1F1E0174000A2302 /* UserAccountUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAccountUtils.swift; path = Utils/UserAccountUtils.swift; sourceTree = "<group>"; };
 		8692B7EA1EE556B7005CCE03 /* InputInComeMoneyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InputInComeMoneyView.xib; path = MoneyBook/Resource/UI/InputInComeMoneyView.xib; sourceTree = SOURCE_ROOT; };
 		8692B7EC1EE556D0005CCE03 /* InputOutgoMoneyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InputOutgoMoneyView.xib; path = MoneyBook/Resource/UI/InputOutgoMoneyView.xib; sourceTree = SOURCE_ROOT; };
 		8692B7EE1EE556E0005CCE03 /* Startup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Startup.storyboard; path = MoneyBook/Resource/UI/Startup.storyboard; sourceTree = SOURCE_ROOT; };
@@ -2051,6 +2059,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8680120C1F1DE828000A2302 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				8680120A1F1DE81C000A2302 /* ShareModel.swift */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
 		86E7D6C51EE542AE0010AF09 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -2195,6 +2211,7 @@
 		B0A86B6C1EB5FF8C00A82C0C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8680120C1F1DE828000A2302 /* Share */,
 				86E7D6C31EE540370010AF09 /* ContentType.swift */,
 				B04A14051EB9314A008EEFCE /* DAOFactory.swift */,
 				B04A14021EB8FE9B008EEFCE /* Event */,
@@ -2230,8 +2247,11 @@
 			isa = PBXGroup;
 			children = (
 				B0A86BAD1EB6682200A82C0C /* Constants.swift */,
+				868012081F1DE745000A2302 /* ShareUtils.swift */,
 				B04974261ECB74DE00B3AC28 /* AppUtils.swift */,
+				8680120D1F1DEFD7000A2302 /* FileUtils.swift */,
 				86E7D6C01EDE9F350010AF09 /* UserAuthentication.swift */,
+				8680120F1F1E0174000A2302 /* UserAccountUtils.swift */,
 				86F9E9F21F1892EB007A87B9 /* NetworkManager.swift */,
 				86F9E9F41F1895F8007A87B9 /* SimpleNetwork.swift */,
 			);
@@ -4529,8 +4549,10 @@
 				B04A14101EC7BD99008EEFCE /* EasyMessage.swift in Sources */,
 				B0A86BA21EB654BD00A82C0C /* AddSpentViewController.swift in Sources */,
 				B0A86B801EB6111D00A82C0C /* HistoryMasterViewController.swift in Sources */,
+				868012091F1DE745000A2302 /* ShareUtils.swift in Sources */,
 				B0A86BA01EB6512300A82C0C /* SpentViewController.swift in Sources */,
 				B0A86B961EB6375B00A82C0C /* DB.swift in Sources */,
+				8680120E1F1DEFD7000A2302 /* FileUtils.swift in Sources */,
 				B0A86B3D1EB5FE6600A82C0C /* AppDelegate.swift in Sources */,
 				B0A86B881EB611FF00A82C0C /* AnalysisViewController.swift in Sources */,
 				8692B8091EE6795E005CCE03 /* AnalysisMenuTableViewCell.swift in Sources */,
@@ -4545,9 +4567,11 @@
 				86F9E9F31F1892EE007A87B9 /* NetworkManager.swift in Sources */,
 				86E7D6BF1EDD4E9F0010AF09 /* AppUserDefaultManager.swift in Sources */,
 				B0A86BAC1EB663F500A82C0C /* Object.swift in Sources */,
+				8680120B1F1DE81C000A2302 /* ShareModel.swift in Sources */,
 				86E7D6C41EE540370010AF09 /* ContentType.swift in Sources */,
 				B04974271ECB74DE00B3AC28 /* AppUtils.swift in Sources */,
 				B0A86BA61EB6591C00A82C0C /* StatusViewController.swift in Sources */,
+				868012101F1E0174000A2302 /* UserAccountUtils.swift in Sources */,
 				B04A14041EB8FF04008EEFCE /* Event.swift in Sources */,
 				B0A86B921EB635D100A82C0C /* Extension+UIColor.swift in Sources */,
 				B0A86B8A1EB6120C00A82C0C /* RecordsViewController.swift in Sources */,

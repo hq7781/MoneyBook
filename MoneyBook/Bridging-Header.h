@@ -14,4 +14,7 @@
 //#import "FMDB.h"
 //#import "FMDatabase.h"
 //#import "FMDatabaseAdditions.h"
+
+#import <SVProgressHUD/SVProgressHUD.h>
+
 #endif /* BridgingHeader_h */

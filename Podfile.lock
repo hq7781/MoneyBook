@@ -14,12 +14,14 @@ PODS:
   - Realm/Headers (2.6.2)
   - RealmSwift (2.6.2):
     - Realm (= 2.6.2)
+  - SVProgressHUD (2.1.2)
 
 DEPENDENCIES:
   - Charts
   - ChartsRealm
   - FMDB
   - Persei (~> 3.0)
+  - SVProgressHUD
 
 SPEC CHECKSUMS:
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
@@ -28,7 +30,8 @@ SPEC CHECKSUMS:
   Persei: 2fa633362b1686ec53f8d2d1368ee523b8630742
   Realm: 29222766425b9f831228f81b63f0e38a97a4d700
   RealmSwift: d161a80f96cb91ae88391a7d5a9cf08024a7bc8e
+  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
 
-PODFILE CHECKSUM: edef3b4034d692704b112957ba18cc6d36d732f7
+PODFILE CHECKSUM: e3402a15fee14678f888c36be581aa4a2f04c05d
 
 COCOAPODS: 1.2.1

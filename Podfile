@@ -7,4 +7,5 @@ target 'MoneyBook' do
   pod 'Charts'
   pod 'ChartsRealm'
   pod 'Persei', '~> 3.0'
+  pod 'SVProgressHUD'
 end
