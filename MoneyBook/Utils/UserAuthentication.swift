@@ -117,7 +117,7 @@ class UserAuthentication: NSObject {
                                     (success: Bool, error: Error?) -> Void in
                                     guard success else {
                                         print("Touch ID Auth result: %@", error.debugDescription)
-                                        let nserror = error as? NSError
+                                        let nserror = error as NSError?
                                         switch nserror!._code {
                                         case LAError.authenticationFailed.rawValue:
                                             self.actionWithAuthenticationFailed()
@@ -151,7 +151,7 @@ class UserAuthentication: NSObject {
                                     (success: Bool, error: Error?) -> Void in
                                     guard success else {
                                         print("Passcode Auth result: %@", error.debugDescription)
-                                        let nserror = error as? NSError
+                                        let nserror = error as NSError?
                                         switch nserror!._code {
                                         case LAError.authenticationFailed.rawValue:
                                             self.actionWithAuthenticationFailed()
@@ -185,7 +185,7 @@ class UserAuthentication: NSObject {
 
         guard LAContext().canEvaluatePolicy(policy, error: &authError) else {
                 let nserror = authError
-                print("Touch ID support check result: \(nserror?.localizedDescription)")
+                print("Touch ID support check result: \(String(describing: nserror?.localizedDescription))")
                 switch nserror!._code {
                 case LAError.authenticationFailed.rawValue:
                     print("Touch ID support check result: kLAErrorAuthenticationFailed")

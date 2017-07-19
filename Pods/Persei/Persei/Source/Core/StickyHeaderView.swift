@@ -194,7 +194,8 @@ open class StickyHeaderView: UIView {
     fileprivate func applyContentContainerTransform(_ progress: CGFloat) {
         var transform = CATransform3DIdentity
         transform.m34 = -1 / 500
-        let angle = (1 - progress) * CGFloat(M_PI_2)
+        //let angle = (1 - progress) * CGFloat(M_PI_2)
+        let angle = (1 - progress) * CGFloat(Double.pi / 2)
         transform = CATransform3DRotate(transform, angle, 1, 0, 0)
         
         contentContainer.layer.transform = transform

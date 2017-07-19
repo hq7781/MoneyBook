@@ -42,18 +42,31 @@ public class AppUtils {
     }
 
     static func isUserAgreed() ->Bool {
+<<<<<<< Updated upstream
         #if DEBUG
         return true // for debug
         #else
         let app = UIApplication.shared.delegate as! AppDelegate
         return app.appUserDefaultManager.getUserAgreement()
         #endif
+=======
+#if debug_mode
+        let app = UIApplication.shared.delegate as! AppDelegate
+        return app.appUserDefaultManager.getUserAgreement()
+#else
+        return true // for debug
+#endif
+>>>>>>> Stashed changes
     }
     /*
     static func isUserSignined() ->Bool {
+<<<<<<< Updated upstream
         #if DEBUG
         return true // for debug
         #else
+=======
+#if debug_mode
+>>>>>>> Stashed changes
         let app = UIApplication.shared.delegate as! AppDelegate
         let currentUser = app.appUserDefaultManager.getCurrentUser()
         if (currentUser == nil) || (currentUser == "") {
@@ -61,6 +74,7 @@ public class AppUtils {
         } else {
             return true
         }
+<<<<<<< Updated upstream
         #endif
     }*/
     // get login status
@@ -87,6 +101,19 @@ public class AppUtils {
         let app = UIApplication.shared.delegate as! AppDelegate
         return app.appUserDefaultManager.getUserLock()
         #endif
+=======
+#else
+        return true // for debug
+#endif
+    }
+    static func isUserLocked() ->Bool {
+#if debug_mode
+        let app = UIApplication.shared.delegate as! AppDelegate
+        return app.appUserDefaultManager.getUserLock()
+#else
+        return false // for debug
+#endif
+>>>>>>> Stashed changes
     }
 }
 
