@@ -11,6 +11,7 @@
 		8680120B1F1DE81C000A2302 /* ShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680120A1F1DE81C000A2302 /* ShareModel.swift */; };
 		8680120E1F1DEFD7000A2302 /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680120D1F1DEFD7000A2302 /* FileUtils.swift */; };
 		868012101F1E0174000A2302 /* UserAccountUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680120F1F1E0174000A2302 /* UserAccountUtils.swift */; };
+		868013D51F21C0CB000A2302 /* UserLocationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868013D41F21C0B6000A2302 /* UserLocationUtils.swift */; };
 		8692B7EB1EE556B7005CCE03 /* InputInComeMoneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8692B7EA1EE556B7005CCE03 /* InputInComeMoneyView.xib */; };
 		8692B7ED1EE556D0005CCE03 /* InputOutgoMoneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8692B7EC1EE556D0005CCE03 /* InputOutgoMoneyView.xib */; };
 		8692B7EF1EE556E0005CCE03 /* Startup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8692B7EE1EE556E0005CCE03 /* Startup.storyboard */; };
@@ -1024,6 +1025,7 @@
 		8680120A1F1DE81C000A2302 /* ShareModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareModel.swift; sourceTree = "<group>"; };
 		8680120D1F1DEFD7000A2302 /* FileUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileUtils.swift; path = Utils/FileUtils.swift; sourceTree = "<group>"; };
 		8680120F1F1E0174000A2302 /* UserAccountUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAccountUtils.swift; path = Utils/UserAccountUtils.swift; sourceTree = "<group>"; };
+		868013D41F21C0B6000A2302 /* UserLocationUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserLocationUtils.swift; path = Utils/UserLocationUtils.swift; sourceTree = "<group>"; };
 		8692B7EA1EE556B7005CCE03 /* InputInComeMoneyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InputInComeMoneyView.xib; path = MoneyBook/Resource/UI/InputInComeMoneyView.xib; sourceTree = SOURCE_ROOT; };
 		8692B7EC1EE556D0005CCE03 /* InputOutgoMoneyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InputOutgoMoneyView.xib; path = MoneyBook/Resource/UI/InputOutgoMoneyView.xib; sourceTree = SOURCE_ROOT; };
 		8692B7EE1EE556E0005CCE03 /* Startup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Startup.storyboard; path = MoneyBook/Resource/UI/Startup.storyboard; sourceTree = SOURCE_ROOT; };
@@ -2181,7 +2183,7 @@
 				86E7D6C71EE543300010AF09 /* Misc */,
 				B0A86B3C1EB5FE6600A82C0C /* AppDelegate.swift */,
 				B04A13FF1EB8F104008EEFCE /* Bridging-Header.h */,
-				B0A86B701EB5FFF200A82C0C /* Utilis */,
+				B0A86B701EB5FFF200A82C0C /* Utils */,
 				B0A86B6F1EB5FFD800A82C0C /* Controller */,
 				B0A86B6E1EB5FFCA00A82C0C /* View */,
 				B0A86B6C1EB5FF8C00A82C0C /* Model */,
@@ -2243,7 +2245,7 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		B0A86B701EB5FFF200A82C0C /* Utilis */ = {
+		B0A86B701EB5FFF200A82C0C /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				B0A86BAD1EB6682200A82C0C /* Constants.swift */,
@@ -2253,9 +2255,10 @@
 				86E7D6C01EDE9F350010AF09 /* UserAuthentication.swift */,
 				8680120F1F1E0174000A2302 /* UserAccountUtils.swift */,
 				86F9E9F21F1892EB007A87B9 /* NetworkManager.swift */,
+				868013D41F21C0B6000A2302 /* UserLocationUtils.swift */,
 				86F9E9F41F1895F8007A87B9 /* SimpleNetwork.swift */,
 			);
-			name = Utilis;
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		B0A86B711EB6002300A82C0C /* Database */ = {
@@ -4567,6 +4570,7 @@
 				86F9E9F31F1892EE007A87B9 /* NetworkManager.swift in Sources */,
 				86E7D6BF1EDD4E9F0010AF09 /* AppUserDefaultManager.swift in Sources */,
 				B0A86BAC1EB663F500A82C0C /* Object.swift in Sources */,
+				868013D51F21C0CB000A2302 /* UserLocationUtils.swift in Sources */,
 				8680120B1F1DE81C000A2302 /* ShareModel.swift in Sources */,
 				86E7D6C41EE540370010AF09 /* ContentType.swift in Sources */,
 				B04974271ECB74DE00B3AC28 /* AppUtils.swift in Sources */,
