@@ -12,6 +12,8 @@
 		8680120E1F1DEFD7000A2302 /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680120D1F1DEFD7000A2302 /* FileUtils.swift */; };
 		868012101F1E0174000A2302 /* UserAccountUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680120F1F1E0174000A2302 /* UserAccountUtils.swift */; };
 		868013D51F21C0CB000A2302 /* UserLocationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868013D41F21C0B6000A2302 /* UserLocationUtils.swift */; };
+		868013D71F21E2DA000A2302 /* Extension+UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868013D61F21E2DA000A2302 /* Extension+UIBarButtonItem.swift */; };
+		868013D91F21F9EC000A2302 /* Extension+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868013D81F21F9EC000A2302 /* Extension+UIImage.swift */; };
 		8692B7EB1EE556B7005CCE03 /* InputInComeMoneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8692B7EA1EE556B7005CCE03 /* InputInComeMoneyView.xib */; };
 		8692B7ED1EE556D0005CCE03 /* InputOutgoMoneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8692B7EC1EE556D0005CCE03 /* InputOutgoMoneyView.xib */; };
 		8692B7EF1EE556E0005CCE03 /* Startup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8692B7EE1EE556E0005CCE03 /* Startup.storyboard */; };
@@ -1026,6 +1028,8 @@
 		8680120D1F1DEFD7000A2302 /* FileUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileUtils.swift; path = Utils/FileUtils.swift; sourceTree = "<group>"; };
 		8680120F1F1E0174000A2302 /* UserAccountUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAccountUtils.swift; path = Utils/UserAccountUtils.swift; sourceTree = "<group>"; };
 		868013D41F21C0B6000A2302 /* UserLocationUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserLocationUtils.swift; path = Utils/UserLocationUtils.swift; sourceTree = "<group>"; };
+		868013D61F21E2DA000A2302 /* Extension+UIBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Extension+UIBarButtonItem.swift"; path = "Misc/Extension/Extension+UIBarButtonItem.swift"; sourceTree = "<group>"; };
+		868013D81F21F9EC000A2302 /* Extension+UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Extension+UIImage.swift"; path = "Misc/Extension/Extension+UIImage.swift"; sourceTree = "<group>"; };
 		8692B7EA1EE556B7005CCE03 /* InputInComeMoneyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InputInComeMoneyView.xib; path = MoneyBook/Resource/UI/InputInComeMoneyView.xib; sourceTree = SOURCE_ROOT; };
 		8692B7EC1EE556D0005CCE03 /* InputOutgoMoneyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InputOutgoMoneyView.xib; path = MoneyBook/Resource/UI/InputOutgoMoneyView.xib; sourceTree = SOURCE_ROOT; };
 		8692B7EE1EE556E0005CCE03 /* Startup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Startup.storyboard; path = MoneyBook/Resource/UI/Startup.storyboard; sourceTree = SOURCE_ROOT; };
@@ -2121,6 +2125,8 @@
 				B0A86B911EB635D100A82C0C /* Extension+UIColor.swift */,
 				B0A86B931EB6362800A82C0C /* Extension+String.swift */,
 				8692B80A1EE69BE0005CCE03 /* Extension+Float.swift */,
+				868013D81F21F9EC000A2302 /* Extension+UIImage.swift */,
+				868013D61F21E2DA000A2302 /* Extension+UIBarButtonItem.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -4574,10 +4580,12 @@
 				8680120B1F1DE81C000A2302 /* ShareModel.swift in Sources */,
 				86E7D6C41EE540370010AF09 /* ContentType.swift in Sources */,
 				B04974271ECB74DE00B3AC28 /* AppUtils.swift in Sources */,
+				868013D91F21F9EC000A2302 /* Extension+UIImage.swift in Sources */,
 				B0A86BA61EB6591C00A82C0C /* StatusViewController.swift in Sources */,
 				868012101F1E0174000A2302 /* UserAccountUtils.swift in Sources */,
 				B04A14041EB8FF04008EEFCE /* Event.swift in Sources */,
 				B0A86B921EB635D100A82C0C /* Extension+UIColor.swift in Sources */,
+				868013D71F21E2DA000A2302 /* Extension+UIBarButtonItem.swift in Sources */,
 				B0A86B8A1EB6120C00A82C0C /* RecordsViewController.swift in Sources */,
 				B0A86B9A1EB6380400A82C0C /* DBObject.swift in Sources */,
 				B0A86BA41EB657EA00A82C0C /* ParentViewController.swift in Sources */,
@@ -4751,7 +4759,7 @@
 				DEVELOPMENT_TEAM = 58V87X55PH;
 				GCC_WARN_MISSING_PARENTHESES = NO;
 				INFOPLIST_FILE = MoneyBook/Resource/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.enixsoft.MoneyBook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4769,7 +4777,7 @@
 				DEVELOPMENT_TEAM = 58V87X55PH;
 				GCC_WARN_MISSING_PARENTHESES = NO;
 				INFOPLIST_FILE = MoneyBook/Resource/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.enixsoft.MoneyBook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4785,6 +4793,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = MoneyBookTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.enixsoft.MoneyBookTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -4799,6 +4808,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = MoneyBookTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.enixsoft.MoneyBookTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;

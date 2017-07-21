@@ -38,4 +38,9 @@ extension UIColor {
     static func enixGreen(alpha: CGFloat = 1) -> UIColor {
         return UIColor(red: 61 / 255, green: 255 / 255, blue: 43 / 255, alpha: alpha)
     }
+    
+    class func enixColorWith(red:Int, green:Int, blue:Int, alpha: CGFloat) -> UIColor {
+        let color = UIColor(red:CGFloat(red)/255.0, green:CGFloat(green)/255.0, blue:CGFloat(blue)/255.0, alpha: alpha)
+        return color
+    }
 }
