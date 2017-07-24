@@ -134,7 +134,6 @@ class HistoryMasterViewController: UITableViewController
     /// - Returns: Instance of the event Service.
     func eventService() -> EventService {
         let app = UIApplication.shared.delegate as! AppDelegate
-
         return app.appDatabaseManager.eventService
     }
     

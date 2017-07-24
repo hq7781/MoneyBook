@@ -12,6 +12,8 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    public let app = UIApplication.shared.delegate as! AppDelegate
 
     /// Manager fot the application data. SQLite3 Database
     let appDatabaseManager = AppDatabaseManager()

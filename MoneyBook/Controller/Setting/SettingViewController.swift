@@ -7,10 +7,14 @@
 //
 
 import UIKit
-import AdSupport
+//import AdSupport
+
+let kNotificationNameCurrentCityChage = NSNotification.Name(rawValue:"NotificationNameCurrentCityChage")
+
 
 class SettingViewController: UIViewController {
-
+    var cityRightButton: TextImageButton!
+    
     var buttonB: UIView!
     var someView: UIView!
 
@@ -25,6 +29,8 @@ class SettingViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        NotificationCenter.default.addObserver(self, selector:#selector(onCityChange), name:kNotificationNameCurrentCityChage, object:nil)
+        NotificationCenter.default.removeObserver(self)
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -35,7 +41,15 @@ class SettingViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    required init?(coder aDecoder: NSCoder) {
+        //fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        //接受通知监听
+        NotificationCenter.default.addObserver(self, selector:#selector(onCityChange), name:kNotificationNameCurrentCityChage, object:nil)
+    }
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     /*
     // MARK: - Navigation
 
@@ -46,6 +60,12 @@ class SettingViewController: UIViewController {
     }
     */
     func setUpUI() {
+        self.showEasyTipViewUI()
+        self.showUserVistCountInfoUI()
+        self.showVersionInfoUI()
+    }
+    
+    func showEasyTipViewUI() {
         buttonB = UIView(frame: CGRectMake(30, 30, 50, 35))
         //buttonB = UIButton(frame: CGRectMake(0, 30, 50, 35))
         //buttonB.setTitle(title: "buttonB", state: UIControlState.normal)
@@ -75,9 +95,6 @@ class SettingViewController: UIViewController {
         
         // later on you can dismiss it
         tipView.dismiss()
-        self.showUserVistCountInfoUI()
-        self.showVersionInfoUI()
-
     }
     
     func showVersionInfoUI() {
@@ -90,21 +107,18 @@ class SettingViewController: UIViewController {
         myLabel.frame = CGRect(x: posX, y: posY, width: labelWidth, height: labelHeight)
         
         // Versionを取得.
-        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        let version = AppUtils.getAppVersionInfo()
         // Build番号を取得.
-        let build = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
-        
+        let build = AppUtils.getAppBuildNumberInfo()
         // OS Version.
-        let mySystemName = UIDevice.current.systemName
-        let mySystemVersion = UIDevice.current.systemVersion
-
+        let osName = AppUtils.getOSName()
+        let osVersion = AppUtils.getOSVersion()
         // ID for Vender.
-        let myIDforVender = UIDevice.current.identifierForVendor
+        let venderId = AppUtils.getVenderID()
         // ID for Ad.
-        let myASManager = ASIdentifierManager()
-        let myIDforAd = myASManager.advertisingIdentifier
+        let adsId = AppUtils.getAdvertisingID()
 
-        myLabel.text = "App:\(version) bd:\(build) OS:\(mySystemName):\(mySystemVersion) Vd:\(String(describing: myIDforVender)) Ad:\(String(describing: myIDforAd))"
+        myLabel.text = "App:\(version) bd:\(build) OS:\(osName):\(osVersion) Vd:\(venderId) Ad:\(adsId)"
         myLabel.textColor = UIColor.red
         
         self.view.addSubview(myLabel)
@@ -126,6 +140,38 @@ class SettingViewController: UIViewController {
         self.view.addSubview(myLabel)
     }
     
+    func showCityChangeUI() {
+        cityRightButton = TextImageButton(frame: CGRect.CGRectMake(0, 20, 80, 44))
+        
+        if let currentCity = AppUtils.getSelectedCity() as String? {
+            cityRightButton.setTitle(currentCity, for: .normal)
+        } else {
+            cityRightButton.setTitle("tokyo", for: .normal)
+        }
+        cityRightButton.titleLabel?.font = theme.appNaviItemFont
+        cityRightButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+        cityRightButton.setImage(UIImage(named:"home_down"), for: .normal)
+        cityRightButton.addTarget(self, action: #selector(onClickPushCityView), for:UIControlEvents.touchUpInside)
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cityRightButton)
+    }
+
+    // received the notification
+    func onCityChange(notification: NSNotification) {
+        if let currentCity = notification.object as? String {
+            self.cityRightButton.setTitle(currentCity, for: .normal)
+        }
+    }
+    // received the button click event
+    func onClickPushCityView() {
+        /*
+        let cityViewVC = CityViewController()
+        cityViewVC.cityName = self.cityRightButton.title(for: .normal)
+        let nav = MainNavigationController(rootViewController: cityViewVC)
+        presentViewController(nav, animated: true, completion: nil)
+         */
+    }
+    
     //MARK: - ========== easyTipViewDelegate ==========
     func easyTipViewDidDismiss(_ easyTipView : EasyTipView) {
         print("easyTipViewDidDismiss")
@@ -135,4 +181,26 @@ class SettingViewController: UIViewController {
 //    override func CGRectMake(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> CGRect {
 //        return CGRect(x: x, y: y, width: width, height: height)
 //    }
+}
+
+class TextImageButton: UIButton {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        titleLabel?.font = theme.appNaviItemFont
+        titleLabel?.contentMode = UIViewContentMode.center
+        imageView?.contentMode = UIViewContentMode.left
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implement")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        titleLabel?.sizeToFit()
+        titleLabel?.frame = CGRect.CGRectMake(-5, 0, titleLabel!.width, height)
+        imageView?.frame = CGRect.CGRectMake(titleLabel!.width + 3 - 5, 0, width - titleLabel!.width - 3, height)
+    }
 }

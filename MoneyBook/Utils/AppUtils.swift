@@ -6,25 +6,45 @@
 //  Copyright © 2017年 Roan.Hong. All rights reserved.
 //
 import UIKit
+import AdSupport
 import Foundation
 
 public class AppUtils {
-    
+    // app Version
     static func getAppVersionInfo() -> String {
-        // Versionを取得.
-        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-        return version
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     }
+    // Build number
     static func getAppBuildNumberInfo() -> String {
-        // Build番号を取得.
-        let build = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
-        return build
+        return Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
+    }
+    //  OS name
+    static func getOSName() -> String {
+        return UIDevice.current.systemName
+    }
+    //  OS version
+    static func getOSVersion() -> String {
+        return UIDevice.current.systemVersion
+    }
+    // ID for Vender.
+    static func getVenderID() -> String {
+       let venderId = UIDevice.current.identifierForVendor
+        return String(describing: venderId)
+    }
+    // ID for Ad.
+    static func getAdvertisingID() -> String {
+        let advertisingId = ASIdentifierManager().advertisingIdentifier
+        return String(describing: advertisingId)
     }
     
+    static func getSelectedCity() ->String? {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        let city = app.appUserDefaultManager.getSelectedCity()
+        return city
+    }
+    
+    // check the version change
     static func isAppVersionChanged() ->Bool {
-        //let versionStr = "CFBundleShortVersionString"
-        //let cureentVersion = NSBundle.mainBundle().infoDictionary![versionStr] as! String
-        //let oldVersion = (NSUserDefaults.standardUserDefaults().objectForKey(versionStr) as? String) ?? ""
         let cureentVersion = getAppVersionInfo()
         let app = UIApplication.shared.delegate as! AppDelegate
         let oldVersion = app.appUserDefaultManager.getCurrentVerion()
@@ -82,7 +102,7 @@ public class AppUtils {
         #if DEBUG
         return true // for debug
         #else
-        let app = UIApplication.shared.delegate as! AppDelegate
+        //let app = UIApplication.shared.delegate as! AppDelegate
         let account = app.appUserDefaultManager.getUserAccount()
         let password = app.appUserDefaultManager.getUserPassword()
             
@@ -98,7 +118,7 @@ public class AppUtils {
         #if DEBUG
         return false // for debug
         #else
-        let app = UIApplication.shared.delegate as! AppDelegate
+        //let app = UIApplication.shared.delegate as! AppDelegate
         return app.appUserDefaultManager.getUserLock()
         #endif
 =======
@@ -122,7 +142,7 @@ extension UIViewController {
         self.getVersionInfo()
     }
     public func getBuildNumberInfo() {
-        self.getVersionInfo()
+        self.getBuildNumberInfo()
     }
     
     //MARK: - ========== extension ==========

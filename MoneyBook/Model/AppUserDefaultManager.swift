@@ -70,6 +70,15 @@ class AppUserDefaultManager: NSObject {
         let password:String? = userDefault.string(forKey: kUserDefaultKey_Password)
         return password
     }
+    func setSelectedCity(city:String?)-> Bool {
+        userDefault.set(city,forKey:kUserDefaultKey_SelectedCity)
+        userDefault.synchronize()
+        return true
+    }
+    func getSelectedCity()-> String? {
+        let selectedCity = userDefault.string(forKey: kUserDefaultKey_SelectedCity)
+        return selectedCity
+    }
     ///
     func setUserAgreement(ON:Bool)-> Bool {
         userDefault.set(ON,forKey:kUserDefaultKey_Agreement)

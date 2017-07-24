@@ -39,10 +39,16 @@ let kUserDefaultKey_VisitCount  = "VisitCount"
 let kUserDefaultKey_Agreement   = "AgreementFlag"
 let kUserDefaultKey_CurrentUser = "CurrentUser"
 let kUserDefaultKey_UserLock    = "UserLockFlag"
-let kUserDefaultKey_Account    = "UserAccount"
+let kUserDefaultKey_Account     = "UserAccount"
 let kUserDefaultKey_Password    = "UserPassword"
-
+let kUserDefaultKey_SelectedCity = "SelectedCity"
 // chache path
 let kAppImageCachePath = "com.enixsoft.imagecache"
 
 let kTryUserAuthenticateMaxCount = 5
+
+// for SNS Share
+let appShareViewHeight: CGFloat = 215
+let GithubURL: String = ""
+let UMSharedApiKey: String = ""
+

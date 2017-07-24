@@ -14,6 +14,8 @@
 		868013D51F21C0CB000A2302 /* UserLocationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868013D41F21C0B6000A2302 /* UserLocationUtils.swift */; };
 		868013D71F21E2DA000A2302 /* Extension+UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868013D61F21E2DA000A2302 /* Extension+UIBarButtonItem.swift */; };
 		868013D91F21F9EC000A2302 /* Extension+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868013D81F21F9EC000A2302 /* Extension+UIImage.swift */; };
+		868013DB1F25B3D9000A2302 /* AppBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868013DA1F25B3D6000A2302 /* AppBase.swift */; };
+		868013DD1F25E0C5000A2302 /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868013DC1F25E0C4000A2302 /* Extension+UIView.swift */; };
 		8692B7EB1EE556B7005CCE03 /* InputInComeMoneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8692B7EA1EE556B7005CCE03 /* InputInComeMoneyView.xib */; };
 		8692B7ED1EE556D0005CCE03 /* InputOutgoMoneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8692B7EC1EE556D0005CCE03 /* InputOutgoMoneyView.xib */; };
 		8692B7EF1EE556E0005CCE03 /* Startup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8692B7EE1EE556E0005CCE03 /* Startup.storyboard */; };
@@ -1030,6 +1032,8 @@
 		868013D41F21C0B6000A2302 /* UserLocationUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserLocationUtils.swift; path = Utils/UserLocationUtils.swift; sourceTree = "<group>"; };
 		868013D61F21E2DA000A2302 /* Extension+UIBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Extension+UIBarButtonItem.swift"; path = "Misc/Extension/Extension+UIBarButtonItem.swift"; sourceTree = "<group>"; };
 		868013D81F21F9EC000A2302 /* Extension+UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Extension+UIImage.swift"; path = "Misc/Extension/Extension+UIImage.swift"; sourceTree = "<group>"; };
+		868013DA1F25B3D6000A2302 /* AppBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppBase.swift; path = Utils/AppBase.swift; sourceTree = "<group>"; };
+		868013DC1F25E0C4000A2302 /* Extension+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Extension+UIView.swift"; path = "Misc/Extension/Extension+UIView.swift"; sourceTree = "<group>"; };
 		8692B7EA1EE556B7005CCE03 /* InputInComeMoneyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InputInComeMoneyView.xib; path = MoneyBook/Resource/UI/InputInComeMoneyView.xib; sourceTree = SOURCE_ROOT; };
 		8692B7EC1EE556D0005CCE03 /* InputOutgoMoneyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InputOutgoMoneyView.xib; path = MoneyBook/Resource/UI/InputOutgoMoneyView.xib; sourceTree = SOURCE_ROOT; };
 		8692B7EE1EE556E0005CCE03 /* Startup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Startup.storyboard; path = MoneyBook/Resource/UI/Startup.storyboard; sourceTree = SOURCE_ROOT; };
@@ -2127,6 +2131,7 @@
 				8692B80A1EE69BE0005CCE03 /* Extension+Float.swift */,
 				868013D81F21F9EC000A2302 /* Extension+UIImage.swift */,
 				868013D61F21E2DA000A2302 /* Extension+UIBarButtonItem.swift */,
+				868013DC1F25E0C4000A2302 /* Extension+UIView.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -2256,11 +2261,12 @@
 			children = (
 				B0A86BAD1EB6682200A82C0C /* Constants.swift */,
 				868012081F1DE745000A2302 /* ShareUtils.swift */,
+				86F9E9F21F1892EB007A87B9 /* NetworkManager.swift */,
 				B04974261ECB74DE00B3AC28 /* AppUtils.swift */,
+				868013DA1F25B3D6000A2302 /* AppBase.swift */,
 				8680120D1F1DEFD7000A2302 /* FileUtils.swift */,
 				86E7D6C01EDE9F350010AF09 /* UserAuthentication.swift */,
 				8680120F1F1E0174000A2302 /* UserAccountUtils.swift */,
-				86F9E9F21F1892EB007A87B9 /* NetworkManager.swift */,
 				868013D41F21C0B6000A2302 /* UserLocationUtils.swift */,
 				86F9E9F41F1895F8007A87B9 /* SimpleNetwork.swift */,
 			);
@@ -4577,6 +4583,7 @@
 				86E7D6BF1EDD4E9F0010AF09 /* AppUserDefaultManager.swift in Sources */,
 				B0A86BAC1EB663F500A82C0C /* Object.swift in Sources */,
 				868013D51F21C0CB000A2302 /* UserLocationUtils.swift in Sources */,
+				868013DB1F25B3D9000A2302 /* AppBase.swift in Sources */,
 				8680120B1F1DE81C000A2302 /* ShareModel.swift in Sources */,
 				86E7D6C41EE540370010AF09 /* ContentType.swift in Sources */,
 				B04974271ECB74DE00B3AC28 /* AppUtils.swift in Sources */,
@@ -4586,6 +4593,7 @@
 				B04A14041EB8FF04008EEFCE /* Event.swift in Sources */,
 				B0A86B921EB635D100A82C0C /* Extension+UIColor.swift in Sources */,
 				868013D71F21E2DA000A2302 /* Extension+UIBarButtonItem.swift in Sources */,
+				868013DD1F25E0C5000A2302 /* Extension+UIView.swift in Sources */,
 				B0A86B8A1EB6120C00A82C0C /* RecordsViewController.swift in Sources */,
 				B0A86B9A1EB6380400A82C0C /* DBObject.swift in Sources */,
 				B0A86BA41EB657EA00A82C0C /* ParentViewController.swift in Sources */,
