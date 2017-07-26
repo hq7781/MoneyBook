@@ -39,8 +39,16 @@ public class AppUtils {
     
     static func getSelectedCity() ->String? {
         let app = UIApplication.shared.delegate as! AppDelegate
-        let city = app.appUserDefaultManager.getSelectedCity()
-        return city
+        return app.appUserDefaultManager.getSelectedCity()
+    }
+    
+    static func getVisitCount() ->Int? {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        return app.appUserDefaultManager.getVisitCount()
+    }
+    static func setVisiCount() ->Bool {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        return app.appUserDefaultManager.setVisitCount()
     }
     
     // check the version change

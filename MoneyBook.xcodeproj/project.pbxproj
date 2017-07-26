@@ -16,6 +16,10 @@
 		868013D91F21F9EC000A2302 /* Extension+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868013D81F21F9EC000A2302 /* Extension+UIImage.swift */; };
 		868013DB1F25B3D9000A2302 /* AppBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868013DA1F25B3D6000A2302 /* AppBase.swift */; };
 		868013DD1F25E0C5000A2302 /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868013DC1F25E0C4000A2302 /* Extension+UIView.swift */; };
+		868013E01F26EDF9000A2302 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868013DF1F26EDF8000A2302 /* MainNavigationController.swift */; };
+		868013E21F2709A9000A2302 /* CityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868013E11F2709A9000A2302 /* CityViewController.swift */; };
+		868013F01F27410F000A2302 /* CityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868013EF1F27410E000A2302 /* CityCollectionViewCell.swift */; };
+		868013F21F274172000A2302 /* CityCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868013F11F274172000A2302 /* CityCollectionReusableView.swift */; };
 		8692B7EB1EE556B7005CCE03 /* InputInComeMoneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8692B7EA1EE556B7005CCE03 /* InputInComeMoneyView.xib */; };
 		8692B7ED1EE556D0005CCE03 /* InputOutgoMoneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8692B7EC1EE556D0005CCE03 /* InputOutgoMoneyView.xib */; };
 		8692B7EF1EE556E0005CCE03 /* Startup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8692B7EE1EE556E0005CCE03 /* Startup.storyboard */; };
@@ -1034,6 +1038,10 @@
 		868013D81F21F9EC000A2302 /* Extension+UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Extension+UIImage.swift"; path = "Misc/Extension/Extension+UIImage.swift"; sourceTree = "<group>"; };
 		868013DA1F25B3D6000A2302 /* AppBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppBase.swift; path = Utils/AppBase.swift; sourceTree = "<group>"; };
 		868013DC1F25E0C4000A2302 /* Extension+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Extension+UIView.swift"; path = "Misc/Extension/Extension+UIView.swift"; sourceTree = "<group>"; };
+		868013DF1F26EDF8000A2302 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainNavigationController.swift; path = Controller/Main/MainNavigationController.swift; sourceTree = "<group>"; };
+		868013E11F2709A9000A2302 /* CityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CityViewController.swift; path = Controller/Setting/CityViewController.swift; sourceTree = "<group>"; };
+		868013EF1F27410E000A2302 /* CityCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CityCollectionViewCell.swift; path = Controller/Setting/CityCollectionViewCell.swift; sourceTree = "<group>"; };
+		868013F11F274172000A2302 /* CityCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CityCollectionReusableView.swift; path = Controller/Setting/CityCollectionReusableView.swift; sourceTree = "<group>"; };
 		8692B7EA1EE556B7005CCE03 /* InputInComeMoneyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InputInComeMoneyView.xib; path = MoneyBook/Resource/UI/InputInComeMoneyView.xib; sourceTree = SOURCE_ROOT; };
 		8692B7EC1EE556D0005CCE03 /* InputOutgoMoneyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InputOutgoMoneyView.xib; path = MoneyBook/Resource/UI/InputOutgoMoneyView.xib; sourceTree = SOURCE_ROOT; };
 		8692B7EE1EE556E0005CCE03 /* Startup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Startup.storyboard; path = MoneyBook/Resource/UI/Startup.storyboard; sourceTree = SOURCE_ROOT; };
@@ -2077,6 +2085,14 @@
 			path = Share;
 			sourceTree = "<group>";
 		};
+		868013DE1F26ED9E000A2302 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				868013DF1F26EDF8000A2302 /* MainNavigationController.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
 		86E7D6C51EE542AE0010AF09 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -2245,6 +2261,7 @@
 		B0A86B6F1EB5FFD800A82C0C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				868013DE1F26ED9E000A2302 /* Main */,
 				9C24D5DB1EDB28DB0003EC75 /* Startup */,
 				B0A86B841EB611AB00A82C0C /* Records */,
 				B0A86B851EB611B500A82C0C /* Analysis */,
@@ -2336,6 +2353,9 @@
 			isa = PBXGroup;
 			children = (
 				B0A86B8B1EB6121700A82C0C /* SettingViewController.swift */,
+				868013E11F2709A9000A2302 /* CityViewController.swift */,
+				868013EF1F27410E000A2302 /* CityCollectionViewCell.swift */,
+				868013F11F274172000A2302 /* CityCollectionReusableView.swift */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -4578,12 +4598,15 @@
 				86E7D6CB1EE543AA0010AF09 /* Extension+CGRect.swift in Sources */,
 				B04A14081EB93874008EEFCE /* EventCache.swift in Sources */,
 				B0A86BA81EB65A2A00A82C0C /* AccountViewController.swift in Sources */,
+				868013F21F274172000A2302 /* CityCollectionReusableView.swift in Sources */,
 				86F9E9F51F1895F8007A87B9 /* SimpleNetwork.swift in Sources */,
 				86F9E9F31F1892EE007A87B9 /* NetworkManager.swift in Sources */,
 				86E7D6BF1EDD4E9F0010AF09 /* AppUserDefaultManager.swift in Sources */,
 				B0A86BAC1EB663F500A82C0C /* Object.swift in Sources */,
 				868013D51F21C0CB000A2302 /* UserLocationUtils.swift in Sources */,
+				868013F01F27410F000A2302 /* CityCollectionViewCell.swift in Sources */,
 				868013DB1F25B3D9000A2302 /* AppBase.swift in Sources */,
+				868013E21F2709A9000A2302 /* CityViewController.swift in Sources */,
 				8680120B1F1DE81C000A2302 /* ShareModel.swift in Sources */,
 				86E7D6C41EE540370010AF09 /* ContentType.swift in Sources */,
 				B04974271ECB74DE00B3AC28 /* AppUtils.swift in Sources */,
@@ -4608,6 +4631,7 @@
 				B04A140A1EB9418E008EEFCE /* EventService.swift in Sources */,
 				9C24D5E11EDC752E0003EC75 /* TouchToUnlockViewController.swift in Sources */,
 				8692B80B1EE69BE0005CCE03 /* Extension+Float.swift in Sources */,
+				868013E01F26EDF9000A2302 /* MainNavigationController.swift in Sources */,
 				B0A86B8C1EB6121700A82C0C /* SettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

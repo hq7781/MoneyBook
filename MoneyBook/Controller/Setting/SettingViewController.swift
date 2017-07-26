@@ -124,17 +124,12 @@ class SettingViewController: UIViewController {
         self.view.addSubview(myLabel)
     }
     func showUserVistCountInfoUI() {
-        //UserDefaultの生成.
-        let myUserDefault:UserDefaults = UserDefaults()
-        let visitcount:Int = myUserDefault.integer(forKey: "VisitCount")
-        let openCount:Int  = myUserDefault.integer(forKey: "OpenCount")
+        let visitCount: Int = AppUtils.getVisitCount()!
         let myLabel:UILabel = UILabel()
         
-        myLabel.text = "Visited Count:\(visitcount) ¥n Opened Count:\(openCount) !"
-        //+1した値を登録する
-        myUserDefault.set((visitcount + 1), forKey: "VisitCount")
-        myUserDefault.set((openCount + 1), forKey: "OpenCount")
-        
+        myLabel.text = "Visited Count:\(visitCount)"
+        _ = AppUtils.setVisiCount()
+
         myLabel.sizeToFit()
         myLabel.center = CGPoint(x:self.view.frame.width/2, y: self.view.frame.height/2)
         self.view.addSubview(myLabel)
@@ -164,23 +159,17 @@ class SettingViewController: UIViewController {
     }
     // received the button click event
     func onClickPushCityView() {
-        /*
         let cityViewVC = CityViewController()
         cityViewVC.cityName = self.cityRightButton.title(for: .normal)
         let nav = MainNavigationController(rootViewController: cityViewVC)
-        presentViewController(nav, animated: true, completion: nil)
-         */
+        present(nav, animated: true, completion: nil)
     }
     
     //MARK: - ========== easyTipViewDelegate ==========
     func easyTipViewDidDismiss(_ easyTipView : EasyTipView) {
         print("easyTipViewDidDismiss")
     }
-    
-    //MARK: - ========== privete ==========
-//    override func CGRectMake(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> CGRect {
-//        return CGRect(x: x, y: y, width: width, height: height)
-//    }
+
 }
 
 class TextImageButton: UIButton {

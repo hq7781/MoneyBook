@@ -34,4 +34,7 @@ extension CGRect {
     static func CGPointZero() -> CGPoint {
         return CGPoint.zero
     }
+    static func CGSizeZero() -> CGSize {
+        return CGSize.zero
+    }
 }

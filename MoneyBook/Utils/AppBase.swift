@@ -20,8 +20,8 @@ public let appCachesPath =
 struct theme {
     static let appNaviItemFont = UIFont.systemFont(ofSize:16)
     static let appNaviTitleFont = UIFont.systemFont(ofSize:18)
-    static let appBackgroundColor = UIColor.enixColorWith(red: 255, green: 255, blue: 255, alpha: 1)
-    static let appWebViewBackgrounderColor = UIColor.enixColorWith(red: 245, green: 245, blue: 245, alpha: 1)
+    static let appBackgroundColor = UIColor.enixColorWith(255, 255, 255, alpha: 1)
+    static let appWebViewBackgrounderColor = UIColor.enixColorWith(245, 245, 245, alpha: 1)
     
     //
 }
