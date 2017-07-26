@@ -13,7 +13,7 @@ class CityHeadCollectionReusableView: UICollectionReusableView {
     var headTitle: String? {
         didSet {
             headTitleLabel.text = headTitle
-            headTitlelabel.font = UIFont.systemFontOfSize(18)
+            headTitleLabel.font = UIFont.systemFont(ofSize: 18)
         }
     }
     
@@ -29,7 +29,7 @@ class CityHeadCollectionReusableView: UICollectionReusableView {
     
     func setUp() {
         headTitleLabel.textAlignment = .center
-        headTitleLabel.font = UIFont.systemFontOfSize(22)
+        headTitleLabel.font = UIFont.systemFont(ofSize: 22)
         headTitleLabel.textColor = UIColor.black
         addSubview(headTitleLabel)
     }

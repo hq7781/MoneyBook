@@ -86,10 +86,10 @@ class CityViewController: UIViewController {
         collView.register(CityCollectionViewCell.self, forCellWithReuseIdentifier: kCityCollectionViewCellId)
         collView.register(CityHeadCollectionReusableView.self,
                           forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-                          forCellWithReuseIdentifier: kCityHeadCollectionReusableViewId)
+                          withReuseIdentifier: kCityHeadCollectionReusableViewId)
         collView.register(CityFootCollectionReusableView.self,
                           forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-                          forCellWithReuseIdentifier: kCityFootCollectionReusableViewId)
+                          withReuseIdentifier: kCityFootCollectionReusableViewId)
         collView.alwaysBounceVertical = true
         
         view.addSubview(collView)
@@ -114,18 +114,40 @@ extension CityViewController: UICollectionViewDelegate,UICollectionViewDataSourc
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collView.dequeueReusableCell(withReuseIdentifier: kCityCollectionViewCellId, for: indexPath) as! CityCollectionViewCell
         if indexPath.section == 0 {
-            cell.cityName = domesticsCitys!.object(at: IndexPath.row) as? String
+            cell.cityName = domesticsCitys!.object(at: indexPath.row) as? String
         } else {
-            cell.cityName = overseasCitys!.object(at: IndexPath.row) as? String
+            cell.cityName = overseasCitys!.object(at: indexPath.row) as? String
         }
         return cell
     }
     
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        //
+        if kind == UICollectionElementKindSectionFooter && indexPath.section == 1 {
+            let footView = collectionView.dequeueReusableSupplementaryView(ofKind:
+                UICollectionElementKindSectionFooter, withReuseIdentifier: kCityFootCollectionReusableViewId, for: indexPath) as! CityFootCollectionReusableView
+            footView.frame.size.height = 80
+            return footView
+        }
+        
+        let headView = collectionView.dequeueReusableSupplementaryView(ofKind:
+            UICollectionElementKindSectionHeader, withReuseIdentifier: kCityHeadCollectionReusableViewId, for: indexPath) as! CityHeadCollectionReusableView
+        if indexPath.section == 0 {
+            headView.headTitle = "guonei"
+        } else {
+            headView.headTitle = "guowai"
+        }
+        return headView
     }
+    
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //<#code#>
+        let cell = collectionView.cellForItem(at: indexPath) as! CityCollectionViewCell
+        let currentCity = cell.cityName
+        let app = UIApplication.shared.delegate as! AppDelegate
+        if app.appUserDefaultManager.setSelectedCity(city:currentCity) {
+            NotificationCenter.default.post(name:kNotificationNameCurrentCityhasChanged, object: currentCity)
+            self.dismiss(animated: true, completion: nil)
+        }
+
     }
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         if section == 0 {

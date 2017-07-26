@@ -22,8 +22,7 @@ class AppUserDefaultManager: NSObject {
     ///
     func setCurrentVersion(currentVersion:String?)-> Bool {
         userDefault.set(currentVersion,forKey:kUserDefaultKey_versionStr)
-        userDefault.synchronize()
-        return true
+        return userDefault.synchronize()
     }
     func getCurrentVerion()-> String? {
         let currentVersion:String? = userDefault.string(forKey: kUserDefaultKey_versionStr)
@@ -33,8 +32,7 @@ class AppUserDefaultManager: NSObject {
     func setVisitCount()-> Bool {
         let appVisitCount:Int = userDefault.integer(forKey: kUserDefaultKey_VisitCount)
         userDefault.set((appVisitCount + 1),forKey: kUserDefaultKey_VisitCount)
-        userDefault.synchronize()
-        return true
+        return userDefault.synchronize()
     }
     func getVisitCount()-> Int {
         let appVisitCount:Int = userDefault.integer(forKey: kUserDefaultKey_VisitCount)
@@ -43,8 +41,7 @@ class AppUserDefaultManager: NSObject {
     ///
     func setCurrentUser(currentUser:String?)-> Bool {
         userDefault.set(currentUser,forKey:kUserDefaultKey_CurrentUser)
-        userDefault.synchronize()
-        return true
+        return userDefault.synchronize()
     }
     func getCurrentUser()-> String? {
         let currentUser:String? = userDefault.string(forKey: kUserDefaultKey_CurrentUser)
@@ -53,8 +50,7 @@ class AppUserDefaultManager: NSObject {
     ///
     func setUserAccount(account:String?)-> Bool {
         userDefault.set(account,forKey:kUserDefaultKey_Account)
-        userDefault.synchronize()
-        return true
+        return userDefault.synchronize()
     }
     func getUserAccount()-> String? {
         let account:String? = userDefault.string(forKey: kUserDefaultKey_Account)
@@ -63,8 +59,7 @@ class AppUserDefaultManager: NSObject {
     ///
     func setUserPassword(password:String?)-> Bool {
         userDefault.set(password,forKey:kUserDefaultKey_Password)
-        userDefault.synchronize()
-        return true
+        return userDefault.synchronize()
     }
     func getUserPassword()-> String? {
         let password:String? = userDefault.string(forKey: kUserDefaultKey_Password)
@@ -72,8 +67,7 @@ class AppUserDefaultManager: NSObject {
     }
     func setSelectedCity(city:String?)-> Bool {
         userDefault.set(city,forKey:kUserDefaultKey_SelectedCity)
-        userDefault.synchronize()
-        return true
+        return userDefault.synchronize()
     }
     func getSelectedCity()-> String? {
         let selectedCity = userDefault.string(forKey: kUserDefaultKey_SelectedCity)
@@ -82,8 +76,7 @@ class AppUserDefaultManager: NSObject {
     ///
     func setUserAgreement(ON:Bool)-> Bool {
         userDefault.set(ON,forKey:kUserDefaultKey_Agreement)
-        userDefault.synchronize()
-        return true
+        return userDefault.synchronize()
     }
     func getUserAgreement()-> Bool {
         let userAgree:Bool = userDefault.bool(forKey: kUserDefaultKey_Agreement)
@@ -92,8 +85,7 @@ class AppUserDefaultManager: NSObject {
     ///
     func setUserLock(ON:Bool)-> Bool {
         userDefault.set(ON,forKey:kUserDefaultKey_UserLock)
-        userDefault.synchronize()
-        return true
+        return userDefault.synchronize()
     }
     func getUserLock()-> Bool {
         let userLock:Bool = userDefault.bool(forKey: kUserDefaultKey_UserLock)
@@ -106,8 +98,7 @@ class AppUserDefaultManager: NSObject {
         userDefault.set(nil,   forKey:kUserDefaultKey_CurrentUser)
         userDefault.set(false, forKey:kUserDefaultKey_Agreement)
         userDefault.set(false, forKey:kUserDefaultKey_UserLock)
-        userDefault.synchronize()
-        return true
+        return userDefault.synchronize()
     }
 
 }

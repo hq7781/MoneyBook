@@ -33,6 +33,9 @@ let kNotificationNameUserAuthencationFailed  = NSNotification.Name(rawValue:"Not
 let kNotificationUserInfoKey_UserTryLimit = "UserTryLimit"
 let kNotificationUserInfoKey_ErrorMessage = "ErrorMessage"
 
+let kNotificationNameCurrentCityhasChanged = NSNotification.Name(rawValue:"NotificationNameCurrentCityhasChanged")
+
+
 // User Default Key 名称常量
 let kUserDefaultKey_versionStr  = "CFBundleShortVersionString"
 let kUserDefaultKey_VisitCount  = "VisitCount"
