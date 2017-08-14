@@ -13,6 +13,17 @@ let kNotificationNameCurrentCityChage = NSNotification.Name(rawValue:"Notificati
 
 
 class SettingViewController: UIViewController {
+    fileprivate lazy var images: NSMutableArray! = {
+        var array = NSMutableArray(array: ["score","recommend","about","feedback","removecache"])
+        return array
+    }()
+    fileprivate lazy var titles: NSMutableArray! = {
+        var array = NSMutableArray(array: ["score","recommend","about","feedback","removecache"])
+        return array
+    }()
+    fileprivate var tableView: UITableView!
+    
+    //
     var cityRightButton: TextImageButton!
     
     var buttonB: UIView!
@@ -20,6 +31,8 @@ class SettingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Setting Table List
+        setTableViewUI()
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.white
@@ -49,6 +62,8 @@ class SettingViewController: UIViewController {
     }
     deinit {
         NotificationCenter.default.removeObserver(self)
+        print("SettingViewController has destroyed", terminator: "")
+    
     }
     /*
     // MARK: - Navigation
@@ -59,6 +74,18 @@ class SettingViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    private func setTableViewUI() {
+        tableView = UITableView(frame: view.bounds, style: .plain)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.backgroundColor = UIColor.enixColorWith(247, 247, 247, alpha: 1)
+        tableView.rowHeight = 50
+        tableView.separatorStyle = .none
+        tableView.register(UINib(nibName:"SettingCell", bundle:nil), forCellReuseIdentifier: "settingCell")
+        
+        view.addSubview(tableView)
+    }
+    
     func setUpUI() {
         self.showEasyTipViewUI()
         self.showUserVistCountInfoUI()
@@ -169,7 +196,51 @@ class SettingViewController: UIViewController {
     func easyTipViewDidDismiss(_ easyTipView : EasyTipView) {
         print("easyTipViewDidDismiss")
     }
+}
 
+extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return titles!.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = SettingCell.settingCellWithTableView(tableView)
+        cell.setimageView.image = UIImage(named:images[indexPath.row] as! String)
+        cell.titleLabel.text = titles[indexPath.row] as? String
+        
+        if indexPath.row == SettingCellType.clean.hashValue {
+            cell.bottomView.isHidden = true
+            cell.sizeLabel.isHidden = false
+            cell.sizeLabel.text = String().appendingFormat("%.2f M", FileUtils.folderSize(path:appCachesPath!))
+        } else {
+            cell.bottomView.isHidden = false
+            cell.sizeLabel.isHidden = true
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        switch indexPath.row {
+        case SettingCellType.about.hashValue:
+            let aboutVC = AboutViewController()
+            navigationController!.pushViewController(aboutVC, animated: true)
+        case SettingCellType.recommend.hashValue:
+            break
+        case SettingCellType.clean.hashValue:
+            weak var tmpSelf = self
+            FileUtils.cleanFolder(path:appCachesPath!, complete: {
+                () -> () in tmpSelf!.tableView.reloadData()
+                //self.tableView.reloadData()
+            })
+        case SettingCellType.verinfo.hashValue:
+            appShare.openURL(NSURL(string:theme.GitHubURL) as! URL)
+        default:
+            break
+        }
+    }
 }
 
 class TextImageButton: UIButton {

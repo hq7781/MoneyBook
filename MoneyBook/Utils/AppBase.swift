@@ -22,6 +22,6 @@ struct theme {
     static let appNaviTitleFont = UIFont.systemFont(ofSize:18)
     static let appBackgroundColor = UIColor.enixColorWith(255, 255, 255, alpha: 1)
     static let appWebViewBackgrounderColor = UIColor.enixColorWith(245, 245, 245, alpha: 1)
-    
+    static let GitHubURL = "https://github.com/"
     //
 }

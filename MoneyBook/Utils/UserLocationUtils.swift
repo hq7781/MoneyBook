@@ -27,7 +27,7 @@ class UserLocationUtils: NSObject {
     
     /// get User location authentication
     func startUserlocation() {
-        locationManager.autoContentAccessingProxy
+        _ = locationManager.autoContentAccessingProxy
         locationManager.startUpdatingLocation()
     }
 }

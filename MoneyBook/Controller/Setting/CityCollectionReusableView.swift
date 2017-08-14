@@ -29,7 +29,7 @@ class CityHeadCollectionReusableView: UICollectionReusableView {
     
     func setUp() {
         headTitleLabel.textAlignment = .center
-        headTitleLabel.font = UIFont.systemFont(ofSize: 22)
+        headTitleLabel.font = UIFont.systemFont(ofSize:22)
         headTitleLabel.textColor = UIColor.black
         addSubview(headTitleLabel)
     }
@@ -43,6 +43,26 @@ class CityHeadCollectionReusableView: UICollectionReusableView {
 
 class CityFootCollectionReusableView: UICollectionReusableView {
     var titleLabel: UILabel?
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        titleLabel = UILabel()
+        titleLabel?.text = "more city.."
+        titleLabel?.textAlignment = .center
+        titleLabel?.textColor = UIColor.darkGray
+        titleLabel?.font = UIFont.systemFont(ofSize:16)
+        addSubview(titleLabel!)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        titleLabel?.frame = self.bounds
+    }
     
 }
 

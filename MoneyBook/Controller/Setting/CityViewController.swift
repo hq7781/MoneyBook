@@ -145,11 +145,12 @@ extension CityViewController: UICollectionViewDelegate,UICollectionViewDataSourc
         let app = UIApplication.shared.delegate as! AppDelegate
         if app.appUserDefaultManager.setSelectedCity(city:currentCity) {
             NotificationCenter.default.post(name:kNotificationNameCurrentCityhasChanged, object: currentCity)
+            //NSNotificationCenter.defaultCenter().postNotificationName(kNotificationNameCurrentCityhasChanged, object: currentCity)
             self.dismiss(animated: true, completion: nil)
         }
 
     }
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+    public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         if section == 0 {
             return CGRect.CGSizeZero()
         } else {

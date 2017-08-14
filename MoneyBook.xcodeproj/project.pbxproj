@@ -36,6 +36,10 @@
 		8692B8071EE56506005CCE03 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8692B8061EE56506005CCE03 /* Images.xcassets */; };
 		8692B8091EE6795E005CCE03 /* AnalysisMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692B8081EE6795C005CCE03 /* AnalysisMenuTableViewCell.swift */; };
 		8692B80B1EE69BE0005CCE03 /* Extension+Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692B80A1EE69BE0005CCE03 /* Extension+Float.swift */; };
+		869C1A691F418AAD0030827A /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C1A671F418AAD0030827A /* SettingCell.swift */; };
+		869C1A6A1F418AAD0030827A /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 869C1A681F418AAD0030827A /* SettingCell.xib */; };
+		869C1A6D1F4195E90030827A /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C1A6B1F4195E90030827A /* AboutViewController.swift */; };
+		869C1A6E1F4195E90030827A /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 869C1A6C1F4195E90030827A /* AboutViewController.xib */; };
 		86E7D6BF1EDD4E9F0010AF09 /* AppUserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E7D6BE1EDD4E9F0010AF09 /* AppUserDefaultManager.swift */; };
 		86E7D6C11EDE9F350010AF09 /* UserAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E7D6C01EDE9F350010AF09 /* UserAuthentication.swift */; };
 		86E7D6C41EE540370010AF09 /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E7D6C31EE540370010AF09 /* ContentType.swift */; };
@@ -1058,6 +1062,10 @@
 		8692B8061EE56506005CCE03 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MoneyBook/Resource/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		8692B8081EE6795C005CCE03 /* AnalysisMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisMenuTableViewCell.swift; sourceTree = "<group>"; };
 		8692B80A1EE69BE0005CCE03 /* Extension+Float.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Extension+Float.swift"; path = "Misc/Extension/Extension+Float.swift"; sourceTree = "<group>"; };
+		869C1A671F418AAD0030827A /* SettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingCell.swift; path = Controller/Setting/SettingCell.swift; sourceTree = "<group>"; };
+		869C1A681F418AAD0030827A /* SettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingCell.xib; path = Controller/Setting/SettingCell.xib; sourceTree = "<group>"; };
+		869C1A6B1F4195E90030827A /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutViewController.swift; path = Controller/Setting/AboutViewController.swift; sourceTree = "<group>"; };
+		869C1A6C1F4195E90030827A /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AboutViewController.xib; path = Controller/Setting/AboutViewController.xib; sourceTree = "<group>"; };
 		86E7D6BE1EDD4E9F0010AF09 /* AppUserDefaultManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUserDefaultManager.swift; sourceTree = "<group>"; };
 		86E7D6C01EDE9F350010AF09 /* UserAuthentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAuthentication.swift; path = Utils/UserAuthentication.swift; sourceTree = "<group>"; };
 		86E7D6C31EE540370010AF09 /* ContentType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentType.swift; sourceTree = "<group>"; };
@@ -2353,6 +2361,10 @@
 			isa = PBXGroup;
 			children = (
 				B0A86B8B1EB6121700A82C0C /* SettingViewController.swift */,
+				869C1A6B1F4195E90030827A /* AboutViewController.swift */,
+				869C1A6C1F4195E90030827A /* AboutViewController.xib */,
+				869C1A671F418AAD0030827A /* SettingCell.swift */,
+				869C1A681F418AAD0030827A /* SettingCell.xib */,
 				868013E11F2709A9000A2302 /* CityViewController.swift */,
 				868013EF1F27410E000A2302 /* CityCollectionViewCell.swift */,
 				868013F11F274172000A2302 /* CityCollectionReusableView.swift */,
@@ -3801,6 +3813,7 @@
 				B0A8704E1EB7446C00A82C0C /* services@2x.png in Resources */,
 				B0A86F871EB7446C00A82C0C /* calendar_cell_normal.png in Resources */,
 				B0A870051EB7446C00A82C0C /* comps.png in Resources */,
+				869C1A6A1F418AAD0030827A /* SettingCell.xib in Resources */,
 				B0A871501EB7446D00A82C0C /* _old_mail_open_attach@2x.png in Resources */,
 				B0A870B41EB7446D00A82C0C /* Icon-50@2x.png in Resources */,
 				B0A8707F1EB7446C00A82C0C /* dial_9_on.png in Resources */,
@@ -4361,6 +4374,7 @@
 				B0A870FD1EB7446D00A82C0C /* check_off@2x.png in Resources */,
 				B0A871281EB7446D00A82C0C /* _old_attach_status_loading@2x.png in Resources */,
 				B0A870221EB7446C00A82C0C /* ico16_1091@2x.png in Resources */,
+				869C1A6E1F4195E90030827A /* AboutViewController.xib in Resources */,
 				B0A870251EB7446C00A82C0C /* ico16_4401.png in Resources */,
 				B0A86FFF1EB7446C00A82C0C /* answer.png in Resources */,
 				B0A8716D1EB7446D00A82C0C /* bcc@2x.png in Resources */,
@@ -4587,6 +4601,7 @@
 				868012091F1DE745000A2302 /* ShareUtils.swift in Sources */,
 				B0A86BA01EB6512300A82C0C /* SpentViewController.swift in Sources */,
 				B0A86B961EB6375B00A82C0C /* DB.swift in Sources */,
+				869C1A6D1F4195E90030827A /* AboutViewController.swift in Sources */,
 				8680120E1F1DEFD7000A2302 /* FileUtils.swift in Sources */,
 				B0A86B3D1EB5FE6600A82C0C /* AppDelegate.swift in Sources */,
 				B0A86B881EB611FF00A82C0C /* AnalysisViewController.swift in Sources */,
@@ -4596,6 +4611,7 @@
 				B04A14011EB8FE4C008EEFCE /* EventDAO.swift in Sources */,
 				B04A14121EC7F346008EEFCE /* EasyTipView.swift in Sources */,
 				86E7D6CB1EE543AA0010AF09 /* Extension+CGRect.swift in Sources */,
+				869C1A691F418AAD0030827A /* SettingCell.swift in Sources */,
 				B04A14081EB93874008EEFCE /* EventCache.swift in Sources */,
 				B0A86BA81EB65A2A00A82C0C /* AccountViewController.swift in Sources */,
 				868013F21F274172000A2302 /* CityCollectionReusableView.swift in Sources */,
@@ -4791,7 +4807,7 @@
 				DEVELOPMENT_TEAM = 58V87X55PH;
 				GCC_WARN_MISSING_PARENTHESES = NO;
 				INFOPLIST_FILE = MoneyBook/Resource/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.enixsoft.MoneyBook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4809,7 +4825,7 @@
 				DEVELOPMENT_TEAM = 58V87X55PH;
 				GCC_WARN_MISSING_PARENTHESES = NO;
 				INFOPLIST_FILE = MoneyBook/Resource/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.enixsoft.MoneyBook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
