@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import StoreKit // for Purchase
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, PaymentManagerDelegate {
 
     var window: UIWindow?
     
-    public let app = UIApplication.shared.delegate as! AppDelegate
+    public let app = UIApplication.shared.delegate as? AppDelegate
 
     /// Manager fot the application data. SQLite3 Database
     let appDatabaseManager = AppDatabaseManager()
@@ -31,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //发送通知
         //NotificationCenter.default.post(name:kNotificationNameAgreementViewWillShow, object: nil, userInfo: nil /*Notification.userInfo*/ )
         }
+        // for Purchase process
+        setAppPurchase()
         
         // for startup process
         setAppStartKeyWindow()
@@ -105,5 +108,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return storyboard.instantiateViewController(withIdentifier: kUIViewControllerId_MainTabBarVC)
     }
     ////////////////////////////////////////////////////////////////////
+    func setAppPurchase() {
+        // 
+        PaymentManager.shared().delegate = self
+        SKPaymentQueue.default().add(PaymentManager.shared())
+        //
+        PaymentManager.checkReceipt()
+        //return true
+    }
 }
+
 

@@ -24,7 +24,6 @@ class AgreementViewController: UIPageViewController /* UIViewController */, UISc
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation
@@ -36,7 +35,6 @@ class AgreementViewController: UIPageViewController /* UIViewController */, UISc
     }
     */
 
-    
     // MARK: - show PageScrollview View
     func showPageScrollView() {
         // Update the user interface for the detail item.

@@ -53,11 +53,17 @@ public class AppUtils {
     
     // check the version change
     static func isAppVersionChanged() ->Bool {
+        #if DEBUG
+        return false // for debug
+        #else
         let cureentVersion = getAppVersionInfo()
         let app = UIApplication.shared.delegate as! AppDelegate
         let oldVersion = app.appUserDefaultManager.getCurrentVerion()
-        
+        if oldVersion == nil {
+            return true
+        }
         return (cureentVersion.compare(oldVersion!) != ComparisonResult.orderedDescending)
+        #endif
     }
     static func isUserVisited() ->Bool {
         let app = UIApplication.shared.delegate as! AppDelegate

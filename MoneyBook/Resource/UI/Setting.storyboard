@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="erL-5P-iiI">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--About View Controller-->
+        <scene sceneID="3yv-Qq-pFV">
+            <objects>
+                <viewController storyboardIdentifier="AboutVC" id="erL-5P-iiI" customClass="AboutViewController" customModule="MoneyBook" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MEh-po-gPm"/>
+                        <viewControllerLayoutGuide type="bottom" id="xwC-6I-D3Y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aJO-cz-3A4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="desktop_crm.png" translatesAutoresizingMaskIntoConstraints="NO" id="yA8-HW-00h">
+                                <rect key="frame" x="68" y="45" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="DUN-vi-XE7"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" image="desktop_contacts_card.png" translatesAutoresizingMaskIntoConstraints="NO" id="ifH-4G-Fdm">
+                                <rect key="frame" x="68" y="192" width="240" height="128"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xmv-tZ-bmo">
+                                <rect key="frame" x="83" y="378" width="214" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYp-Cv-nsn">
+                                <rect key="frame" x="83" y="426" width="214" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7VL-V0-uzo">
+                                <rect key="frame" x="83" y="477" width="214" height="30"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yA8-HW-00h" firstAttribute="top" secondItem="MEh-po-gPm" secondAttribute="bottom" constant="25" id="58w-hK-d8k"/>
+                            <constraint firstItem="yA8-HW-00h" firstAttribute="leading" secondItem="aJO-cz-3A4" secondAttribute="leadingMargin" constant="52" id="8fY-tu-8Sd"/>
+                            <constraint firstItem="yA8-HW-00h" firstAttribute="centerX" secondItem="aJO-cz-3A4" secondAttribute="centerX" id="CLa-xg-yLz"/>
+                            <constraint firstItem="UYp-Cv-nsn" firstAttribute="trailing" secondItem="Xmv-tZ-bmo" secondAttribute="trailing" id="DNO-sf-z6Y"/>
+                            <constraint firstItem="ifH-4G-Fdm" firstAttribute="trailing" secondItem="yA8-HW-00h" secondAttribute="trailing" id="Mth-ZW-twb"/>
+                            <constraint firstItem="ifH-4G-Fdm" firstAttribute="top" secondItem="yA8-HW-00h" secondAttribute="bottom" constant="19" id="TpK-PU-Tqx"/>
+                            <constraint firstItem="UYp-Cv-nsn" firstAttribute="centerX" secondItem="Xmv-tZ-bmo" secondAttribute="centerX" id="V85-ed-082"/>
+                            <constraint firstItem="7VL-V0-uzo" firstAttribute="trailing" secondItem="Xmv-tZ-bmo" secondAttribute="trailing" id="Zxi-2O-8hK"/>
+                            <constraint firstItem="ifH-4G-Fdm" firstAttribute="centerX" secondItem="yA8-HW-00h" secondAttribute="centerX" id="anY-ne-mXl"/>
+                            <constraint firstItem="UYp-Cv-nsn" firstAttribute="leading" secondItem="aJO-cz-3A4" secondAttribute="leadingMargin" constant="67" id="axd-hK-35o"/>
+                            <constraint firstItem="7VL-V0-uzo" firstAttribute="centerX" secondItem="Xmv-tZ-bmo" secondAttribute="centerX" id="lCA-GK-vPw"/>
+                            <constraint firstItem="7VL-V0-uzo" firstAttribute="leading" secondItem="Xmv-tZ-bmo" secondAttribute="leading" id="mhe-Gd-1UU"/>
+                            <constraint firstItem="UYp-Cv-nsn" firstAttribute="top" secondItem="Xmv-tZ-bmo" secondAttribute="bottom" constant="27" id="o7X-Gh-tNQ"/>
+                            <constraint firstItem="UYp-Cv-nsn" firstAttribute="leading" secondItem="Xmv-tZ-bmo" secondAttribute="leading" id="qME-XR-JRJ"/>
+                            <constraint firstItem="7VL-V0-uzo" firstAttribute="top" secondItem="UYp-Cv-nsn" secondAttribute="bottom" constant="30" id="rri-bi-9vY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UYp-Cv-nsn" secondAttribute="trailing" constant="62" id="tvM-Yn-2aW"/>
+                            <constraint firstItem="ifH-4G-Fdm" firstAttribute="leading" secondItem="yA8-HW-00h" secondAttribute="leading" id="uAO-YG-5Wg"/>
+                            <constraint firstItem="Xmv-tZ-bmo" firstAttribute="top" secondItem="ifH-4G-Fdm" secondAttribute="bottom" constant="58" id="viZ-4K-yKI"/>
+                            <constraint firstAttribute="bottom" secondItem="UYp-Cv-nsn" secondAttribute="bottom" constant="220" id="yRX-GA-Qxg"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YpU-1w-j3P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="37.600000000000001" y="82.3088455772114"/>
+        </scene>
+        <!--Purchase View Controller-->
+        <scene sceneID="knT-6c-TD2">
+            <objects>
+                <viewController storyboardIdentifier="PurchaseVC" id="1Ug-Yp-HlW" customClass="PurchaseViewController" customModule="MoneyBook" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FSv-mO-3Wt"/>
+                        <viewControllerLayoutGuide type="bottom" id="JPa-zR-Cth"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zHI-wD-hbh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CJU-Bb-1te" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="800" y="81"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="desktop_contacts_card.png" width="60" height="60"/>
+        <image name="desktop_crm.png" width="60" height="60"/>
+    </resources>
+</document>

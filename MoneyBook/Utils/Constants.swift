@@ -12,6 +12,7 @@ import Foundation
 let kUIStoryboardName_Main         = "Main"
 let kUIStoryboardName_LaunchScreen = "LaunchScreen"
 let kUIStoryboardName_Startup      = "Startup"
+let kUIStoryboardName_Setting      = "Setting"
 
 // ViewController Identifier 常量
 let kUIViewControllerId_Agreement     = "Agreement"
@@ -20,6 +21,8 @@ let kUIViewControllerId_TouchToUnlock = "TouchToUnlock"
 
 let kUIViewControllerId_MainTabBarVC = "MainTabBarVC"
 let kUIViewControllerId_NewRecordsVC = "NewRecordsVC"
+
+let kUIViewControllerId_AboutVC      = "AboutVC"
 
 // 通知名称常量
 let kNotificationNameAgreementViewWillShow = NSNotification.Name(rawValue:"NotificationNameAgreementViewWillShow")

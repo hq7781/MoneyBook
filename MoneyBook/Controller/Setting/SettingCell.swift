@@ -10,9 +10,12 @@ import UIKit
 
 enum SettingCellType: Int {
     case about = 0
-    case recommend = 1
-    case clean = 3
-    case verinfo = 4
+    case score = 1
+    case recommend = 2
+    case feedback = 3
+    case clean = 4
+    case purchase = 5
+    case verinfo = 6
 }
 
 class SettingCell: UITableViewCell {

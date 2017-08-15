@@ -117,8 +117,8 @@ class RecordsViewController: UIViewController,
         
         self.view.setNeedsDisplay()
         self.hideKeyboard()
-        self.setUpUserNotification()
-        self.setUpUI()
+        self.setupUserNotification()
+        self.setupUI()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -161,17 +161,17 @@ class RecordsViewController: UIViewController,
         lblDate.text = "Date"
     }
     
-    func setUpUI() {
+    func setupUI() {
         defaultInfo()
         self.calView.name = D_calVC_name;
         self.spentView.name = D_spentVC_name;
         self.statusView.name = D_statusVC_name;
         self.fromAccView.name = D_fromAccVC_name;
 
-        self.setUpCategoryPickerView()
+        self.setupCategoryPickerView()
         self.showCurrentDate()
     }
-    func setUpCategoryPickerView() {
+    func setupCategoryPickerView() {
         categoryPicker = CategoryPickerView()
         categoryPicker.showsSelectionIndicator = true;
         categoryPicker.delegate = self as CategoryPickerViewDelegate// as? UIPickerViewDelegate
@@ -213,7 +213,7 @@ class RecordsViewController: UIViewController,
         lblDate.text = "\(dateTimeComponents.year!)/\(dateTimeComponents.month!)/\(dateTimeComponents.day!)"
     }
 
-    func setUpUserNotification() {
+    func setupUserNotification() {
         DispatchQueue.main.async(execute: {
             if #available(iOS 10.0, *) {
                 let center:UNUserNotificationCenter = UNUserNotificationCenter.current()
