@@ -9,9 +9,6 @@
 import UIKit
 //import AdSupport
 
-let kNotificationNameCurrentCityChage = NSNotification.Name(rawValue:"NotificationNameCurrentCityChage")
-
-
 class SettingViewController: UIViewController {
     fileprivate lazy var images: NSMutableArray! = {
         var array = NSMutableArray(array: ["about","score","recommend","feedback","removecache", "purchase", "verinfo"])
@@ -24,7 +21,7 @@ class SettingViewController: UIViewController {
     fileprivate var tableView: UITableView!
     
     //
-    var cityRightButton: TextImageButton!
+    var cityButton: TextImageButton!
     
     var buttonB: UIView!
     var someView: UIView!
@@ -37,7 +34,8 @@ class SettingViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        NotificationCenter.default.addObserver(self, selector:#selector(onCityChange), name:kNotificationNameCurrentCityChage, object:nil)
+        NotificationCenter.default.addObserver(self, selector:#selector(onCityChange), name:kNotificationNameCurrentCityhasChanged, object:nil)
+        
         NotificationCenter.default.removeObserver(self)
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -137,32 +135,55 @@ class SettingViewController: UIViewController {
     }
     
     func showCityChangeUI() {
-        cityRightButton = TextImageButton(frame: CGRect.CGRectMake(40, 300, 80, 44))
+        cityButton = TextImageButton(frame: CGRect.CGRectMake(40, 300, 80, 44))
         
         if let currentCity = AppUtils.getSelectedCity() as String? {
-            cityRightButton.setTitle(currentCity, for: .normal)
+            cityButton.setTitle(currentCity, for: .normal)
         } else {
-            cityRightButton.setTitle("tokyo", for: .normal)
+            cityButton.setTitle("tokyo", for: .normal)
         }
-        cityRightButton.titleLabel?.font = theme.appNaviItemFont
-        cityRightButton.setTitleColor(UIColor.black, for: UIControlState.normal)
-        cityRightButton.setImage(UIImage(named:"home_down"), for: .normal)
-        cityRightButton.addTarget(self, action: #selector(onClickPushCityView), for:UIControlEvents.touchUpInside)
+        cityButton.titleLabel?.font = theme.appNaviItemFont
+        cityButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+        cityButton.setImage(UIImage(named:"home_down"), for: .normal)
+        cityButton.addTarget(self, action: #selector(onClickPushCityView), for:UIControlEvents.touchUpInside)
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cityRightButton)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cityButton)
     }
 
     // received the notification
     func onCityChange(notification: NSNotification) {
         if let currentCity = notification.object as? String {
-            self.cityRightButton.setTitle(currentCity, for: .normal)
+            self.cityButton.setTitle(currentCity, for: .normal)
         }
     }
     // received the button click event
     func onClickPushCityView() {
         let cityViewVC = CityViewController()
-        cityViewVC.cityName = self.cityRightButton.title(for: .normal)
+        cityViewVC.cityName = self.cityButton.title(for: .normal)
         let nav = MainNavigationController(rootViewController: cityViewVC)
+        present(nav, animated: true, completion: nil)
+    }
+    
+    func showMapViewUI() {
+        mapButton = TextImageButton(frame: CGRect.CGRectMake(40, 300, 80, 44))
+        
+        if let currentCity = AppUtils.getSelectedCity() as String? {
+            mapButton.setTitle(currentCity, for: .normal)
+        } else {
+            mapButton.setTitle("Map", for: .normal)
+        }
+        mapButton.titleLabel?.font = theme.appNaviItemFont
+        mapButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+        mapButton.setImage(UIImage(named:"home_down"), for: .normal)
+        mapButton.addTarget(self, action: #selector(onClickPushMapView),
+                            for:UIControlEvents.touchUpInside)
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: mapButton)
+    }
+
+    func onClickPushMapView() {
+        let mapViewVC = MapViewController()
+        let nav = MainNavigationController(rootViewController: mapViewVC)
         present(nav, animated: true, completion: nil)
     }
     

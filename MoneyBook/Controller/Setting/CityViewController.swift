@@ -29,11 +29,11 @@ class CityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpUI()
+        setupUI()
 
     }
     
-    func setUpUI() {
+    func setupUI() {
         self.showNavigationViewUI()
         self.showCollectionViewUI()
         
