@@ -37,6 +37,7 @@ class MapViewController : UIViewController {
         /////// Map ////////////
         setupMap()
         testSetMapParameter()
+        setPin()
     }
     func setupLocation() {
         myLocationmanager = CLLocationManager()
@@ -59,7 +60,7 @@ class MapViewController : UIViewController {
         self.view.addSubview(myMapView)
     }
     
-    func setPin () {
+    func setPin() {
         let myPin : MKPointAnnotation = MKPointAnnotation()
         // point
         let myLat: CLLocationDegrees = 37.506804
