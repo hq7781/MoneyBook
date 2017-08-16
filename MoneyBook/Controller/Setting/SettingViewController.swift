@@ -22,7 +22,7 @@ class SettingViewController: UIViewController {
     
     //
     var cityButton: TextImageButton!
-    
+    var mapButton: TextImageButton!
     var buttonB: UIView!
     var someView: UIView!
 
@@ -51,7 +51,7 @@ class SettingViewController: UIViewController {
         //fatalError("init(coder:) has not been implemented")
         super.init(coder: aDecoder)
         //接受通知监听
-        NotificationCenter.default.addObserver(self, selector:#selector(onCityChange), name:kNotificationNameCurrentCityChage, object:nil)
+        NotificationCenter.default.addObserver(self, selector:#selector(onCityChange), name:kNotificationNameCurrentCityhasChanged, object:nil)
     }
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -76,6 +76,7 @@ class SettingViewController: UIViewController {
         //self.showEasyTipViewUI()
         self.showUserVistCountInfoUI()
         self.showCityChangeUI()
+        self.showMapViewUI()
     }
 
     func setTableViewUI() {
@@ -152,8 +153,8 @@ class SettingViewController: UIViewController {
 
     // received the notification
     func onCityChange(notification: NSNotification) {
-        if let currentCity = notification.object as? String {
-            self.cityButton.setTitle(currentCity, for: .normal)
+        if let currentCity = notification.object as! String? {
+            cityButton.setTitle(currentCity, for: .normal)
         }
     }
     // received the button click event
@@ -178,7 +179,7 @@ class SettingViewController: UIViewController {
         mapButton.addTarget(self, action: #selector(onClickPushMapView),
                             for:UIControlEvents.touchUpInside)
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: mapButton)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: mapButton)
     }
 
     func onClickPushMapView() {

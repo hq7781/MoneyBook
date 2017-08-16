@@ -64,6 +64,7 @@
 		B07886001F42FB0100C2524A /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07885FF1F42FB0100C2524A /* PurchaseViewController.swift */; };
 		B07886021F42FD6700C2524A /* PaymentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07886011F42FD6700C2524A /* PaymentManager.swift */; };
 		B07886051F42FF0200C2524A /* ProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07886041F42FF0200C2524A /* ProductManager.swift */; };
+		B078860C1F44FEB100C2524A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B078860B1F44FEB100C2524A /* MapViewController.swift */; };
 		B0A86B3D1EB5FE6600A82C0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A86B3C1EB5FE6600A82C0C /* AppDelegate.swift */; };
 		B0A86B541EB5FE6600A82C0C /* MoneyBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A86B531EB5FE6600A82C0C /* MoneyBookTests.swift */; };
 		B0A86B5F1EB5FE6600A82C0C /* MoneyBookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A86B5E1EB5FE6600A82C0C /* MoneyBookUITests.swift */; };
@@ -1095,6 +1096,7 @@
 		B07885FF1F42FB0100C2524A /* PurchaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PurchaseViewController.swift; path = Controller/Setting/PurchaseViewController.swift; sourceTree = "<group>"; };
 		B07886011F42FD6700C2524A /* PaymentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentManager.swift; sourceTree = "<group>"; };
 		B07886041F42FF0200C2524A /* ProductManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductManager.swift; sourceTree = "<group>"; };
+		B078860B1F44FEB100C2524A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = Controller/Setting/MapViewController.swift; sourceTree = "<group>"; };
 		B0A86B391EB5FE6600A82C0C /* MoneyBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A86B3C1EB5FE6600A82C0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0A86B4F1EB5FE6600A82C0C /* MoneyBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoneyBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2377,6 +2379,7 @@
 		B0A86B861EB611BF00A82C0C /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				B078860B1F44FEB100C2524A /* MapViewController.swift */,
 				B0A86B8B1EB6121700A82C0C /* SettingViewController.swift */,
 				B07885FF1F42FB0100C2524A /* PurchaseViewController.swift */,
 				869C1A6B1F4195E90030827A /* AboutViewController.swift */,
@@ -4611,6 +4614,7 @@
 			files = (
 				B04A140C1EB9A035008EEFCE /* AppDatabaseManager.swift in Sources */,
 				B0A86B821EB6114500A82C0C /* HistoryDetailViewController.swift in Sources */,
+				B078860C1F44FEB100C2524A /* MapViewController.swift in Sources */,
 				86E7D6CE1EE543FA0010AF09 /* CircularRevealTransition.swift in Sources */,
 				B04A14101EC7BD99008EEFCE /* EasyMessage.swift in Sources */,
 				B0A86BA21EB654BD00A82C0C /* AddSpentViewController.swift in Sources */,

@@ -17,7 +17,7 @@
 import UIKit
 import MapKit
 
-class MapViewController : UIViewController, MKMapViewDelegate {
+class MapViewController : UIViewController {
 
 // MapView
     var myMapView : MKMapView!
@@ -41,7 +41,7 @@ class MapViewController : UIViewController, MKMapViewDelegate {
     func setupLocation() {
         myLocationmanager = CLLocationManager()
         myLocationmanager.delegate = self
-        myLocationmanager.distanceFilter - 100.0
+        myLocationmanager.distanceFilter = 100.0
         myLocationmanager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         let status = CLLocationManager.authorizationStatus()
         //display authorize dialog
@@ -80,10 +80,10 @@ class MapViewController : UIViewController, MKMapViewDelegate {
         let myCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(myLat, myLon)
         
         // Distance
-        let myLatDist : CLLocatonDistance = 100
-        let myLonDist : CLLocatonDistance = 100
+        let myLatDist : CLLocationDistance = 100
+        let myLonDist : CLLocationDistance = 100
         // Region
-        let myRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(myCoordinate, myLatDist, myLonDist);
+        var myRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(myCoordinate, myLatDist, myLonDist);
         
         let span : MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
         myRegion = MKCoordinateRegion(center: myCoordinate, span: span)
