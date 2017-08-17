@@ -29,6 +29,7 @@ class MapViewController : UIViewController {
         self.view.backgroundColor = UIColor.cyan
         
         self.setupUI()
+        AppUtils.googleTracking("MapView")
     }
     
     func setupUI() {
@@ -108,14 +109,6 @@ class MapViewController : UIViewController {
     }
     func onClickBackButton(_ sender: UIButton){
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    func sendGoogleTrack() {
-        let tracker = GAI.sharedInstance().defaultTracker
-        tracker?.set(kGAIScreenName, value: "MapViewTracker")
-        
-        let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as [NSObject : AnyObject]!)
     }
 
 }

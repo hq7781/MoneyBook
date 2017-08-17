@@ -30,6 +30,8 @@ class SettingViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.setupUI()
+        
+        AppUtils.googleTracking("SettingView")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -122,7 +124,12 @@ class SettingViewController: UIViewController {
         // later on you can dismiss it
         tipView.dismiss()
     }
-
+    
+    //MARK: - ========== easyTipViewDelegate ==========
+    func easyTipViewDidDismiss(_ easyTipView : EasyTipView) {
+        print("easyTipViewDidDismiss")
+    }
+    
     func showUserVistCountInfoUI() {
         let visitCount: Int = AppUtils.getVisitCount()!
         let myLabel:UILabel = UILabel()
@@ -188,10 +195,7 @@ class SettingViewController: UIViewController {
         present(nav, animated: true, completion: nil)
     }
     
-    //MARK: - ========== easyTipViewDelegate ==========
-    func easyTipViewDidDismiss(_ easyTipView : EasyTipView) {
-        print("easyTipViewDidDismiss")
-    }
+
     
     func toAboutViewController() {
         //let storyboard = UIStoryboard(name:kUIStoryboardName_Setting, bundle: nil)
@@ -208,6 +212,7 @@ class SettingViewController: UIViewController {
     }
 }
 
+//MARK: - ========== UITableViewDelegate, UITableViewDataSource ==========
 extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

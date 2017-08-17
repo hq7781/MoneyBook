@@ -11,12 +11,10 @@ import Persei
 
 let k_CELLNAME_AnalysisMenuTableViewCell: String = "AnalysisMenuCell"
 
-class AnalysisViewController: UIViewController,
-    UITableViewDelegate,
-    UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class AnalysisViewController: UIViewController {
 
-    private var pageControl: UIPageControl!
-    private var scrollView: UIScrollView!
+    fileprivate var pageControl: UIPageControl!
+    fileprivate var scrollView: UIScrollView!
 
     fileprivate weak var menu: MenuView!
     @IBOutlet weak var imageView: UIImageView!
@@ -33,6 +31,7 @@ class AnalysisViewController: UIViewController,
         title = model.description
         //self.LoadMenuView()
         self.showPageScrollView()
+        AppUtils.googleTracking("AnalysisView")
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,40 +86,6 @@ class AnalysisViewController: UIViewController,
         menu.setRevealed(!menu.revealed, animated: true)
     }
     
-    // MARK: - Table view data source ========== UITableViewDelegate ==========
-    /// Asks the data source to return the number of sections in the table view.
-    func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-    /// Tells the data source to return the number of rows in a given section of a table view.
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 1
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: k_CELLNAME_AnalysisMenuTableViewCell, for: indexPath) as? AnalysisMenuTableViewCell
-            //let cell = self.AnalysisMenuCell as UITableViewCell
-            //cell?.imgView.image = nil //UIImage(named: data[indexPath.row].image)
-            cell?.textLabel?.text = "Text"
-            cell?.detailTextLabel?.text = "detailText"
-            return cell!
-        }
-        return UITableViewCell()
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let indexPath = tableView.indexPathForSelectedRow
-        _ = tableView.cellForRow(at: indexPath!)! 
-        
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.view.frame.size.height / 12
-    }
-
-    
     // MARK: - show PageScrollview View
     func showPageScrollView() {
         // Update the user interface for the detail item.
@@ -166,8 +131,17 @@ class AnalysisViewController: UIViewController,
         self.view.addSubview(pageControl)
         
     }
+}
 
-    //MARK: - ========== UIScrollViewDelegate ==========
+// MARK: - MenuViewDelegate
+extension AnalysisViewController: MenuViewDelegate {
+    func menu(_ menu: MenuView, didSelectItemAt index: Int) {
+        model = model.next()
+    }
+}
+
+// MARK: - ========== UIScrollViewDelegate ==========
+extension AnalysisViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
         // スクロール数が1ページ分になったら時.
@@ -176,10 +150,48 @@ class AnalysisViewController: UIViewController,
             pageControl.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.maxX)
         }
     }
+}
 
-    //MARK: - ========== UICollectionViewDelegate ==========
-    // PlayerCollectionView
+// MARK: - UITableViewDelegate
+extension AnalysisViewController: UITableViewDelegate {
+    // MARK: - Table view data source ========== UITableViewDelegate ==========
+    /// Asks the data source to return the number of sections in the table view.
+    func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    /// Tells the data source to return the number of rows in a given section of a table view.
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return 1
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: k_CELLNAME_AnalysisMenuTableViewCell, for: indexPath) as? AnalysisMenuTableViewCell
+            //let cell = self.AnalysisMenuCell as UITableViewCell
+            //cell?.imgView.image = nil //UIImage(named: data[indexPath.row].image)
+            cell?.textLabel?.text = "Text"
+            cell?.detailTextLabel?.text = "detailText"
+            return cell!
+        }
+        return UITableViewCell()
+    }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let indexPath = tableView.indexPathForSelectedRow
+        _ = tableView.cellForRow(at: indexPath!)!
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return self.view.frame.size.height / 12
+    }
+}
+
+// MARK: - ========== UICollectionViewDelegate ==========
+extension AnalysisViewController: UICollectionViewDelegate,
+UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    // PlayerCollectionView
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -199,96 +211,87 @@ class AnalysisViewController: UIViewController,
             // AnalysisCell Cell
             let playerCell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnalysisCell", for: indexPath) //as! PlayerCollectionViewCell
             //let player = BankManager.shared.players[indexPath.item-1]
-//            playerCell.nameLabel.text = ""//player.name
-           // playerCell.balanceLabel.text = BankManager.shared.numberFormatter.string(from: player.balance as NSNumber)!
-//            if player.balance > 0 {
-//                playerCell.balanceLabel.textColor = UIColor.black
-//            } else {
-//                playerCell.balanceLabel.textColor = UIColor.red
-//            }
-//            playerCell.tokenView.image = UIImage(named: player.token.rawValue)?.withRenderingMode(.alwaysTemplate)
+            //            playerCell.nameLabel.text = ""//player.name
+            // playerCell.balanceLabel.text = BankManager.shared.numberFormatter.string(from: player.balance as NSNumber)!
+            //            if player.balance > 0 {
+            //                playerCell.balanceLabel.textColor = UIColor.black
+            //            } else {
+            //                playerCell.balanceLabel.textColor = UIColor.red
+            //            }
+            //            playerCell.tokenView.image = UIImage(named: player.token.rawValue)?.withRenderingMode(.alwaysTemplate)
             return playerCell
         }
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        if indexPath.item == 0 {
-//            return bankCellSize
-//        } else {
-//            return playerCellSize
-//        }
-//    }
+    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    //        if indexPath.item == 0 {
+    //            return bankCellSize
+    //        } else {
+    //            return playerCellSize
+    //        }
+    //    }
     
-//    var bankCellSize: CGSize {
-//        let flowLayout = playerCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
-//        let horizintalInsets = flowLayout.sectionInset.left+flowLayout.sectionInset.right
-//        return CGSize(width: playerCollectionView.bounds.width-horizintalInsets, height: playerCollectionView.bounds.height/8)
-//    }
-//    
-//    var playerCellSize: CGSize {
-//        let flowLayout = playerCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
-//        let horizintalInsets = flowLayout.sectionInset.left+flowLayout.sectionInset.right
-//        let verticalInsets = flowLayout.sectionInset.top + flowLayout.sectionInset.bottom
-//        
-//        let horizontalSpace = horizintalInsets + (flowLayout.minimumInteritemSpacing * (numberOfPlayersPerRow - 1))
-//        let width = (playerCollectionView.bounds.width-horizontalSpace)/numberOfPlayersPerRow
-//        
-//        let verticalSpace = verticalInsets + (flowLayout.minimumLineSpacing * ceil(CGFloat(maxPlayers)/numberOfPlayersPerRow))
-//        let height = (playerCollectionView.bounds.height-verticalSpace-(playerCollectionView.bounds.height/8))/ceil(CGFloat(maxPlayers)/numberOfPlayersPerRow)
-//        
-//        return CGSize(width: width, height: height)
-//    }
+    //    var bankCellSize: CGSize {
+    //        let flowLayout = playerCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+    //        let horizintalInsets = flowLayout.sectionInset.left+flowLayout.sectionInset.right
+    //        return CGSize(width: playerCollectionView.bounds.width-horizintalInsets, height: playerCollectionView.bounds.height/8)
+    //    }
+    //
+    //    var playerCellSize: CGSize {
+    //        let flowLayout = playerCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+    //        let horizintalInsets = flowLayout.sectionInset.left+flowLayout.sectionInset.right
+    //        let verticalInsets = flowLayout.sectionInset.top + flowLayout.sectionInset.bottom
+    //
+    //        let horizontalSpace = horizintalInsets + (flowLayout.minimumInteritemSpacing * (numberOfPlayersPerRow - 1))
+    //        let width = (playerCollectionView.bounds.width-horizontalSpace)/numberOfPlayersPerRow
+    //
+    //        let verticalSpace = verticalInsets + (flowLayout.minimumLineSpacing * ceil(CGFloat(maxPlayers)/numberOfPlayersPerRow))
+    //        let height = (playerCollectionView.bounds.height-verticalSpace-(playerCollectionView.bounds.height/8))/ceil(CGFloat(maxPlayers)/numberOfPlayersPerRow)
+    //
+    //        return CGSize(width: width, height: height)
+    //    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        if indexPath.item != 0 {
-//            let cell = collectionView.cellForItem(at: indexPath)!
-//            let player = BankManager.shared.players[indexPath.item-1]
-//            let playerAlertController = UIAlertController(title: "\(player.name): \(BankManager.shared.numberFormatter.string(from: player.balance as NSNumber)!)", message: "What do you want to do with this player?", preferredStyle: .actionSheet)
-//            //
-//            playerAlertController.popoverPresentationController?.sourceView = cell.contentView
-//            playerAlertController.popoverPresentationController?.sourceRect = cell.contentView.frame
-//            let quickAddAction = UIAlertAction(title: "Add \(BankManager.shared.numberFormatter.string(from: BankManager.shared.quickAddAmount as NSNumber)!)", style: .default, handler: { action in
-//                player.balance += BankManager.shared.quickAddAmount
-//                BankManager.shared.save()
-//                collectionView.reloadData()
-//            })
-//            playerAlertController.addAction(quickAddAction)
-//            let renameAction = UIAlertAction(title: "Rename", style: .default, handler: { action in
-//                let renameAlertController = UIAlertController(title: "Rename Player", message: "Enter a new name for \(player.name).", preferredStyle: .alert)
-//                renameAlertController.addTextField(configurationHandler: { $0.autocapitalizationType = .words })
-//                let okAction = UIAlertAction(title: "OK", style: .default, handler: { action in
-//                    if !renameAlertController.textFields!.first!.text!.isEmpty {
-//                        player.name = renameAlertController.textFields!.first!.text!
-//                        BankManager.shared.save()
-//                        collectionView.reloadData()
-//                    }
-//                })
-//                renameAlertController.addAction(okAction)
-//                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-//                renameAlertController.addAction(cancelAction)
-//                self.present(renameAlertController, animated: true)
-//            })
-//            playerAlertController.addAction(renameAction)
-//            let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { action in
-//                BankManager.shared.players.remove(at: indexPath.item-1)
-//                BankManager.shared.save()
-//                collectionView.reloadData()
-//                self.playerNumberChanged()
-//            })
-//            playerAlertController.addAction(deleteAction)
-//            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-//            playerAlertController.addAction(cancelAction)
-//            present(playerAlertController, animated: true)
-//        }
+        //        if indexPath.item != 0 {
+        //            let cell = collectionView.cellForItem(at: indexPath)!
+        //            let player = BankManager.shared.players[indexPath.item-1]
+        //            let playerAlertController = UIAlertController(title: "\(player.name): \(BankManager.shared.numberFormatter.string(from: player.balance as NSNumber)!)", message: "What do you want to do with this player?", preferredStyle: .actionSheet)
+        //            //
+        //            playerAlertController.popoverPresentationController?.sourceView = cell.contentView
+        //            playerAlertController.popoverPresentationController?.sourceRect = cell.contentView.frame
+        //            let quickAddAction = UIAlertAction(title: "Add \(BankManager.shared.numberFormatter.string(from: BankManager.shared.quickAddAmount as NSNumber)!)", style: .default, handler: { action in
+        //                player.balance += BankManager.shared.quickAddAmount
+        //                BankManager.shared.save()
+        //                collectionView.reloadData()
+        //            })
+        //            playerAlertController.addAction(quickAddAction)
+        //            let renameAction = UIAlertAction(title: "Rename", style: .default, handler: { action in
+        //                let renameAlertController = UIAlertController(title: "Rename Player", message: "Enter a new name for \(player.name).", preferredStyle: .alert)
+        //                renameAlertController.addTextField(configurationHandler: { $0.autocapitalizationType = .words })
+        //                let okAction = UIAlertAction(title: "OK", style: .default, handler: { action in
+        //                    if !renameAlertController.textFields!.first!.text!.isEmpty {
+        //                        player.name = renameAlertController.textFields!.first!.text!
+        //                        BankManager.shared.save()
+        //                        collectionView.reloadData()
+        //                    }
+        //                })
+        //                renameAlertController.addAction(okAction)
+        //                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        //                renameAlertController.addAction(cancelAction)
+        //                self.present(renameAlertController, animated: true)
+        //            })
+        //            playerAlertController.addAction(renameAction)
+        //            let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { action in
+        //                BankManager.shared.players.remove(at: indexPath.item-1)
+        //                BankManager.shared.save()
+        //                collectionView.reloadData()
+        //                self.playerNumberChanged()
+        //            })
+        //            playerAlertController.addAction(deleteAction)
+        //            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        //            playerAlertController.addAction(cancelAction)
+        //            present(playerAlertController, animated: true)
+        //        }
     }
 
-}
-
-// MARK: - MenuViewDelegate
-
-extension AnalysisViewController: MenuViewDelegate {
-    
-    func menu(_ menu: MenuView, didSelectItemAt index: Int) {
-        model = model.next()
-    }
 }

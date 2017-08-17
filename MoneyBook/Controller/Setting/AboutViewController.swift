@@ -15,6 +15,7 @@ class AboutViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         setupUI ()
+        AppUtils.googleTracking("AbountView")
     }
 
     override func didReceiveMemoryWarning() {

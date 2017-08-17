@@ -30,7 +30,7 @@ class CityViewController: UIViewController {
         super.viewDidLoad()
         
         setupUI()
-
+        AppUtils.googleTracking("CityView")
     }
     
     func setupUI() {

@@ -21,6 +21,7 @@ class TouchToUnlockViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.showDefaultUserView()
         self.showOpreationView()
+        AppUtils.googleTracking("TouchToUnlockView")
     }
 
     override func didReceiveMemoryWarning() {

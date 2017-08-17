@@ -119,6 +119,7 @@ class RecordsViewController: UIViewController,
         self.hideKeyboard()
         self.setupUserNotification()
         self.setupUI()
+        AppUtils.googleTracking("RecodeView")
     }
     
     required init?(coder aDecoder: NSCoder) {

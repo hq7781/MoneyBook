@@ -16,6 +16,7 @@ class PurchaseViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         setupUI ()
+        AppUtils.googleTracking("PurchaseView")
     }
     
     override func didReceiveMemoryWarning() {

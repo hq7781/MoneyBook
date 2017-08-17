@@ -17,6 +17,7 @@ class HistoryDetailViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.configureView()
+        AppUtils.googleTracking("HistoryDetailView")
     }
 
     override func didReceiveMemoryWarning() {

@@ -24,6 +24,7 @@ class SigninViewController: UIViewController {
 
         self.showDefaultUserView()
         self.showOpreationView()
+        AppUtils.googleTracking("SigninView")
     }
 
     override func didReceiveMemoryWarning() {

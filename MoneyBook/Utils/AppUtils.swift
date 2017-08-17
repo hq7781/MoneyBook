@@ -122,6 +122,14 @@ public class AppUtils {
         return app.appUserDefaultManager.getUserLock()
         #endif
     }
+    
+    static func googleTracking(_ screenName : String?) {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker?.set(kGAIScreenName, value: screenName)
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker?.send(builder?.build() as [NSObject : AnyObject]!)
+    }
 }
 
 extension UIViewController {

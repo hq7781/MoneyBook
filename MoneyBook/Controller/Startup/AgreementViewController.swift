@@ -18,6 +18,7 @@ class AgreementViewController: UIPageViewController /* UIViewController */, UISc
 
         // Do any additional setup after loading the view.
         showPageScrollView()
+        AppUtils.googleTracking("AgreementView")
     }
 
     override func didReceiveMemoryWarning() {
