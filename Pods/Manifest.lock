@@ -47,6 +47,7 @@ PODS:
   - GTMSessionFetcher/Core (1.1.11)
   - GTMSessionFetcher/Full (1.1.11):
     - GTMSessionFetcher/Core (= 1.1.11)
+  - JTAppleCalendar (7.0.5)
   - LineSDK (4.0.2)
   - Persei (3.0)
   - Realm (2.6.2):
@@ -62,6 +63,7 @@ DEPENDENCIES:
   - FMDB
   - Google/Analytics
   - Google/SignIn
+  - JTAppleCalendar (~> 7.0)
   - LineSDK (~> 4.0.2)
   - Persei (~> 3.0)
   - SVProgressHUD
@@ -79,12 +81,13 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
+  JTAppleCalendar: e01efccbf51cb6b3606f6cbcaa448befffed9582
   LineSDK: c738ac9451ca35abd152dceacd8c92cdde658e43
   Persei: 2fa633362b1686ec53f8d2d1368ee523b8630742
   Realm: 29222766425b9f831228f81b63f0e38a97a4d700
   RealmSwift: d161a80f96cb91ae88391a7d5a9cf08024a7bc8e
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
 
-PODFILE CHECKSUM: de34e4411e19f484690996e9bdc5ef529d2d7824
+PODFILE CHECKSUM: 0b9bbab5276e1260da1931d236d35783284b8ade
 
 COCOAPODS: 1.2.1

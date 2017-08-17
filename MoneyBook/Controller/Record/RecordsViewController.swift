@@ -51,6 +51,8 @@ class RecordsViewController: UIViewController,
         }
         
         if success {
+            AppUtils.googleTracking(newEvent.eventCategory, "Recode", newEvent.title, newEvent.eventId)
+            
             //  self.tableView.reloadData()
             //showMessage("Saving success! Fade", type: .success, options: [.animation(.fade)])
             //showMessage("Saving success! Endless", type: .success, options: [.autoHide(true), .hideOnTap(true)])

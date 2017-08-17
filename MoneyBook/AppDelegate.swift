@@ -71,7 +71,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PaymentManagerDelegate {
     ////////////////////////////////////////////////////////////////////
     // from line Login callback handling
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        return LineSDKLogin.sharedInstance().handleOpen(url)
+        if LineSDKLogin.self != nil { // Line Login
+            return LineSDKLogin.sharedInstance().handleOpen(url)
+        } else {
+            return GIDSignIn.sharedInstance().handle(url,
+                                sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+                                annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+        }
     }
     
     ////////////////////////////////////////////////////////////////////
@@ -123,7 +129,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PaymentManagerDelegate {
         // configure tracker from GoogleService-Info.plist
         var configureError : NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
-        assert(configureError == nil, "Error configuring Google Service ")
+        assert(configureError == nil, "Error configuring Google services:\(String(describing: configureError))")
+        // Initialize Google sing-in Crash!!!!!!
+        //GIDSignIn.sharedInstance().delegate = self as! GIDSignInDelegate
+        
         // Optional: configure GAI options.
         let gai = GAI.sharedInstance()
         gai?.trackUncaughtExceptions = true // report uncaught exceptions

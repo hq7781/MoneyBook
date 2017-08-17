@@ -124,10 +124,25 @@ public class AppUtils {
     }
     
     static func googleTracking(_ screenName : String?) {
+        //https://analytics.google.com/
         let tracker = GAI.sharedInstance().defaultTracker
         tracker?.set(kGAIScreenName, value: screenName)
         
         let builder = GAIDictionaryBuilder.createScreenView()
+        tracker?.send(builder?.build() as [NSObject : AnyObject]!)
+    }
+    
+    static func googleTracking(_ category : String?,
+                               _ action : String?,
+                               _ label : String?,
+                               _ value : Int?) {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker?.set(kGAIEventValue, value: action)
+        
+        let builder = GAIDictionaryBuilder.createEvent(withCategory: category,
+                                                            action: action,
+                                                            label: label,
+                                                            value: value! as NSNumber)
         tracker?.send(builder?.build() as [NSObject : AnyObject]!)
     }
 }

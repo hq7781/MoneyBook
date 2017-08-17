@@ -28,5 +28,6 @@
 #import "GAILogger.h"
 #import "GAITrackedViewController.h"
 #import "GAITracker.h"
-
+// for google signin
+#import <Google/SignIn.h>
 #endif /* BridgingHeader_h */

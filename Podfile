@@ -11,4 +11,5 @@ target 'MoneyBook' do
   pod 'LineSDK', '~> 4.0.2'
   pod 'Google/Analytics'
   pod 'Google/SignIn'
+  pod 'JTAppleCalendar', '~> 7.0'
 end
