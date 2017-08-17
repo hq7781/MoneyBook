@@ -110,6 +110,14 @@ class MapViewController : UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    func sendGoogleTrack() {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker?.set(kGAIScreenName, value: "MapViewTracker")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker?.send(builder?.build() as [NSObject : AnyObject]!)
+    }
+
 }
 extension MapViewController : CLLocationManagerDelegate {
     
@@ -130,7 +138,7 @@ extension MapViewController : CLLocationManagerDelegate {
         
         // Regionを作成.
         let myRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(myLocation, myLatDist, myLonDist);
-        myMapView.removeAnnotations()
+        //myMapView.removeAnnotations(<#T##annotations: [MKAnnotation]##[MKAnnotation]#>)
         setPin("Current Location","detail", (myLocation.latitude),(myLocation.longitude)) // test
         // MapViewに反映.
         myMapView.setRegion(myRegion, animated: true)
@@ -178,7 +186,7 @@ extension MapViewController : MKMapViewDelegate {
     // annotation to add an image
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let myIdentifier = "myPin"
-        var myAnnotation: MKAnnotation!
+        var myAnnotation: MKAnnotationView!
         
         if myAnnotation == nil {
             myAnnotation = MKAnnotationView(annotation: annotation, reuseIdentifier: myIdentifier)

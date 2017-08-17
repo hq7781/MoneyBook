@@ -8,4 +8,7 @@ target 'MoneyBook' do
   pod 'ChartsRealm'
   pod 'Persei', '~> 3.0'
   pod 'SVProgressHUD'
+  pod 'LineSDK', '~> 4.0.2'
+  pod 'Google/Analytics'
+  pod 'Google/SignIn'
 end

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LineSDK  // for Line Login
 
 class SigninViewController: UIViewController {
     var myLabel: UILabel!
@@ -84,6 +85,17 @@ class SigninViewController: UIViewController {
     
     // MARK: - show Opreation View
     func showOpreationView() {
+        // Line Login Button
+        let lineLoginButton: UIButton = UIButton(frame: CGRect(x: 0,y: 0,width: 120,height: 50))
+        lineLoginButton.backgroundColor = UIColor.green;
+        lineLoginButton.setTitle("Line Login", for: UIControlState())
+        lineLoginButton.setTitleColor(UIColor.white, for: UIControlState())
+        lineLoginButton.layer.masksToBounds = true
+        lineLoginButton.layer.cornerRadius = 20.0
+        lineLoginButton.layer.position = CGPoint(x: self.view.bounds.width/2 , y:self.view.bounds.height-50)
+        lineLoginButton.addTarget(self, action: #selector(self.onClickLineLoginButton(_:)), for: .touchUpInside)
+        self.view.addSubview(lineLoginButton);
+        
         // ボタンを作成.
         let backButton: UIButton = UIButton(frame: CGRect(x: 0,y: 0,width: 120,height: 50))
         backButton.backgroundColor = UIColor.red;
@@ -96,7 +108,51 @@ class SigninViewController: UIViewController {
         self.view.addSubview(backButton);
     }
     
+    func onClickLineLoginButton(_ sender: UIButton){
+        LineSDKLogin.sharedInstance().delegate = self
+        LineSDKLogin.sharedInstance().start()
+    }
+    
     func onClickBackButton(_ sender: UIButton){
+        let storyboard = UIStoryboard(name: kUIStoryboardName_Startup, bundle: nil)
+        let prevViewController = storyboard.instantiateViewController(withIdentifier:kUIViewControllerId_Agreement)
+        
+        prevViewController.modalTransitionStyle = UIModalTransitionStyle.partialCurl
+        self.present(prevViewController, animated: true, completion: nil)
+    }
+}
+
+extension SigninViewController: LineSDKLoginDelegate {
+    // https://clickan.click/line-login-swift/
+    func didLogin(
+        _ login: LineSDKLogin,
+        credential: LineSDKCredential?,
+        profile: LineSDKProfile?,
+        error: Error?
+        ) {
+        if let _error = error {
+            print("error: \(_error.localizedDescription)")
+            // 1. キャンセルあるいは設定ミスなどによりログインできなかった場合の処理
+            return
+        }
+        
+        guard let _credential = credential,
+            let _profile = profile else {
+                print("Failed to login by Line. credential or profile is nil.")
+                return
+        }
+        
+        guard let accessToken = _credential.accessToken?.accessToken as String? else {
+            print("Failed to login by Line. accessToken is not as String.")
+            return
+        }
+        print("accessToken: \(accessToken)")
+        
+        let userName = _profile.displayName
+        let userId = _profile.userID
+        print("UserName: \(userName), UserId: \(userId)")
+        
+        // 2. 後はお好きにログインすべし
         let storyboard = UIStoryboard(name: kUIStoryboardName_Startup, bundle: nil)
         let prevViewController = storyboard.instantiateViewController(withIdentifier:kUIViewControllerId_Agreement)
         

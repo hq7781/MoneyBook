@@ -8,6 +8,8 @@
 
 import UIKit
 import StoreKit // for Purchase
+import LineSDK  // for Line Login
+import Google   // for Google Analytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, PaymentManagerDelegate {
@@ -26,12 +28,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PaymentManagerDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        
         let appVisitCount:Int = 1 //appUserDefault.integer(forKey: "VisitCount") + 1
         if (appVisitCount == 1) {
             //let notification =
             //发送通知
         //NotificationCenter.default.post(name:kNotificationNameAgreementViewWillShow, object: nil, userInfo: nil /*Notification.userInfo*/ )
         }
+        // for Google service process
+        setAppGoogleService()
+        
         // for Purchase process
         setAppPurchase()
         
@@ -61,6 +67,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PaymentManagerDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    ////////////////////////////////////////////////////////////////////
+    // from line Login callback handling
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return LineSDKLogin.sharedInstance().handleOpen(url)
     }
     
     ////////////////////////////////////////////////////////////////////
@@ -108,6 +119,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PaymentManagerDelegate {
         return storyboard.instantiateViewController(withIdentifier: kUIViewControllerId_MainTabBarVC)
     }
     ////////////////////////////////////////////////////////////////////
+    func setAppGoogleService() {
+        // configure tracker from GoogleService-Info.plist
+        var configureError : NSError?
+        GGLContext.sharedInstance().configureWithError(&configureError)
+        assert(configureError == nil, "Error configuring Google Service ")
+        // Optional: configure GAI options.
+        let gai = GAI.sharedInstance()
+        gai?.trackUncaughtExceptions = true // report uncaught exceptions
+        gai?.logger.logLevel = GAILogLevel.verbose //remove before app release
+    }
+    
     func setAppPurchase() {
         // 
         PaymentManager.shared().delegate = self

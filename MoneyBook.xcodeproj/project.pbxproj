@@ -39,6 +39,11 @@
 		869C1A691F418AAD0030827A /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C1A671F418AAD0030827A /* SettingCell.swift */; };
 		869C1A6A1F418AAD0030827A /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 869C1A681F418AAD0030827A /* SettingCell.xib */; };
 		869C1A6D1F4195E90030827A /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C1A6B1F4195E90030827A /* AboutViewController.swift */; };
+		86BA98CC1F4559FC00BEE0BF /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86BA98CB1F4559FC00BEE0BF /* CoreTelephony.framework */; };
+		86BA98CE1F455A0600BEE0BF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86BA98CD1F455A0600BEE0BF /* Security.framework */; };
+		86BA98D01F455A7400BEE0BF /* LineSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86BA98CF1F455A7400BEE0BF /* LineSDK.framework */; };
+		86BA98D21F455C7E00BEE0BF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86BA98D11F455C7E00BEE0BF /* Info.plist */; };
+		86BA98D41F4564D400BEE0BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86BA98D31F4564D400BEE0BF /* GoogleService-Info.plist */; };
 		86E7D6BF1EDD4E9F0010AF09 /* AppUserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E7D6BE1EDD4E9F0010AF09 /* AppUserDefaultManager.swift */; };
 		86E7D6C11EDE9F350010AF09 /* UserAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E7D6C01EDE9F350010AF09 /* UserAuthentication.swift */; };
 		86E7D6C41EE540370010AF09 /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E7D6C31EE540370010AF09 /* ContentType.swift */; };
@@ -1069,6 +1074,11 @@
 		869C1A671F418AAD0030827A /* SettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingCell.swift; path = Controller/Setting/SettingCell.swift; sourceTree = "<group>"; };
 		869C1A681F418AAD0030827A /* SettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingCell.xib; path = Controller/Setting/SettingCell.xib; sourceTree = "<group>"; };
 		869C1A6B1F4195E90030827A /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutViewController.swift; path = Controller/Setting/AboutViewController.swift; sourceTree = "<group>"; };
+		86BA98CB1F4559FC00BEE0BF /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		86BA98CD1F455A0600BEE0BF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		86BA98CF1F455A7400BEE0BF /* LineSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LineSDK.framework; path = Pods/LineSDK/LineSDK/LineSDK.framework; sourceTree = "<group>"; };
+		86BA98D11F455C7E00BEE0BF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MoneyBook/Resource/Info.plist; sourceTree = SOURCE_ROOT; };
+		86BA98D31F4564D400BEE0BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "MoneyBook/Resource/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		86E7D6BE1EDD4E9F0010AF09 /* AppUserDefaultManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUserDefaultManager.swift; sourceTree = "<group>"; };
 		86E7D6C01EDE9F350010AF09 /* UserAuthentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAuthentication.swift; path = Utils/UserAuthentication.swift; sourceTree = "<group>"; };
 		86E7D6C31EE540370010AF09 /* ContentType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentType.swift; sourceTree = "<group>"; };
@@ -2062,6 +2072,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86BA98D01F455A7400BEE0BF /* LineSDK.framework in Frameworks */,
+				86BA98CE1F455A0600BEE0BF /* Security.framework in Frameworks */,
+				86BA98CC1F4559FC00BEE0BF /* CoreTelephony.framework in Frameworks */,
 				B04A13FE1EB8F075008EEFCE /* libsqlite3.tbd in Frameworks */,
 				FCDFE97834411C3AAD7BEA32 /* Pods_MoneyBook.framework in Frameworks */,
 			);
@@ -2182,6 +2195,9 @@
 		B04A13FC1EB8F074008EEFCE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				86BA98CF1F455A7400BEE0BF /* LineSDK.framework */,
+				86BA98CD1F455A0600BEE0BF /* Security.framework */,
+				86BA98CB1F4559FC00BEE0BF /* CoreTelephony.framework */,
 				B04A13FD1EB8F075008EEFCE /* libsqlite3.tbd */,
 				AB408967DBB5FC91A47E3C8E /* Pods_MoneyBook.framework */,
 			);
@@ -2330,6 +2346,8 @@
 		B0A86B721EB6006500A82C0C /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				86BA98D31F4564D400BEE0BF /* GoogleService-Info.plist */,
+				86BA98D11F455C7E00BEE0BF /* Info.plist */,
 				8692B8061EE56506005CCE03 /* Images.xcassets */,
 				86E7D6C61EE542B90010AF09 /* Content Images */,
 				86E7D6C51EE542AE0010AF09 /* UI */,
@@ -3603,6 +3621,7 @@
 				B0A870621EB7446C00A82C0C /* dial_2@2x.png in Resources */,
 				B0A872EE1EB7446E00A82C0C /* pop@2x.png in Resources */,
 				B0A870561EB7446C00A82C0C /* delete@2x.png in Resources */,
+				86BA98D21F455C7E00BEE0BF /* Info.plist in Resources */,
 				B0A871691EB7446D00A82C0C /* attach_status_loading@2x.png in Resources */,
 				B0A870801EB7446C00A82C0C /* dial_9_on@2x.png in Resources */,
 				B0A871EF1EB7446D00A82C0C /* passlogic_body.png in Resources */,
@@ -4424,6 +4443,7 @@
 				B0A870C21EB7446D00A82C0C /* desktop_browser.png in Resources */,
 				B0A870411EB7446C00A82C0C /* quotes.png in Resources */,
 				B0A870831EB7446C00A82C0C /* dial_numbersign_on.png in Resources */,
+				86BA98D41F4564D400BEE0BF /* GoogleService-Info.plist in Resources */,
 				B0A870381EB7446C00A82C0C /* oppts@2x.png in Resources */,
 				B0A8720B1EB7446D00A82C0C /* securematrix_number13.png in Resources */,
 				B0A870191EB7446C00A82C0C /* ico16_1071.png in Resources */,
@@ -4829,6 +4849,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				DEVELOPMENT_TEAM = 58V87X55PH;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/LineSDK/LineSDK",
+				);
 				GCC_WARN_MISSING_PARENTHESES = NO;
 				INFOPLIST_FILE = MoneyBook/Resource/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -4847,6 +4871,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				DEVELOPMENT_TEAM = 58V87X55PH;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/LineSDK/LineSDK",
+				);
 				GCC_WARN_MISSING_PARENTHESES = NO;
 				INFOPLIST_FILE = MoneyBook/Resource/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
