@@ -444,6 +444,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
+## Firebase
+
+Copyright 2017 Google
+
 ## FirebaseAnalytics
 
 Copyright 2017 Google
@@ -867,6 +871,10 @@ Copyright 2017 Google
    See the License for the specific language governing permissions and
    limitations under the License.
 
+
+## Google-Mobile-Ads-SDK
+
+Copyright 2017 Google
 
 ## Google
 

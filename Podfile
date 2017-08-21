@@ -11,5 +11,7 @@ target 'MoneyBook' do
   pod 'LineSDK', '~> 4.0.2'
   pod 'Google/Analytics'
   pod 'Google/SignIn'
+  pod 'Firebase/Core'
+  pod 'Firebase/AdMob'
   pod 'JTAppleCalendar', '~> 7.0'
 end

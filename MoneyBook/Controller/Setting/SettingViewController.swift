@@ -8,8 +8,10 @@
 
 import UIKit
 //import AdSupport
+import GoogleMobileAds
 
 class SettingViewController: UIViewController {
+
     fileprivate lazy var images: NSMutableArray! = {
         var array = NSMutableArray(array: ["about","score","recommend","feedback","removecache", "purchase", "verinfo"])
         return array
@@ -32,6 +34,7 @@ class SettingViewController: UIViewController {
         self.setupUI()
         
         AppUtils.googleTracking("SettingView")
+        showAdBannerView()
     }
     
     override func viewDidAppear(_ animated: Bool) {

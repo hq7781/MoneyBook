@@ -5,6 +5,12 @@ PODS:
   - ChartsRealm (3.0.2):
     - Charts (~> 3.0.2)
     - RealmSwift (~> 2.4)
+  - Firebase/AdMob (3.17.0):
+    - Firebase/Core
+    - Google-Mobile-Ads-SDK (= 7.19.1)
+  - Firebase/Core (3.17.0):
+    - FirebaseAnalytics (= 3.9.0)
+    - FirebaseCore (= 3.6.0)
   - FirebaseAnalytics (3.9.0):
     - FirebaseCore (~> 3.6)
     - FirebaseInstanceID (~> 1.0)
@@ -16,6 +22,7 @@ PODS:
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
+  - Google-Mobile-Ads-SDK (7.19.1)
   - Google/Analytics (3.1.0):
     - Google/Core
     - GoogleAnalytics (~> 3.12)
@@ -60,6 +67,8 @@ PODS:
 DEPENDENCIES:
   - Charts
   - ChartsRealm
+  - Firebase/AdMob
+  - Firebase/Core
   - FMDB
   - Google/Analytics
   - Google/SignIn
@@ -71,11 +80,13 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
   ChartsRealm: ed0332fd409298188a2b71e9548604165c987d42
+  Firebase: 4b66b5b59c43edac745b87f0c87e42cdd0279c13
   FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
   FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
   FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   Google: 98da4b1a60ed0beb80a290387a28333406a1eb90
+  Google-Mobile-Ads-SDK: 43ac87810e4961f5093024d3525bfe022f956da3
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
   GoogleSignIn: d7ad83f13480e1f30453471d00d19b5293ac46af
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
@@ -88,6 +99,6 @@ SPEC CHECKSUMS:
   RealmSwift: d161a80f96cb91ae88391a7d5a9cf08024a7bc8e
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
 
-PODFILE CHECKSUM: 0b9bbab5276e1260da1931d236d35783284b8ade
+PODFILE CHECKSUM: 58b72c66308c1569117b9633e2d2b2395673dec5
 
 COCOAPODS: 1.2.1

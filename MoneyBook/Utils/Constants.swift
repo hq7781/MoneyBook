@@ -45,6 +45,7 @@ let kUserDefaultKey_VisitCount  = "VisitCount"
 let kUserDefaultKey_Agreement   = "AgreementFlag"
 let kUserDefaultKey_CurrentUser = "CurrentUser"
 let kUserDefaultKey_UserLock    = "UserLockFlag"
+let kUserDefaultKey_AdvertFlag  = "AdvertFlag"
 let kUserDefaultKey_Account     = "UserAccount"
 let kUserDefaultKey_Password    = "UserPassword"
 let kUserDefaultKey_SelectedCity = "SelectedCity"
@@ -58,3 +59,7 @@ let appShareViewHeight: CGFloat = 215
 let GithubURL: String = ""
 let UMSharedApiKey: String = ""
 
+// for Firebase AdMob application ID
+let kGooGleFirebaseAdMobApplicationID = "ca-app-pub-3940256099942544~1458002511"
+// for Firebase AdMob Advertising Uinit ID
+let kGooGleFirebaseAdMobAdvertUnitID = "ca-app-pub-3940256099942544~1458002511"

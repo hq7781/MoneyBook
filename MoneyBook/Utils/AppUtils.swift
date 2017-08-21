@@ -6,8 +6,9 @@
 //  Copyright © 2017年 Roan.Hong. All rights reserved.
 //
 import UIKit
-import AdSupport
 import Foundation
+import AdSupport
+import GoogleMobileAds
 
 public class AppUtils {
     // app Version
@@ -122,6 +123,14 @@ public class AppUtils {
         return app.appUserDefaultManager.getUserLock()
         #endif
     }
+    static func isHiddenAdvert() ->Bool {
+        #if DEBUG
+            return false // for debug
+        #else
+            //let app = UIApplication.shared.delegate as! AppDelegate
+            return app.appUserDefaultManager.getAdvertFlag()
+        #endif
+    }
     
     static func googleTracking(_ screenName : String?) {
         //https://analytics.google.com/
@@ -147,6 +156,47 @@ public class AppUtils {
     }
 }
 
+extension UIViewController : GADBannerViewDelegate {
+
+    public func showAdBannerView() {
+        if AppUtils.isHiddenAdvert() {
+            return
+        }
+        let bannerView: GADBannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        bannerView.delegate = self
+        bannerView.rootViewController = self
+        bannerView.adUnitID = kGooGleFirebaseAdMobAdvertUnitID
+        
+        let gadRequst : GADRequest = GADRequest()
+        gadRequst.testDevices = [kGADSimulatorID]
+        bannerView.load(gadRequst as GADRequest?)
+        bannerView.frame = CGRectMake(0, view.bounds.height - bannerView.frame.size.height,
+                                      bannerView.frame.size.width, bannerView.frame.size.height)
+        
+        self.view.addSubview(bannerView)
+    }
+    
+    // delegate methods
+    public func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+    }
+
+    public func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+    }
+    // to display full screen
+    public func adViewWillPresentScreen(_ bannerView: GADBannerView) {}
+
+    public func adViewWillDismissScreen(_ bannerView: GADBannerView) {}
+
+    public func adViewDidDismissScreen(_ bannerView: GADBannerView) {}
+
+    public func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+    // clicked an adview
+        print("clicked an adview")
+        AppUtils.googleTracking("AdMobClick", bannerView.adUnitID,
+                                 NSStringFromClass(type(of:self) as! AnyClass),0)
+    }
+    
+}
 extension UIViewController {
     public func getVersionInfo() {
         self.getVersionInfo()
@@ -159,4 +209,6 @@ extension UIViewController {
     func CGRectMake(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> CGRect {
         return CGRect(x: x, y: y, width: width, height: height)
     }
+    
+
 }

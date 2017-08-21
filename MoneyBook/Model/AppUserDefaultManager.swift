@@ -91,6 +91,15 @@ class AppUserDefaultManager: NSObject {
         let userLock:Bool = userDefault.bool(forKey: kUserDefaultKey_UserLock)
         return userLock
     }
+    func setAdvertFlag(ON:Bool)-> Bool {
+        // if ON then disable the Advert view
+        userDefault.set(ON,forKey:kUserDefaultKey_AdvertFlag)
+        return userDefault.synchronize()
+    }
+    func getAdvertFlag() -> Bool {
+        let advertFlag:Bool = userDefault.bool(forKey: kUserDefaultKey_AdvertFlag)
+        return advertFlag
+    }
     ///
     func resetUserDefault()-> Bool {
         userDefault.set(nil,   forKey:kUserDefaultKey_versionStr)

@@ -10,6 +10,8 @@ import UIKit
 import StoreKit // for Purchase
 import LineSDK  // for Line Login
 import Google   // for Google Analytics
+import Firebase
+import GoogleMobileAds // for Firebase Admob
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, PaymentManagerDelegate {
@@ -137,6 +139,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PaymentManagerDelegate {
         let gai = GAI.sharedInstance()
         gai?.trackUncaughtExceptions = true // report uncaught exceptions
         gai?.logger.logLevel = GAILogLevel.verbose //remove before app release
+    }
+    func setAppAdMob() {
+        
+        FIRApp.configure()
+        // "ca-app-pub-3940256099942544~1458002511")
+        GADMobileAds.configure(withApplicationID: kGooGleFirebaseAdMobApplicationID)
     }
     
     func setAppPurchase() {
