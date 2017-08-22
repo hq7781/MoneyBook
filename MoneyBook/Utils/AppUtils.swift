@@ -193,7 +193,7 @@ extension UIViewController : GADBannerViewDelegate {
     // clicked an adview
         print("clicked an adview")
         AppUtils.googleTracking("AdMobClick", bannerView.adUnitID,
-                                 NSStringFromClass(type(of:self) as! AnyClass),0)
+                                 NSStringFromClass(type(of:self)),0)
     }
     
 }

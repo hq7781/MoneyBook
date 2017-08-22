@@ -15,18 +15,9 @@ class HistoryMasterViewController: UITableViewController
         super.viewDidLoad()
         
         self.title = "Event History"
-        //self.view.backgroundColor = UIColor.white
         self.view.backgroundColor = UIColor.enixOrange() // UIColor.white
-        self.navigationItem.leftBarButtonItem = self.editButtonItem
-        
-        //let addButton = UIBarButtonItem()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        //self.navigationItem.rightBarButtonItem = self.editButtonItem()
-
+        //self.view.backgroundColor = UIColor.white
+        setupUI()
     }
     /// - Parameter animated: If true, the disappearance of the view is being animated.
     override func viewWillAppear(_ animated: Bool) {
@@ -69,6 +60,18 @@ class HistoryMasterViewController: UITableViewController
         // Pass the selected object to the new view controller.
     }
     */
+    func setupUI() {
+
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
+        
+        //let addButton = UIBarButtonItem()
+        
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+        
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        //self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
 
 }
 
