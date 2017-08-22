@@ -10,7 +10,7 @@
 		861E69501F4C0F78002CCA63 /* AnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861E694F1F4C0F78002CCA63 /* AnimationView.swift */; };
 		86516CD21F4C276C001AC26F /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86516CD11F4C276C001AC26F /* CalendarViewController.swift */; };
 		86516CD51F4C2AED001AC26F /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86516CD31F4C2AED001AC26F /* CellView.swift */; };
-		86516CD61F4C2AED001AC26F /* CellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86516CD41F4C2AED001AC26F /* CellView.xib */; };
+		86516CDA1F4C2D18001AC26F /* CellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86516CD91F4C2D18001AC26F /* CellView.xib */; };
 		868012091F1DE745000A2302 /* ShareUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868012081F1DE745000A2302 /* ShareUtils.swift */; };
 		8680120B1F1DE81C000A2302 /* ShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680120A1F1DE81C000A2302 /* ShareModel.swift */; };
 		8680120E1F1DEFD7000A2302 /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680120D1F1DEFD7000A2302 /* FileUtils.swift */; };
@@ -1049,7 +1049,7 @@
 		861E694F1F4C0F78002CCA63 /* AnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimationView.swift; path = Controller/AnimationView.swift; sourceTree = "<group>"; };
 		86516CD11F4C276C001AC26F /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		86516CD31F4C2AED001AC26F /* CellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
-		86516CD41F4C2AED001AC26F /* CellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellView.xib; sourceTree = "<group>"; };
+		86516CD91F4C2D18001AC26F /* CellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellView.xib; sourceTree = "<group>"; };
 		868012081F1DE745000A2302 /* ShareUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShareUtils.swift; path = Utils/ShareUtils.swift; sourceTree = "<group>"; };
 		8680120A1F1DE81C000A2302 /* ShareModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareModel.swift; sourceTree = "<group>"; };
 		8680120D1F1DEFD7000A2302 /* FileUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileUtils.swift; path = Utils/FileUtils.swift; sourceTree = "<group>"; };
@@ -2369,8 +2369,8 @@
 		B0A86B831EB6115500A82C0C /* History */ = {
 			isa = PBXGroup;
 			children = (
+				86516CD91F4C2D18001AC26F /* CellView.xib */,
 				86516CD31F4C2AED001AC26F /* CellView.swift */,
-				86516CD41F4C2AED001AC26F /* CellView.xib */,
 				B0A86B7F1EB6111D00A82C0C /* HistoryMasterViewController.swift */,
 				B0A86B811EB6114500A82C0C /* HistoryDetailViewController.swift */,
 				86516CD11F4C276C001AC26F /* CalendarViewController.swift */,
@@ -4205,7 +4205,7 @@
 				B0A870701EB7446C00A82C0C /* dial_5_on@2x.png in Resources */,
 				B0A870A91EB7446D00A82C0C /* dial_keypad@2x.png in Resources */,
 				B0A872AC1EB7446E00A82C0C /* toolbar_mail_unread@2x.png in Resources */,
-				86516CD61F4C2AED001AC26F /* CellView.xib in Resources */,
+				86516CDA1F4C2D18001AC26F /* CellView.xib in Resources */,
 				B0A871E21EB7446D00A82C0C /* MoconaviLaunch-Landscape~iphone.png in Resources */,
 				B0A870871EB7446C00A82C0C /* dial_star_on.png in Resources */,
 				B0A86FA91EB7446C00A82C0C /* _old_im.png in Resources */,
