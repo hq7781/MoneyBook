@@ -10,6 +10,8 @@ import UIKit
 
 class HistoryMasterViewController: UITableViewController
 /*, recordsViewController*/ {
+    
+    var calendarButton: TextImageButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,8 +73,28 @@ class HistoryMasterViewController: UITableViewController
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         //self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        showCalendarViewUI()
     }
+    
+    func showCalendarViewUI() {
+        calendarButton = TextImageButton(frame: CGRect.CGRectMake(40, 300, 80, 44))
 
+        calendarButton.setTitle("Calendar", for: .normal)
+        calendarButton.titleLabel?.font = theme.appNaviItemFont
+        calendarButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+        calendarButton.setImage(UIImage(named:"home_down"), for: .normal)
+        calendarButton.addTarget(self, action: #selector(onClickPushCalendarView),
+                            for:UIControlEvents.touchUpInside)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: calendarButton)
+    }
+    
+    func onClickPushCalendarView() {
+        let calendarViewVC = CalendarViewController()
+        let nav = MainNavigationController(rootViewController: calendarViewVC)
+        present(nav, animated: true, completion: nil)
+    }
 }
 
 //MARK: - ========== UITableViewDelegate, UITableViewDataSource ==========

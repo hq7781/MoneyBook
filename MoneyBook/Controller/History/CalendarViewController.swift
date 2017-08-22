@@ -13,6 +13,8 @@ class CalendarViewController: UIViewController {
     
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     
+    var listButton: TextImageButton!
+    
     lazy var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
@@ -33,6 +35,8 @@ class CalendarViewController: UIViewController {
         setupCalendarView()
         calendarView.calendarDataSource = self
         calendarView.calendarDelegate = self
+        
+        showListViewUI()
     }
     
     override func didReceiveMemoryWarning() {
@@ -80,6 +84,25 @@ class CalendarViewController: UIViewController {
         calendarView.minimumLineSpacing = 0
         calendarView.minimumInteritemSpacing = 0
         
+    }
+    
+    ////
+    func showListViewUI() {
+        listButton = TextImageButton(frame: CGRect.CGRectMake(40, 300, 80, 44))
+        
+        listButton.setTitle("List", for: .normal)
+        listButton.titleLabel?.font = theme.appNaviItemFont
+        listButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+        listButton.setImage(UIImage(named:"home_down"), for: .normal)
+        listButton.addTarget(self, action: #selector(onClickPushListView),
+                                 for:UIControlEvents.touchUpInside)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: listButton)
+    }
+    func onClickPushListView() {
+        let listViewVC = CalendarViewController()
+        let nav = MainNavigationController(rootViewController: listViewVC)
+        present(nav, animated: true, completion: nil)
     }
 }
 

@@ -178,11 +178,7 @@ class SettingViewController: UIViewController {
     func showMapViewUI() {
         mapButton = TextImageButton(frame: CGRect.CGRectMake(40, 300, 80, 44))
         
-        if let currentCity = AppUtils.getSelectedCity() as String? {
-            mapButton.setTitle(currentCity, for: .normal)
-        } else {
-            mapButton.setTitle("Map", for: .normal)
-        }
+        mapButton.setTitle("Map", for: .normal)
         mapButton.titleLabel?.font = theme.appNaviItemFont
         mapButton.setTitleColor(UIColor.black, for: UIControlState.normal)
         mapButton.setImage(UIImage(named:"home_down"), for: .normal)
