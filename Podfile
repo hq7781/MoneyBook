@@ -14,4 +14,5 @@ target 'MoneyBook' do
   pod 'Firebase/Core'
   pod 'Firebase/AdMob'
   pod 'JTAppleCalendar', '~> 7.0'
+  pod 'CVCalendar', '~> 1.5.0'
 end

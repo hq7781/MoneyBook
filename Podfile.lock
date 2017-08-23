@@ -5,6 +5,7 @@ PODS:
   - ChartsRealm (3.0.2):
     - Charts (~> 3.0.2)
     - RealmSwift (~> 2.4)
+  - CVCalendar (1.5.0)
   - Firebase/AdMob (3.17.0):
     - Firebase/Core
     - Google-Mobile-Ads-SDK (= 7.19.1)
@@ -67,6 +68,7 @@ PODS:
 DEPENDENCIES:
   - Charts
   - ChartsRealm
+  - CVCalendar (~> 1.5.0)
   - Firebase/AdMob
   - Firebase/Core
   - FMDB
@@ -80,6 +82,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
   ChartsRealm: ed0332fd409298188a2b71e9548604165c987d42
+  CVCalendar: 5d51a7bda1b9439b612de69d86a91a73befa1936
   Firebase: 4b66b5b59c43edac745b87f0c87e42cdd0279c13
   FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
   FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
@@ -99,6 +102,6 @@ SPEC CHECKSUMS:
   RealmSwift: d161a80f96cb91ae88391a7d5a9cf08024a7bc8e
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
 
-PODFILE CHECKSUM: 58b72c66308c1569117b9633e2d2b2395673dec5
+PODFILE CHECKSUM: da57403bf431552f4544c4b8671fc7c3bd9b6dea
 
 COCOAPODS: 1.2.1
