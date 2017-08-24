@@ -105,8 +105,12 @@ class AppUserDefaultManager: NSObject {
         userDefault.set(nil,   forKey:kUserDefaultKey_versionStr)
         userDefault.set(0,     forKey:kUserDefaultKey_VisitCount)
         userDefault.set(nil,   forKey:kUserDefaultKey_CurrentUser)
+        userDefault.set(nil,   forKey:kUserDefaultKey_Account)
+        userDefault.set(nil,   forKey:kUserDefaultKey_Password)
+        userDefault.set(nil,   forKey:kUserDefaultKey_SelectedCity)
         userDefault.set(false, forKey:kUserDefaultKey_Agreement)
         userDefault.set(false, forKey:kUserDefaultKey_UserLock)
+        userDefault.set(false, forKey:kUserDefaultKey_AdvertFlag)
         return userDefault.synchronize()
     }
 

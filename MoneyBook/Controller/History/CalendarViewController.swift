@@ -26,6 +26,7 @@ class CalendarViewController : UIViewController {
     var calendarView: CVCalendarView!
     var monthLabel: UILabel!
     var daysOutSwitch: UISwitch!
+    var listButton: TextImageButton!
     
     fileprivate var randomNumberOfDotmarkersForDay = [Int]()
     var shouldShowDaysOut = true
@@ -66,8 +67,26 @@ class CalendarViewController : UIViewController {
         if let currentCalendar = currentCalendar {
             monthLabel.text = CVDate(date: Date(), calendar: currentCalendar).globalDescription
         }
-        
         randomizeDotmarkers()
+        
+        showListViewUI()
+    }
+    ////
+    func showListViewUI() {
+        listButton = TextImageButton(frame: CGRect.CGRectMake(40, 300, 80, 44))
+        listButton.setTitle("List", for: .normal)
+        listButton.titleLabel?.font = theme.appNaviItemFont
+        listButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+        listButton.setImage(UIImage(named:"home_down"), for: .normal)
+        listButton.addTarget(self, action: #selector(onClickPushListView),
+                             for:UIControlEvents.touchUpInside)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: listButton)
+    }
+    func onClickPushListView() {
+        let listViewVC = CalendarViewController()
+        let nav = MainNavigationController(rootViewController: listViewVC)
+        present(nav, animated: true, completion: nil)
     }
     
     private func randomizeDotmarkers() {

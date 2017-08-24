@@ -14,7 +14,8 @@ class HistoryDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.view.backgroundColor = UIColor.enixOrange() // UIColor.white
         // Do any additional setup after loading the view.
         self.configureView()
         AppUtils.googleTracking("HistoryDetailView")
@@ -42,11 +43,12 @@ class HistoryDetailViewController: UIViewController {
     }
     func configureView() {
         // Update the user interface for the detail item.
-        self.view.backgroundColor = UIColor.enixOrange() // UIColor.white
         if let detail = self.detailItem {
+            let timeStamp = (detail.value(forKey: "timeStamp") as! NSObject).description
             if let label = self.historyDetailLabel {
-                label.text = (detail.value(forKey: "timeStamp") as! NSObject).description
+                label.text = timeStamp
             }
+            self.navigationItem.title = timeStamp
         }
     }
 

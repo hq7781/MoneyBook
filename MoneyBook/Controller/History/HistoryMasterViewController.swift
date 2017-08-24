@@ -8,8 +8,7 @@
 
 import UIKit
 
-class HistoryMasterViewController: UITableViewController
-/*, recordsViewController*/ {
+class HistoryMasterViewController: UITableViewController {
     
     var calendarButton: TextImageButton!
 
@@ -125,10 +124,20 @@ extension HistoryMasterViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryEventCell", for: indexPath)
         
         // Configure the cell...
-        let label = cell.viewWithTag(1) as! UILabel
+        let typeLabel = cell.viewWithTag(0) as! UILabel
+        let titleLabel = cell.viewWithTag(1) as! UILabel
+        let paymentLabel = cell.viewWithTag(2) as! UILabel
+        let dateLabel = cell.viewWithTag(3) as! UILabel
         let event  = self.eventAtIndexPath(indexPath: indexPath)
-        label.text = event.title
+        typeLabel.text = event.eventType ? "InCome":"OutCome"
+        titleLabel.text = event.title
+        paymentLabel.text = String("¥¥: \(event.eventPayment)")
         
+        let formatter = DateFormatter()
+        let jaLocale = Locale(identifier: "ja_JP")
+        formatter.locale = jaLocale
+        formatter.dateFormat = "yyyy年MM月dd日 HH時mm分"
+        dateLabel.text = formatter.string(for: event.releaseDate)
         return cell
     }
     
