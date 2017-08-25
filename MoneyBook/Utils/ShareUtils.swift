@@ -12,7 +12,7 @@ class Shareutils: NSObject {
     // SINA
     class func shareToSina (model: ShareModel, viewController: UIViewController?) {
         /*
-        let image: UIImage = UIImage(named:"author")!
+        let image: UIImage = UIImage(named:"userName")!
         UMSocialControllerService.defaultControllerService().setShareText(model.shareDetail! +
             theme.JianshuURL, shareImage: image, socialUIDelete: nil)
         UMSocialSnsPlatformManager.getSocialPlatformWithName(UMShareToSina).snsClickHandler
@@ -26,7 +26,7 @@ class Shareutils: NSObject {
         UMSocialData.defaultData().extConfig.wechatSessionData.url = theme.JianShuURL
         UMSocialData.defaultData().extConfig.wechatSessionData.title = model.shareTitle
         
-        let image: UIImage = UIImage(named: "author")!
+        let image: UIImage = UIImage(named: "userName")!
         let shareURL = UMSocialUrlResource(snsResourceType: UMSocialUrlResourceTypeImage, url: model.shareURL)
         
         UMSocialDataService.defaultDataService().postSNSWithTypes([UMShareToWechatSession], content: model.shareDetail, image: image, location: nil, urlResource: shareURL, presentedController: nil) { (response) -> Void in
@@ -42,7 +42,7 @@ class Shareutils: NSObject {
         UMSocialData.defaultData().extConfig.wechatSessionData.url = theme.JianShuURL
         UMSocialData.defaultData().extConfig.wechatSessionData.title = model.shareTitle
         
-        let image: UIImage = UIImage(named: "author")!
+        let image: UIImage = UIImage(named: "userName")!
         let shareURL = UMSocialUrlResource(snsResourceType: UMSocialUrlResourceTypeImage, url: model.shareURL)
         
         UMSocialDataService.defaultDataService().postSNSWithTypes([UMShareToWechatTimeline], content: model.shareTitle, image: image, location: nil, urlResource: shareURL, presentedController: nil) { (response) -> Void in

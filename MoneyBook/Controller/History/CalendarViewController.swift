@@ -45,9 +45,13 @@ class CalendarViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupCalendarViewUI()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setToolbarHidden(false, animated: false)
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         

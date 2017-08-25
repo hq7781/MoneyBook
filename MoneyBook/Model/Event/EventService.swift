@@ -6,21 +6,21 @@
 //  Copyright © 2017年 Roan.Hong. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 /// Manage for the events.
 class EventService: NSObject {
-    /// Collection of author names.
-    var authors: Array<String> {
+    /// Collection of userNames.
+    var userList: Array<String> {
         get {
-            return self.eventCache.authors
+            return self.eventCache.userList
         }
     }
     
-    /// Dictionary of event collection classified by author name.
-    var eventsByAuthor: Dictionary<String, Array<Event>> {
+    /// Dictionary of event collection classified by userName.
+    var eventsByUser: Dictionary<String, Array<Event>> {
         get {
-            return self.eventCache.eventsByAuthor
+            return self.eventCache.eventsByUser
         }
     }
     
@@ -49,10 +49,18 @@ class EventService: NSObject {
     /// - Returns: "true" if successful.
     func add(event: Event) -> Bool {
         if let dao = self.daoFactory.eventDAO(),
-            let newEvent = dao.add(author: event.author, title: event.title, releaseDate: event.releaseDate, updatedDate:event.updatedDate, eventCategory: event.eventCategory) {
+            let newEvent = dao.add(eventType: event.eventType,
+                                   eventCategory: event.eventCategory,
+                                   eventSubCategory: event.eventSubCategory,
+                                   eventAccountType: event.eventAccountType,
+                                   eventMemo: event.eventMemo,
+                                   eventPayment: event.eventPayment,
+                                   currencyType: event.currencyType,
+                                   userName: event.userName,
+                                   recodedDate: event.recodedDate,
+                                   modifiedDate: event.modifiedDate) {
             return self.eventCache.add(event: newEvent)
         }
-        
         return false
     }
     
@@ -64,7 +72,6 @@ class EventService: NSObject {
         if let dao = self.daoFactory.eventDAO(), dao.remove(eventId: event.eventId) {
             return self.eventCache.remove(event: event)
         }
-        
         return false
     }
     

@@ -15,37 +15,43 @@ class EventDAO: NSObject {
     private static let SQLCreate = "" +
         "CREATE TABLE IF NOT EXISTS events (" +
         "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-        "author TEXT, " +
-        "title TEXT, " +
-        "release_date INTEGER, " +
-        "updated_date INTEGER, " +
-        "category TEXT" +
+        "eventType INTEGER" +
+        "eventCategory TEXT" +
+        "eventSubCategory TEXT" +
+        "eventAccountType TEXT" +
+        "eventMemo TEXT" +
+        "eventPayment TEXT" +
+        "currencyType TEXT" +
+        "userName TEXT, " +
+        "recodedDate INTEGER, " +
+        "modifiedDate INTEGER, " +
     ");"
     
-    /// Query for the inssert row.
+    /// Query for the select row.
     private static let SQLSelect = "" +
         "SELECT " +
-        "id, author, title, release_date, updated_date, category " +
+        "id, eventType, eventCategory, eventSubCategory, eventAccountType, eventMemo, eventPayment, currencyType, userName, recodedDate, modifiedDate " +
         "FROM " +
         "events;" +
         "ORDER BY " +
-    "author, title;"
+    "userName, eventMemo;"
     
     /// Query for the inssert row.
     private static let SQLInsert = "" +
         "INSERT INTO " +
-        "events (author, title, release_date, updated_date, category) " +
+        "events (eventType, eventCategory, eventSubCategory, eventAccountType, eventMemo, eventPayment, currencyType, userName, recodedDate, modifiedDate) " +
         "VALUES " +
-    "(?, ?, ?, ?, ?);"
-    
+    "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+
     /// Query for the update row.
     private static let SQLUpdate = "" +
         "UPDATE " +
         "events " +
         "SET " +
-        "author = ?, title = ?, release_date = ?, updated_date = ?, category = ? " +
+        "eventType = ?, eventCategory = ?, eventSubCategory = ?, eventAccountType = ?, eventMemo = ?, eventPayment = ?, currencyType = ?, userName = ?, recodedDate = ?, modifiedDate = ?" +
         "WHERE " +
     "id = ?;"
+
     
     /// Query for the delete row.
     private static let SQLDelete = "DELETE FROM events WHERE id = ?;"
@@ -75,22 +81,32 @@ class EventDAO: NSObject {
     /// Add the Event.
     ///
     /// - Parameters:
-    ///   - author:      Author.
-    ///   - title:       Title.
-    ///   - releaseDate: Release date.
+    ///   - userName:    UserName.
+    ///   - eventMemo:   Event Memo.
+    ///   - recodedDate: First recoded date.
     /// - Returns: Added the event.
-    func add(author: String, title: String, releaseDate: Date, updatedDate: Date, eventCategory: String) -> Event? {
+    func add(eventType: Bool, eventCategory: String, eventSubCategory: String,
+             eventAccountType: String, eventMemo: String, eventPayment: Int64,
+             currencyType: String, userName: String,
+             recodedDate: Date, modifiedDate: Date) -> Event? {
         var event: Event? = nil
-        if self.db.executeUpdate(EventDAO.SQLInsert, withArgumentsIn: [author, title, releaseDate, updatedDate, eventCategory]) {
+        if self.db.executeUpdate(EventDAO.SQLInsert, withArgumentsIn: [
+            eventType, eventCategory, eventSubCategory, eventAccountType, eventMemo, eventPayment, currencyType, userName, recodedDate, modifiedDate,
+            ]) {
             let eventId = db.lastInsertRowId()
-            event = Event(eventId:      Int(eventId),
-                          author:       author,
-                          title:        title,
-                          releaseDate:  releaseDate,
-                          updatedDate:  updatedDate,
-                          eventCategory:eventCategory)
+            
+            event = Event(eventId:          Int(eventId),
+                          eventType:        eventType,
+                          eventCategory:    eventCategory,
+                          eventSubCategory: eventSubCategory,
+                          eventAccountType: eventAccountType,
+                          eventMemo:        eventMemo,
+                          eventPayment:     eventPayment,
+                          currencyType:     currencyType,
+                          userName:         userName,
+                          recodedDate:      recodedDate,
+                          modifiedDate:     modifiedDate)
         }
-        
         return event
     }
     
@@ -101,17 +117,21 @@ class EventDAO: NSObject {
         var events = Array<Event>()
         if let results = self.db.executeQuery(EventDAO.SQLSelect, withArgumentsIn: nil) {
             while results.next() {
-                let event = Event(eventId:      results.long(forColumnIndex: 0),
-                                  author:       results.string(forColumnIndex: 1),
-                                  title:        results.string(forColumnIndex: 2),
-                                  releaseDate:  results.date(forColumnIndex: 3),
-                                  updatedDate:  results.date(forColumnIndex: 4),
-                                  eventCategory:results.string(forColumnIndex: 5)
-                )
+                let event = Event(eventId:          results.long(forColumnIndex: 0),
+                                  eventType:        results.bool(forColumnIndex:1),
+                                  eventCategory:    results.string(forColumnIndex: 2),
+                                  eventSubCategory: results.string(forColumnIndex: 3),
+                                  eventAccountType: results.string(forColumnIndex: 4),
+                                  eventMemo:        results.string(forColumnIndex: 5),
+                                  eventPayment:     results.longLongInt(forColumnIndex: 6),
+                                  currencyType:     results.string(forColumnIndex: 7),
+                                  userName:         results.string(forColumnIndex: 8),
+                                  recodedDate:      results.date(forColumnIndex: 9),
+                                  modifiedDate:     results.date(forColumnIndex: 10))
+                
                 events.append(event)
             }
         }
-        
         return events
     }
     
@@ -130,11 +150,16 @@ class EventDAO: NSObject {
     func update(event: Event) -> Bool {
         return db.executeUpdate(EventDAO.SQLUpdate,
                                 withArgumentsIn: [
-                                    event.author,
-                                    event.title,
-                                    event.releaseDate,
-                                    event.updatedDate,
+                                    event.eventType,
                                     event.eventCategory,
+                                    event.eventSubCategory,
+                                    event.eventAccountType,
+                                    event.eventMemo,
+                                    event.eventPayment,
+                                    event.currencyType,
+                                    event.userName,
+                                    event.recodedDate,
+                                    event.modifiedDate,
                                     event.eventId])
     }
 }

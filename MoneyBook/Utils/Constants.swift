@@ -8,6 +8,11 @@
 
 import Foundation
 
+// App Version Type
+// - personal
+// - Family
+// - enterprise
+
 // StoryBoard 名称常量
 let kUIStoryboardName_Main         = "Main"
 let kUIStoryboardName_LaunchScreen = "LaunchScreen"

@@ -1,23 +1,23 @@
 //
-//  Event.swift
+//  BankAccount.swift
 //  MoneyBook
 //
-//  Created by HongQuan on 2017/05/03.
-//  Copyright © 2017年 Roan.Hong. All rights reserved.
+//  Created by HONGQUAN on 8/25/17.
+//  Copyright © 2017 Roan.Hong. All rights reserved.
 //
 
-// expenses  Event 支出 spending
-// income  Event 収入
 import Foundation
+// expenses  Event 支出 存款和取款    deposit & drawing
+// income  saving 収入
 
 /// Represents a event.
-class Event: NSObject {
+class BankAccount: NSObject {
     
     /// Invalid event identifier.
-    static let EventIdNone = 0
-
+    static let BankAccountIdNone = 0
+    
     /// Identifier.
-    private(set) var eventId: Int
+    private(set) var bankAccountId: Int
     
     /// Event Type. / Expend / Income
     private(set) var eventType: Bool
@@ -40,14 +40,14 @@ class Event: NSObject {
     private(set) var recodedDate: Date
     /// Updated date.
     private(set) var modifiedDate: Date
-
+    
     /// Initialize the instance.
     ///
     /// - Parameters:
     ///   - eventId:       Identifier
     ///   - userName:      UserName.
     ///   - eventMemo:     Event memo.
-
+    
     ///   - eventCategory: Event category
     ///   - eventSubCategory: Event Sub Category
     ///   - recodedDate:   First recoded Date
@@ -63,7 +63,7 @@ class Event: NSObject {
          userName: String,
          recodedDate: Date,
          modifiedDate: Date) {
-        self.eventId        = eventId
+        self.bankAccountId  = eventId
         self.eventType      = eventType
         self.eventCategory  = eventCategory
         self.eventSubCategory = eventSubCategory
@@ -76,4 +76,3 @@ class Event: NSObject {
         self.modifiedDate   = modifiedDate
     }
 }
-

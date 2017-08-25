@@ -39,8 +39,8 @@ class HistoryMasterViewController: UITableViewController {
     /// - Returns: Event data.
     fileprivate func eventAtIndexPath(indexPath: IndexPath) -> Event {
         let eventService  = self.eventService()
-        let author = eventService.authors[indexPath.section]
-        let events = eventService.eventsByAuthor[author]
+        let userName = eventService.userList[indexPath.section]
+        let events = eventService.eventsByUser[userName]
         
         return events![indexPath.row]
     }
@@ -64,7 +64,7 @@ class HistoryMasterViewController: UITableViewController {
     func setupUI() {
 
         self.navigationItem.leftBarButtonItem = self.editButtonItem
-        
+
         //let addButton = UIBarButtonItem()
         
         // Uncomment the following line to preserve selection between presentations
@@ -103,21 +103,21 @@ extension HistoryMasterViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         let event = self.eventService()
-        return event.authors.count
+        return event.userList.count
     }
     /// Tells the data source to return the number of rows in a given section of a table view.
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         let eventService  = self.eventService()
-        let author = eventService.authors[section]
-        let events  = eventService.eventsByAuthor[author]
+        let userName = eventService.userList[section]
+        let events  = eventService.eventsByUser[userName]
         
         return (events?.count)!
     }
     /// Asks the data source for the title of the header of the specified section of the table view.
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let eventService = self.eventService()
-        return eventService.authors[section]
+        return eventService.userList[section]
     }
     /// Asks the data source for a cell to insert in a particular location of the table view.
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -129,15 +129,15 @@ extension HistoryMasterViewController {
         let paymentLabel = cell.viewWithTag(2) as! UILabel
         let dateLabel = cell.viewWithTag(3) as! UILabel
         let event  = self.eventAtIndexPath(indexPath: indexPath)
-        typeLabel.text = event.eventType ? "InCome":"OutCome"
-        titleLabel.text = event.title
+        typeLabel.text = event.eventType ? "InCome":"Expend"
+        titleLabel.text = event.eventMemo
         paymentLabel.text = String("¥¥: \(event.eventPayment)")
         
         let formatter = DateFormatter()
         let jaLocale = Locale(identifier: "ja_JP")
         formatter.locale = jaLocale
         formatter.dateFormat = "yyyy年MM月dd日 HH時mm分"
-        dateLabel.text = formatter.string(for: event.releaseDate)
+        dateLabel.text = formatter.string(for: event.recodedDate)
         return cell
     }
     

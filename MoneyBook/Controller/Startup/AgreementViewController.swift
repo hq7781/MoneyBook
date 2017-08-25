@@ -16,6 +16,8 @@ class AgreementViewController: UIPageViewController /* UIViewController */, UISc
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.backgroundColor = UIColor.yellow
+        title = "Agreement"
         // Do any additional setup after loading the view.
         showPageScrollView()
         AppUtils.googleTracking("AgreementView")

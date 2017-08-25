@@ -34,7 +34,7 @@ class AboutViewController: UIViewController {
     */
     func setupUI() {
         self.view.backgroundColor = UIColor.yellow
-        navigationItem.title = "About Me"
+        title = "About Me"
         self.showVersionInfoUI()
         self.showOpreationView()
     }

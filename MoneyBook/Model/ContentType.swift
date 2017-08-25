@@ -10,15 +10,15 @@ import UIKit
 
 enum ContentType: String, CustomStringConvertible {
     
-    case music = "content_music.png"
-    case films = "content_films.png"
+    case expend = "content_music.png"
+    case income = "content_films.png"
     
     func next() -> ContentType {
         switch self {
-        case .music:
-            return .films
-        case .films:
-            return .music
+        case .expend:
+            return .income
+        case .income:
+            return .expend
         }
     }
     
@@ -29,10 +29,10 @@ enum ContentType: String, CustomStringConvertible {
     
     var description: String {
         switch self {
-        case .music:
-            return "Music"
-        case .films:
-            return "Films"
+        case .expend:
+            return "Expend"
+        case .income:
+            return "Income"
         }
     }
 }

@@ -51,7 +51,7 @@ class RecordsViewController: UIViewController,
         }
         
         if success {
-            AppUtils.googleTracking(newEvent.eventCategory, "Recode", newEvent.title, newEvent.eventId)
+            AppUtils.googleTracking(newEvent.eventCategory, "Recode", newEvent.eventMemo, newEvent.eventId)
             
             //  self.tableView.reloadData()
             //showMessage("Saving success! Fade", type: .success, options: [.animation(.fade)])
@@ -92,20 +92,18 @@ class RecordsViewController: UIViewController,
     var tfSpentFor: UITextField! = nil
     var tfEvent: UITextField! = nil
     
-    // DatePicker to the edit of release date.
+    // DatePicker to the edit of date.
     @IBOutlet weak var releaseDatePicker: UIDatePicker!
     // Category Picker
     var categoryPicker: CategoryPickerView!
     // Dynamic barButton
     var actionItem: UIBarButtonItem!
 
-    var eventList = ["inCome","OutCome","other"]
-    var pickerListIncome = ["inCome1","inCome2","inCome3","inCome4","inCome5"]
-    var pickerListIncomeSecend = ["Baseball", "Football", "Basketball", "Hockey"]
-    var pickerListOutcome = ["OutCome1","OutCome2","OutCome3","OutCome4"]
-    var pickerListOutcomeSecend = ["Baseball", "Football", "Basketball", "Hockey"]
-    var pickerListOther = ["Other1","Other2","Other3"]
-    var pickerListOtherSecend = ["Baseball", "Football", "Basketball", "Hockey"]
+    var eventTypes = ["Income","Expend"]
+    var eventCategorysIncome = ["Income1","Income2","Income3","Income4","Income5"]
+    var eventSubCategorysIncome = ["Baseball", "Football", "Basketball", "Hockey"]
+    var eventCategorysExpend = ["Expend1","Expend2","Expend3","Expend4"]
+    var eventSubCategorysExpend = ["Baseball", "Football", "Basketball", "Hockey"]
     
     var eventSeason = ["2013", "2014", "2015"] //multi-season
     var activeDataArray = [""]
@@ -185,7 +183,7 @@ class RecordsViewController: UIViewController,
         let cancelItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self,
                                          action: #selector(RecordsViewController.cancel))
         
-        actionItem = UIBarButtonItem(title: eventList[0], style: .plain, target: self,
+        actionItem = UIBarButtonItem(title: eventTypes[0], style: .plain, target: self,
                                      action: #selector(RecordsViewController.tapAction))
         
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
@@ -271,13 +269,18 @@ class RecordsViewController: UIViewController,
             saveConformAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
                 (action: UIAlertAction!) -> Void in
                 // It's new DB inteface!
-                let newEvent = Event(eventId: (self.originalEvent != nil) ?
-                                self.originalEvent!.eventId: Event.EventIdNone,
-                                                    author: "testAuthor",//self.authorTextField.text!,
-                                                    title: "testtitle", //self.titleTextField.text!,
-                                                    releaseDate: self.releaseDatePicker.date,
-                                                    updatedDate: self.releaseDatePicker.date,
-                                                    eventCategory: "testCategory")
+                let newEvent = Event(eventId: (self.originalEvent != nil) ? self.originalEvent!.eventId: Event.EventIdNone,
+                                     eventType: true,
+                                     eventCategory: "eventCategory",
+                                     eventSubCategory: "eventSubCategory",
+                                     eventAccountType: "eventAccountType",
+                                     eventMemo: "eventMemo",
+                                     eventPayment: 123456789,
+                                     currencyType: "currencyType",
+                                     userName: "userName",
+                                     recodedDate: self.releaseDatePicker.date,
+                                     modifiedDate: self.releaseDatePicker.date)
+        
                 self.didFinishEditEvent(viewController: self, oldEvent: self.originalEvent, newEvent: newEvent)
                 
                 if UIApplication.shared.applicationIconBadgeNumber > 9 {
@@ -317,7 +320,7 @@ class RecordsViewController: UIViewController,
         if textField == tfEvent {
             activeDataArray = eventSeason
         } else if textField == tfSpentFor {
-            activeDataArray = pickerListIncome
+            activeDataArray = eventCategorysIncome
         }
         categoryPicker.reloadAllComponents()
         categoryPicker.resignFirstResponder()
@@ -339,28 +342,28 @@ class RecordsViewController: UIViewController,
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return activeDataArray.count
-/*        if actionItem.title == eventList[0] {
-            return pickerListIncome.count
-        } else if actionItem.title == eventList[1] {
-            return pickerListOutcome.count
-        } else if actionItem.title == eventList[2] {
+/*        if actionItem.title == eventTypes[0] {
+            return eventCategorysIncome.count
+        } else if actionItem.title == eventTypes[1] {
+            return eventCategorysExpend.count
+        } else if actionItem.title == eventTypes[2] {
             return pickerListOther.count
         } else {
-            return pickerListIncome.count
+            return eventCategorysIncome.count
         } */
     }
     //MARK: - ========== pickerView delegate ==========
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return activeDataArray[row] 
 /*
-        if actionItem.title == eventList[0] {
-            return pickerListIncome[row]
-        } else if actionItem.title == eventList[1] {
-            return pickerListOutcome[row]
-        } else if actionItem.title == eventList[2] {
+        if actionItem.title == eventTypes[0] {
+            return eventCategorysIncome[row]
+        } else if actionItem.title == eventTypes[1] {
+            return eventCategorysExpend[row]
+        } else if actionItem.title == eventTypes[2] {
             return pickerListOther[row]
         } else {
-            return pickerListIncome[row]
+            return eventCategorysIncome[row]
         } */
     }
     
@@ -368,17 +371,17 @@ class RecordsViewController: UIViewController,
 //        if textField == tfEvent {
 //            activeDataArray = eventSeason
 //        } else if textField == tfSpentFor {
-//            activeDataArray = pickerListIncome
+//            activeDataArray = eventCategorysIncome
 //        }
 /*
-        if actionItem.title == eventList[0] {
-            self.tfSpentFor.text = pickerListIncome[row]
-        } else if actionItem.title == eventList[1] {
-            self.tfSpentFor.text = pickerListOutcome[row]
-        } else if actionItem.title == eventList[2] {
+        if actionItem.title == eventTypes[0] {
+            self.tfSpentFor.text = eventCategorysIncome[row]
+        } else if actionItem.title == eventTypes[1] {
+            self.tfSpentFor.text = eventCategorysExpend[row]
+        } else if actionItem.title == eventTypes[2] {
             self.tfSpentFor.text = pickerListOther[row]
         } else {
-            self.tfSpentFor.text = pickerListIncome[row]
+            self.tfSpentFor.text = eventCategorysIncome[row]
         } */
     }
     
@@ -387,26 +390,22 @@ class RecordsViewController: UIViewController,
         return 1
     }
     func categoryPickerView(_ categoryPickerView: CategoryPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if actionItem.title == eventList[0] {
-            return pickerListIncome.count
-        } else if actionItem.title == eventList[1] {
-            return pickerListOutcome.count
-        } else if actionItem.title == eventList[2] {
-            return pickerListOther.count
+        if actionItem.title == eventTypes[0] {
+            return eventCategorysIncome.count
+        } else if actionItem.title == eventTypes[1] {
+            return eventCategorysExpend.count
         } else {
-            return pickerListIncome.count
+            return eventCategorysIncome.count
         }
     }
     // MARK: - categoryPickerViewDelegate
     func categoryPickerView(_ categoryPickerView: CategoryPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if actionItem.title == eventList[0] {
-            return pickerListIncome[row]
-        } else if actionItem.title == eventList[1] {
-            return pickerListOutcome[row]
-        } else if actionItem.title == eventList[2] {
-            return pickerListOther[row]
+        if actionItem.title == eventTypes[0] {
+            return eventCategorysIncome[row]
+        } else if actionItem.title == eventTypes[1] {
+            return eventCategorysExpend[row]
         } else {
-            return pickerListIncome[row]
+            return eventCategorysIncome[row]
         }
     }
     func categoryPickerView(_ categoryPickerView: CategoryPickerView, didSelectRow row: Int, inComponent component: Int) -> Void {
@@ -426,14 +425,14 @@ class RecordsViewController: UIViewController,
     }
     
     func tapAction() -> Void {
-        if actionItem.title == eventList[0] {
-            actionItem.title = eventList[1]
-        } else if actionItem.title == eventList[1] {
-            actionItem.title = eventList[2]
-        } else if actionItem.title == eventList[eventList.count - 1] {
-            actionItem.title = eventList[0]
+        if actionItem.title == eventTypes[0] {
+            actionItem.title = eventTypes[1]
+        } else if actionItem.title == eventTypes[1] {
+            actionItem.title = eventTypes[2]
+        } else if actionItem.title == eventTypes[eventTypes.count - 1] {
+            actionItem.title = eventTypes[0]
         } else {
-            actionItem.title = eventList[0]
+            actionItem.title = eventTypes[0]
         }
     }
 }
@@ -446,7 +445,6 @@ extension UIViewController {
         
         view.addGestureRecognizer(tap)
     }
-    
     func dismissKeyboard() {
         view.endEditing(true)
     }

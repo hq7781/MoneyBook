@@ -6,15 +6,15 @@
 //  Copyright © 2017年 Roan.Hong. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 /// Manager fot the event data.
 class EventCache: NSObject {
-    /// A collection of author names.
-    var authors = Array<String>()
+    /// A collection of user names.
+    var userList = Array<String>()
     
-    /// Dictionary of book collection classified by author name.
-    var eventsByAuthor = Dictionary<String, Array<Event>>()
+    /// Dictionary of book collection classified by userName.
+    var eventsByUser = Dictionary<String, Array<Event>>()
     
     /// Initialize the instance.
     override init() {
@@ -29,7 +29,7 @@ class EventCache: NSObject {
         
         events.forEach({ (event) in
             if !self.add(event: event) {
-                print("Faild to add event: " + event.author + " - " + event.title )
+                print("Faild to add event: " + event.userName + " - " + event.eventMemo )
             }
         })
     }
@@ -43,14 +43,14 @@ class EventCache: NSObject {
             return false
         }
         
-        if var existEvents = self.eventsByAuthor[event.author] {
+        if var existEvents = self.eventsByUser[event.userName] {
             existEvents.append(event)
-            self.eventsByAuthor.updateValue(existEvents, forKey: event.author)
+            self.eventsByUser.updateValue(existEvents, forKey: event.userName)
         } else {
             var newEvents = Array<Event>()
             newEvents.append(event)
-            self.eventsByAuthor[event.author] = newEvents
-            self.authors.append(event.author)
+            self.eventsByUser[event.userName] = newEvents
+            self.userList.append(event.userName)
         }
         
         return true
@@ -61,7 +61,7 @@ class EventCache: NSObject {
     /// - Parameter event: Event data.
     /// - Returns: "true" if successful.
     func remove(event: Event) -> Bool {
-        guard var events = self.eventsByAuthor[event.author] else {
+        guard var events = self.eventsByUser[event.userName] else {
             return false
         }
         
@@ -69,13 +69,13 @@ class EventCache: NSObject {
             let existEvent = events[i]
             if existEvent.eventId == event.eventId {
                 events.remove(at: i)
-                self.eventsByAuthor.updateValue(events, forKey: event.author)
+                self.eventsByUser.updateValue(events, forKey: event.userName)
                 break
             }
         }
         
         if events.count == 0 {
-            return self.removeAuthor(author: event.author)
+            return self.removeUser(userName: event.userName)
         }
         
         return true
@@ -87,7 +87,7 @@ class EventCache: NSObject {
     /// - Parameter newEvent: Old event data.
     /// - Returns: "true" if successful.
     func update(oldEvent: Event, newEvent: Event) -> Bool {
-        if oldEvent.author == newEvent.author {
+        if oldEvent.userName == newEvent.userName {
             return self.replaceEvent(newEvent: newEvent)
         } else if self.remove(event: oldEvent) {
             return self.add(event: newEvent)
@@ -96,16 +96,16 @@ class EventCache: NSObject {
         return false
     }
     
-    /// Remove the author at the inner collection.
+    /// Remove the userName at the inner collection.
     ///
-    /// - Parameter author: Name of the author.
+    /// - Parameter userName: Name of the user.
     /// - Returns: "true" if successful.
-    private func removeAuthor(author: String) -> Bool {
-        self.eventsByAuthor.removeValue(forKey: author)
-        for i in 0..<self.authors.count {
-            let existAuthor = self.authors[i]
-            if existAuthor == author {
-                self.authors.remove(at: i)
+    private func removeUser(userName: String) -> Bool {
+        self.eventsByUser.removeValue(forKey: userName)
+        for i in 0..<self.userList.count {
+            let existUser = self.userList[i]
+            if existUser == userName {
+                self.userList.remove(at: i)
                 return true
             }
         }
@@ -118,7 +118,7 @@ class EventCache: NSObject {
     /// - Parameter newEvent: New event data.
     /// - Returns: "true" if successful.
     private func replaceEvent(newEvent: Event) -> Bool {
-        guard var events = self.eventsByAuthor[newEvent.author] else {
+        guard var events = self.eventsByUser[newEvent.userName] else {
             return false
         }
         
@@ -126,7 +126,7 @@ class EventCache: NSObject {
             let event = events[i]
             if event.eventId == newEvent.eventId {
                 events[i] = newEvent
-                self.eventsByAuthor.updateValue(events, forKey: newEvent.author)
+                self.eventsByUser.updateValue(events, forKey: newEvent.userName)
                 return true
             }
         }

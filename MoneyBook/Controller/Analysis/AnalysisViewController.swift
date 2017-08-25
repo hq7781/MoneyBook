@@ -59,7 +59,7 @@ class AnalysisViewController: UIViewController {
         MenuItem(image: UIImage(named: "menu_icon_\($0)")!)
     }
     // MARK: - Model
-    fileprivate var model: ContentType = .films {
+    fileprivate var model: ContentType = .income {
         didSet {
             title = model.description
             

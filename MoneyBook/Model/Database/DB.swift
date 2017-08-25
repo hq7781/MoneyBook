@@ -12,8 +12,8 @@ class DB {
     
     let index : Dictionary<String,[String]>! = [
         "category": ["category1","category2","category3"],
-        "Payment": ["cash","card","bannking","jiekuan","","","",""],
-        "Type": ["inCome","OutCome","other"],
+        "Payment": ["cash","card","banking","jiekuan","","","",""],
+        "Type": ["inCome","expend","other"],
         "memo1": ["1","2","3","4","5","6"],
         "memo2": ["1","2","3","4","5"],
         "memo3": ["1","2","3","4","5"],
