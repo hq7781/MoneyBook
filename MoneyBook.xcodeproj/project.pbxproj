@@ -12,6 +12,7 @@
 		86516CD51F4C2AED001AC26F /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86516CD31F4C2AED001AC26F /* CellView.swift */; };
 		86516CDA1F4C2D18001AC26F /* CellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86516CD91F4C2D18001AC26F /* CellView.xib */; };
 		86516CDD1F501ED7001AC26F /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86516CDC1F501ED7001AC26F /* BankAccount.swift */; };
+		86516CDF1F55470E001AC26F /* BankAccountDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86516CDE1F55470E001AC26F /* BankAccountDAO.swift */; };
 		868012091F1DE745000A2302 /* ShareUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868012081F1DE745000A2302 /* ShareUtils.swift */; };
 		8680120B1F1DE81C000A2302 /* ShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680120A1F1DE81C000A2302 /* ShareModel.swift */; };
 		8680120E1F1DEFD7000A2302 /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680120D1F1DEFD7000A2302 /* FileUtils.swift */; };
@@ -1052,6 +1053,7 @@
 		86516CD31F4C2AED001AC26F /* CellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		86516CD91F4C2D18001AC26F /* CellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellView.xib; sourceTree = "<group>"; };
 		86516CDC1F501ED7001AC26F /* BankAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankAccount.swift; path = BankAccount/BankAccount.swift; sourceTree = "<group>"; };
+		86516CDE1F55470E001AC26F /* BankAccountDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankAccountDAO.swift; path = BankAccount/BankAccountDAO.swift; sourceTree = "<group>"; };
 		868012081F1DE745000A2302 /* ShareUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShareUtils.swift; path = Utils/ShareUtils.swift; sourceTree = "<group>"; };
 		8680120A1F1DE81C000A2302 /* ShareModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareModel.swift; sourceTree = "<group>"; };
 		8680120D1F1DEFD7000A2302 /* FileUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileUtils.swift; path = Utils/FileUtils.swift; sourceTree = "<group>"; };
@@ -2120,6 +2122,7 @@
 			isa = PBXGroup;
 			children = (
 				86516CDC1F501ED7001AC26F /* BankAccount.swift */,
+				86516CDE1F55470E001AC26F /* BankAccountDAO.swift */,
 			);
 			name = BankAccount;
 			sourceTree = "<group>";
@@ -4692,6 +4695,7 @@
 				868013DB1F25B3D9000A2302 /* AppBase.swift in Sources */,
 				B07886051F42FF0200C2524A /* ProductManager.swift in Sources */,
 				86516CD21F4C276C001AC26F /* CalendarViewController.swift in Sources */,
+				86516CDF1F55470E001AC26F /* BankAccountDAO.swift in Sources */,
 				868013E21F2709A9000A2302 /* CityViewController.swift in Sources */,
 				8680120B1F1DE81C000A2302 /* ShareModel.swift in Sources */,
 				86E7D6C41EE540370010AF09 /* ContentType.swift in Sources */,

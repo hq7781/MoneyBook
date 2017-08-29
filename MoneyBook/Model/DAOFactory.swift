@@ -41,6 +41,16 @@ class DAOFactory: NSObject {
         return nil
     }
     
+    /// Create the data access object of the bank accounts.
+    ///
+    /// - Returns: Instance of the data access object.
+    func bankaccountDAO() -> BankAccountDAO? {
+        if let db = self.connect() {
+            return BankAccountDAO(db: db)
+        }
+        return nil
+    }
+    
     /// Connect to the database.
     ///
     /// - Returns: Connection instance if successful, nil otherwise.

@@ -7,8 +7,8 @@
 //
 
 import Foundation
-// expenses  Event 支出 存款和取款    deposit & drawing
-// income  saving 収入
+// expenses 存款和取款 deposit & drawing
+// income  saving
 
 /// Represents a event.
 class BankAccount: NSObject {
@@ -20,59 +20,61 @@ class BankAccount: NSObject {
     private(set) var bankAccountId: Int
     
     /// Event Type. / Expend / Income
-    private(set) var eventType: Bool
-    /// Event Category.Income: / salary /annuity / rent / other ...
-    /// Event Category.Expend: / fashion /rent / eat / social / traffic cost / medical fee / insurance / tax
-    private(set) var eventCategory: String
-    /// Event SubCategory.
-    private(set) var eventSubCategory: String
-    /// Event AccountType. cash / deposit ／ card / otherPay
-    private(set) var eventAccountType: String
+    private(set) var bankActive: Bool
+    ///
+    private(set) var bankName: String
+    ///
+    private(set) var branchName: String
+    ///
+    private(set) var bankCode: String
     /// Event memo.
-    private(set) var eventMemo: String
-    /// Event Payment.
-    private(set) var eventPayment: Int64
+    private(set) var branceCode: String
+    /// User name
+    private(set) var accountName: String
+    /// Account Number
+    private(set) var accountNumber: String
+    /// Account Type
+    private(set) var accountType: String
+    ///
+    private(set) var savings: Int64
     /// Payment Currency.
     private(set) var currencyType: String
-    /// User name
-    private(set) var userName: String
-    /// Release date.
-    private(set) var recodedDate: Date
     /// Updated date.
-    private(set) var modifiedDate: Date
+    private(set) var updatedDate: Date
     
     /// Initialize the instance.
     ///
     /// - Parameters:
-    ///   - eventId:       Identifier
-    ///   - userName:      UserName.
-    ///   - eventMemo:     Event memo.
-    
-    ///   - eventCategory: Event category
-    ///   - eventSubCategory: Event Sub Category
-    ///   - recodedDate:   First recoded Date
-    ///   - modifiedDate:  ModifiedDate Date
-    init(eventId: Int,
-         eventType: Bool,
-         eventCategory: String,
-         eventSubCategory: String,
-         eventAccountType: String,
-         eventMemo: String,
-         eventPayment: Int64,
-         currencyType: String,
-         userName: String,
-         recodedDate: Date,
-         modifiedDate: Date) {
-        self.bankAccountId  = eventId
-        self.eventType      = eventType
-        self.eventCategory  = eventCategory
-        self.eventSubCategory = eventSubCategory
-        self.eventAccountType = eventAccountType
-        self.eventMemo      = eventMemo
-        self.eventPayment   = eventPayment
+    ///   - bankAccountId:  Identifier
+    ///   - bankName:       UserName.
+    ///   - branchName:     Event memo.
+    ///   - accountNumber:  Int64
+    ///   - accountType:    Event category
+    ///   - savings:        Event Sub Category
+    ///   - currencyType:
+    ///   - updatedDate:    Updated Date
+
+    init(bankAccountId: Int,
+         bankActive:    Bool,
+         bankName:      String,
+         branchName:    String,
+         accountName:   String,
+         accountNumber: String,
+         accountType:   String,
+         savings:       Int64,
+         currencyType:  String,
+         updatedDate:   Date) {
+        self.bankAccountId  = bankAccountId
+        self.bankActive     = bankActive
+        self.bankName       = bankName
+        self.bankCode       = ""
+        self.branchName     = branchName
+        self.branceCode     = ""
+        self.accountName    = accountName
+        self.accountNumber  = accountNumber
+        self.accountType    = accountType
+        self.savings        = savings
         self.currencyType   = currencyType
-        self.userName       = userName
-        self.recodedDate    = recodedDate
-        self.modifiedDate   = modifiedDate
+        self.updatedDate    = updatedDate
     }
 }
