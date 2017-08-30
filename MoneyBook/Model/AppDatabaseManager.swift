@@ -13,6 +13,7 @@ import FMDB
 class AppDatabaseManager: NSObject {
     /// Manage for the Events.
     private(set) var eventService: EventService!
+    private(set) var bankaccountService: BankAccountService!
     
     /// Factory of a data access objects.
     private let daoFactory = DAOFactory()
@@ -21,5 +22,6 @@ class AppDatabaseManager: NSObject {
     override init() {
         super.init()
         self.eventService = EventService(daoFactory: self.daoFactory)
+        self.bankaccountService = BankAccountService(daoFactory: self.daoFactory)
     }
 }

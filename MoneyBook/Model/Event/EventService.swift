@@ -45,7 +45,7 @@ class EventService: NSObject {
     
     /// Add the new event.
     ///
-    /// - Parameter book: Book data.
+    /// - Parameter event: event data.
     /// - Returns: "true" if successful.
     func add(event: Event) -> Bool {
         if let dao = self.daoFactory.eventDAO(),

@@ -61,15 +61,15 @@ class AgreementViewController: UIPageViewController /* UIViewController */, UISc
         // ページ数分ボタンを生成する.
         for i in 0 ..< pageSize {
             // ページごとに異なるラベルを生成する.
-            let myLabel:UILabel = UILabel(frame: CGRect(x: CGFloat(i) * width + width/2 - 40, y: height/2 - 40, width: 80, height: 80))
-            myLabel.backgroundColor = UIColor.red
-            myLabel.textColor = UIColor.white
-            myLabel.textAlignment = NSTextAlignment.center
-            myLabel.layer.masksToBounds = true
-            myLabel.text = "Page\(i)"
-            myLabel.font = UIFont.systemFont(ofSize: UIFont.smallSystemFontSize)
-            myLabel.layer.cornerRadius = 40.0
-            scrollView.addSubview(myLabel)
+            let agreementLabel:UILabel = UILabel(frame: CGRect(x: CGFloat(i) * width + width/2 - 40, y: height/2 - 40, width: 80, height: 80))
+            agreementLabel.backgroundColor = UIColor.red
+            agreementLabel.textColor = UIColor.white
+            agreementLabel.textAlignment = NSTextAlignment.center
+            agreementLabel.layer.masksToBounds = true
+            agreementLabel.text = "Page\(i)"
+            agreementLabel.font = UIFont.systemFont(ofSize: UIFont.smallSystemFontSize)
+            agreementLabel.layer.cornerRadius = 40.0
+            scrollView.addSubview(agreementLabel)
         }
         // PageControlを作成する.
         pageControl = UIPageControl(frame: CGRect(x:0, y:self.view.frame.maxY - 100, width:width, height:50))

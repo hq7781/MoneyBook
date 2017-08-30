@@ -13,6 +13,7 @@
 		86516CDA1F4C2D18001AC26F /* CellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86516CD91F4C2D18001AC26F /* CellView.xib */; };
 		86516CDD1F501ED7001AC26F /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86516CDC1F501ED7001AC26F /* BankAccount.swift */; };
 		86516CDF1F55470E001AC26F /* BankAccountDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86516CDE1F55470E001AC26F /* BankAccountDAO.swift */; };
+		86516CE11F5653BB001AC26F /* BankAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86516CE01F5653BB001AC26F /* BankAccountService.swift */; };
 		868012091F1DE745000A2302 /* ShareUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868012081F1DE745000A2302 /* ShareUtils.swift */; };
 		8680120B1F1DE81C000A2302 /* ShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680120A1F1DE81C000A2302 /* ShareModel.swift */; };
 		8680120E1F1DEFD7000A2302 /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680120D1F1DEFD7000A2302 /* FileUtils.swift */; };
@@ -1054,6 +1055,7 @@
 		86516CD91F4C2D18001AC26F /* CellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellView.xib; sourceTree = "<group>"; };
 		86516CDC1F501ED7001AC26F /* BankAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankAccount.swift; path = BankAccount/BankAccount.swift; sourceTree = "<group>"; };
 		86516CDE1F55470E001AC26F /* BankAccountDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankAccountDAO.swift; path = BankAccount/BankAccountDAO.swift; sourceTree = "<group>"; };
+		86516CE01F5653BB001AC26F /* BankAccountService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankAccountService.swift; path = BankAccount/BankAccountService.swift; sourceTree = "<group>"; };
 		868012081F1DE745000A2302 /* ShareUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShareUtils.swift; path = Utils/ShareUtils.swift; sourceTree = "<group>"; };
 		8680120A1F1DE81C000A2302 /* ShareModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareModel.swift; sourceTree = "<group>"; };
 		8680120D1F1DEFD7000A2302 /* FileUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileUtils.swift; path = Utils/FileUtils.swift; sourceTree = "<group>"; };
@@ -2123,6 +2125,7 @@
 			children = (
 				86516CDC1F501ED7001AC26F /* BankAccount.swift */,
 				86516CDE1F55470E001AC26F /* BankAccountDAO.swift */,
+				86516CE01F5653BB001AC26F /* BankAccountService.swift */,
 			);
 			name = BankAccount;
 			sourceTree = "<group>";
@@ -2319,6 +2322,9 @@
 		B0A86B6E1EB5FFCA00A82C0C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B04A14111EC7F346008EEFCE /* EasyTipView.swift */,
+				B04A140F1EC7BD99008EEFCE /* EasyMessage.swift */,
+				861E694F1F4C0F78002CCA63 /* AnimationView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -2332,9 +2338,6 @@
 				B0A86B851EB611B500A82C0C /* Analysis */,
 				B0A86B831EB6115500A82C0C /* History */,
 				B0A86B861EB611BF00A82C0C /* Setting */,
-				B04A14111EC7F346008EEFCE /* EasyTipView.swift */,
-				B04A140F1EC7BD99008EEFCE /* EasyMessage.swift */,
-				861E694F1F4C0F78002CCA63 /* AnimationView.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -4670,6 +4673,7 @@
 				868012091F1DE745000A2302 /* ShareUtils.swift in Sources */,
 				B0A86BA01EB6512300A82C0C /* SpentViewController.swift in Sources */,
 				B0A86B961EB6375B00A82C0C /* DB.swift in Sources */,
+				86516CE11F5653BB001AC26F /* BankAccountService.swift in Sources */,
 				869C1A6D1F4195E90030827A /* AboutViewController.swift in Sources */,
 				8680120E1F1DEFD7000A2302 /* FileUtils.swift in Sources */,
 				B0A86B3D1EB5FE6600A82C0C /* AppDelegate.swift in Sources */,

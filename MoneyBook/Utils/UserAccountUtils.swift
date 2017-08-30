@@ -2,7 +2,7 @@
 //  UserAccountUtils.swift
 //  MoneyBook
 //
-//  Created by recomot on 7/18/17.
+//  Created by HONGQUAN on 7/18/17.
 //  Copyright © 2017 Roan.Hong. All rights reserved.
 //
 
