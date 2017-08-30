@@ -11,16 +11,16 @@ import LocalAuthentication
 
 @available(iOS 8.0, *)
 class TouchToUnlockViewController: UIViewController {
-    // 認証用コンテキスト.
-    var mySecurityLabel : UILabel!
-    var myButton : UIButton!
+
+    var resultLabel : UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // 背景色を設定.
+        self.view.backgroundColor = UIColor.white
+        title = "Touch to Unlock"
         // Do any additional setup after loading the view.
         self.showDefaultUserView()
-        self.showOpreationView()
         AppUtils.googleTracking("TouchToUnlockView")
     }
 
@@ -33,12 +33,11 @@ class TouchToUnlockViewController: UIViewController {
         //fatalError("init(coder:) has not been implemented")
         super.init(coder: aDecoder)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(OnUserAuthencationSuccessed),
+        NotificationCenter.default.addObserver(self, selector: #selector(onUserAuthencationSuccessed),
                                                name: kNotificationNameUserAuthencationSuccessed, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(OnUserAuthencationFailed),
+        NotificationCenter.default.addObserver(self, selector: #selector(onUserAuthencationFailed),
                                                name: kNotificationNameUserAuthencationFailed, object: nil)
     }
-    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -54,34 +53,34 @@ class TouchToUnlockViewController: UIViewController {
     */
     // MARK: - show Default User View
     func showDefaultUserView() {
-        // 背景色を設定.
-        self.view.backgroundColor = UIColor.white
-        
-        mySecurityLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
-        mySecurityLabel.backgroundColor = UIColor.orange
-        mySecurityLabel.layer.masksToBounds = true
-        mySecurityLabel.layer.cornerRadius = 75.0
-        mySecurityLabel.textColor = UIColor.white
-        mySecurityLabel.shadowColor = UIColor.gray
-        mySecurityLabel.font = UIFont.systemFont(ofSize: CGFloat(30))
-        mySecurityLabel.textAlignment = NSTextAlignment.center
-        mySecurityLabel.layer.position = CGPoint(x: self.view.bounds.width/2, y: 300)
-        self.view.addSubview(mySecurityLabel)
-        
-        myButton = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
-        myButton.backgroundColor = UIColor.blue
-        myButton.setTitle("認証開始", for: UIControlState())
-        myButton.setTitleColor(UIColor.white, for: UIControlState())
-        myButton.layer.masksToBounds = true
-        myButton.layer.cornerRadius = 20.0
-        myButton.layer.position = CGPoint(x: self.view.bounds.width / 2, y:self.view.bounds.height-200)
-        myButton.addTarget(self, action: #selector(self.checkSuccess), for: .touchUpInside)
-        self.view.addSubview(myButton)
+        self.setResultLabel()
+        self.showOpreationView()
     }
-    
+    func setResultLabel() {
+        resultLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
+        resultLabel.backgroundColor = UIColor.orange
+        resultLabel.layer.masksToBounds = true
+        resultLabel.layer.cornerRadius = 75.0
+        resultLabel.textColor = UIColor.white
+        resultLabel.shadowColor = UIColor.gray
+        resultLabel.font = UIFont.systemFont(ofSize: CGFloat(30))
+        resultLabel.textAlignment = NSTextAlignment.center
+        resultLabel.layer.position = CGPoint(x: self.view.bounds.width/2, y: 300)
+        self.view.addSubview(resultLabel)
+    }
     // MARK: - show Opreation View
     func showOpreationView() {
-        // ボタンを作成.
+        // ボタンを作成
+        let checkButton: UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+        checkButton.backgroundColor = UIColor.blue
+        checkButton.setTitle("認証開始", for: UIControlState())
+        checkButton.setTitleColor(UIColor.white, for: UIControlState())
+        checkButton.layer.masksToBounds = true
+        checkButton.layer.cornerRadius = 20.0
+        checkButton.layer.position = CGPoint(x: self.view.bounds.width / 2, y:self.view.bounds.height-200)
+        checkButton.addTarget(self, action: #selector(self.onClickCheckButton(_:)), for: .touchUpInside)
+        self.view.addSubview(checkButton)
+
         let backButton: UIButton = UIButton(frame: CGRect(x: 0,y: 0,width: 120,height: 50))
         backButton.backgroundColor = UIColor.red;
         backButton.setTitle("Back", for: UIControlState())
@@ -92,6 +91,14 @@ class TouchToUnlockViewController: UIViewController {
         backButton.addTarget(self, action: #selector(self.onClickBackButton(_:)), for: .touchUpInside)
         self.view.addSubview(backButton);
     }
+    
+    func onClickCheckButton(_ sender: UIButton) {
+        self.updateResultLabel(nil)
+        let tryCount = 2
+        let userInfo = [kNotificationUserInfoKey_UserTryLimit : "\(tryCount)"]
+        NotificationCenter.default.post(name:kNotificationNameUserAuthencationStart, object: nil, userInfo: userInfo )
+    }
+    
     func onClickBackButton(_ sender: UIButton){
         let storyboard = UIStoryboard(name: kUIStoryboardName_Startup, bundle: nil)
         let backView = storyboard.instantiateViewController(withIdentifier:kUIViewControllerId_Signin)
@@ -111,36 +118,29 @@ class TouchToUnlockViewController: UIViewController {
         alertController.addAction(okButton)
         present(alertController, animated: true, completion:nil)
     }
-    
-    func checkSuccess() {
-        self.updateMySecurityLabel(nil)
-        let tryCount = 2
-        let userInfo = [kNotificationUserInfoKey_UserTryLimit : "\(tryCount)"]
-        NotificationCenter.default.post(name:kNotificationNameUserAuthencationStart, object: nil, userInfo: userInfo )
-    }
 
-    func OnUserAuthencationSuccessed(notification: NSNotification) {
+    func onUserAuthencationSuccessed(notification: NSNotification) {
         DispatchQueue.main.async(execute: {
-            self.updateMySecurityLabel("認証成功")
+            self.updateResultLabel("認証成功")
             self.showOKAlert()
         })
     }
-    func OnUserAuthencationFailed(notification: NSNotification) {
+    func onUserAuthencationFailed(notification: NSNotification) {
         let userInfo = notification.userInfo
         DispatchQueue.main.async(execute: {
             let errorMessage = userInfo?[kNotificationUserInfoKey_ErrorMessage] as? String
             if errorMessage != nil {
-                self.updateMySecurityLabel(errorMessage)
+                self.updateResultLabel(errorMessage)
             }
         })
     }
     
-    func updateMySecurityLabel(_ message: String?) {
+    func updateResultLabel(_ message: String?) {
         DispatchQueue.main.async(execute: {
             if message != nil {
-                self.mySecurityLabel.text = message
+                self.resultLabel.text = message
             } else {
-                self.mySecurityLabel.text = ""
+                self.resultLabel.text = ""
             }
         })
     }

@@ -10,7 +10,7 @@ import UIKit
 let D_fromAccVC_name = "AccountVC"
 let k_CELLNAME_AccountTableViewCell: String = "cellChose"
 
-class AccountViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AccountViewController: UIViewController {
     //MARK: - ==========  var define ==========
     var delegate : RecordsViewControllerDelegate? = nil
     
@@ -33,36 +33,6 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
     //MARK: - ========== IBACtions ==========
     @IBAction func addAccountButton(_ sender: UIButton) {
     }
-    
-    //MARK: - ========== UITableViewDelegate ==========
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6 //data.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: k_CELLNAME_AccountTableViewCell, for: indexPath) as? AccountTableViewCell
-        cell?.imgAcc.image = nil //UIImage(named: data[indexPath.row].image)
-        cell?.lblMoney.text = "Value" //"Value: \(data[indexPath.row].money) Yen"
-        cell?.lblNameAcc.text = "name" // data[indexPath.row].nameAcc
-        return cell!
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let indexPath = tableView.indexPathForSelectedRow
-    //  let currentCell = tableView.cellForRow(at: indexPath!)! as! AccountTableViewCell
-        _ = tableView.cellForRow(at: indexPath!)! as! AccountTableViewCell
-        
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.view.frame.size.height / 12
-    }
-    
-
     /*
     // MARK: - Navigation
 
@@ -73,4 +43,36 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     */
 
+}
+
+/// MARK: - , UITableViewDelegate, UITableViewDataSource
+extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    //MARK: - ========== UITableViewDelegate ==========
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 6 //data.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: k_CELLNAME_AccountTableViewCell, for: indexPath) as? AccountTableViewCell
+        cell?.imgAcc.image = nil //UIImage(named: data[indexPath.row].image)
+        cell?.lblMoney.text = "Value" //"Value: \(data[indexPath.row].money) Yen"
+        cell?.lblNameAcc.text = "name" // data[indexPath.row].nameAcc
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let indexPath = tableView.indexPathForSelectedRow
+        //  let currentCell = tableView.cellForRow(at: indexPath!)! as! AccountTableViewCell
+        _ = tableView.cellForRow(at: indexPath!)! as! AccountTableViewCell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return self.view.frame.size.height / 12
+    }
 }

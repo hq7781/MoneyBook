@@ -11,14 +11,14 @@ import Persei
 
 let k_CELLNAME_AnalysisMenuTableViewCell: String = "AnalysisMenuCell"
 
-class AnalysisViewController: UIViewController {
+class AnalysisViewController: UITableViewController /*UIViewController*/ {
 
     fileprivate var pageControl: UIPageControl!
     fileprivate var scrollView: UIScrollView!
 
-    fileprivate weak var menu: MenuView!
+    fileprivate var menu: MenuView!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var tableView: UITableView!
+    //@IBOutlet weak var tableView: UITableView!
     //@IBOutlet weak var AnalysisMenuCell: UITableViewCell!
     
     //MARK: - ========== override methods ==========
@@ -26,10 +26,10 @@ class AnalysisViewController: UIViewController {
         super.viewDidLoad()
         // 背景の色をCyanに設定する.
         self.view.backgroundColor = UIColor.cyan
-        
-        // Do any additional setup after loading the view, typically from a nib.
         title = model.description
-        //self.LoadMenuView()
+        // Do any additional setup after loading the view, typically from a nib.
+
+        self.LoadMenuView()
         self.showPageScrollView()
         AppUtils.googleTracking("AnalysisView")
     }
@@ -81,7 +81,7 @@ class AnalysisViewController: UIViewController {
         }
     }
     
-    // MARK: - Actions
+    // MARK: - Actions ->>>  link to storyboad pls
     @IBAction fileprivate func switchMenu() {
         menu.setRevealed(!menu.revealed, animated: true)
     }
@@ -109,15 +109,15 @@ class AnalysisViewController: UIViewController {
         // ページ数分ボタンを生成する.
         for i in 0 ..< pageSize {
             // ページごとに異なるラベルを生成する.
-            let myLabel:UILabel = UILabel(frame: CGRect(x: CGFloat(i) * width + width/2 - 40, y: height/2 - 40, width: 80, height: 80))
-            myLabel.backgroundColor = UIColor.red
-            myLabel.textColor = UIColor.white
-            myLabel.textAlignment = NSTextAlignment.center
-            myLabel.layer.masksToBounds = true
-            myLabel.text = "Page\(i)"
-            myLabel.font = UIFont.systemFont(ofSize: UIFont.smallSystemFontSize)
-            myLabel.layer.cornerRadius = 40.0
-            scrollView.addSubview(myLabel)
+            let hintLabel:UILabel = UILabel(frame: CGRect(x: CGFloat(i) * width + width/2 - 40, y: height/2 - 40, width: 80, height: 80))
+            hintLabel.backgroundColor = UIColor.red
+            hintLabel.textColor = UIColor.white
+            hintLabel.textAlignment = NSTextAlignment.center
+            hintLabel.layer.masksToBounds = true
+            hintLabel.text = "Page\(i)"
+            hintLabel.font = UIFont.systemFont(ofSize: UIFont.smallSystemFontSize)
+            hintLabel.layer.cornerRadius = 40.0
+            scrollView.addSubview(hintLabel)
         }
         // PageControlを作成する.
         pageControl = UIPageControl(frame: CGRect(x:0, y:self.view.frame.maxY - 100, width:width, height:50))
@@ -131,41 +131,27 @@ class AnalysisViewController: UIViewController {
         self.view.addSubview(pageControl)
         
     }
-}
-
-// MARK: - MenuViewDelegate
-extension AnalysisViewController: MenuViewDelegate {
-    func menu(_ menu: MenuView, didSelectItemAt index: Int) {
-        model = model.next()
-    }
-}
-
-// MARK: - ========== UIScrollViewDelegate ==========
-extension AnalysisViewController: UIScrollViewDelegate {
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        
+    
+    // MARK: - ========== UIScrollViewDelegate ==========
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         // スクロール数が1ページ分になったら時.
         if fmod(scrollView.contentOffset.x, scrollView.frame.maxX) == 0 {
             // ページの場所を切り替える.
             pageControl.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.maxX)
         }
     }
-}
-
-// MARK: - UITableViewDelegate
-extension AnalysisViewController: UITableViewDelegate {
-    // MARK: - Table view data source ========== UITableViewDelegate ==========
-    /// Asks the data source to return the number of sections in the table view.
-    func numberOfSections(in tableView: UITableView) -> Int {
+    
+    // MARK: - ========== UITableViewDelegate, UITableViewDataSource ==========
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     /// Tells the data source to return the number of rows in a given section of a table view.
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 1
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: k_CELLNAME_AnalysisMenuTableViewCell, for: indexPath) as? AnalysisMenuTableViewCell
             //let cell = self.AnalysisMenuCell as UITableViewCell
@@ -177,14 +163,21 @@ extension AnalysisViewController: UITableViewDelegate {
         return UITableViewCell()
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexPath = tableView.indexPathForSelectedRow
         _ = tableView.cellForRow(at: indexPath!)!
         
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return self.view.frame.size.height / 12
+    }
+}
+
+// MARK: - MenuViewDelegate
+extension AnalysisViewController: MenuViewDelegate {
+    func menu(_ menu: MenuView, didSelectItemAt index: Int) {
+        model = model.next()
     }
 }
 

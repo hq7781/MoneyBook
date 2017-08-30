@@ -14,12 +14,8 @@ protocol AddSpentViewControllerDelegate {
     func setData(str: String)
 }
 
+class AddSpentViewController: UIViewController {
 
-class AddSpentViewController: UIViewController, AddSpentViewControllerDelegate {
-    //MARK: - ========== internal methods ==========
-    internal func setData(str: String) {
-        lblParent.text = str
-    }
     //MARK: - ==========  var define ==========
     var delegate : SpentViewControllerDelegate? = nil
     
@@ -36,7 +32,6 @@ class AddSpentViewController: UIViewController, AddSpentViewControllerDelegate {
         lblParent.text = ""
         let gesture = UITapGestureRecognizer(target: self, action:  #selector (self.someAction (_:)))
         self.viewParent.addGestureRecognizer(gesture)
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,8 +75,6 @@ class AddSpentViewController: UIViewController, AddSpentViewControllerDelegate {
         }
         return boo
     }
-    
-
     /*
     // MARK: - Navigation
 
@@ -91,5 +84,11 @@ class AddSpentViewController: UIViewController, AddSpentViewControllerDelegate {
         // Pass the selected object to the new view controller.
     }
     */
+}
 
+/// MARK: - AddSpentViewControllerDelegate
+extension AddSpentViewController: AddSpentViewControllerDelegate {
+    internal func setData(str: String) {
+        lblParent.text = str
+    }
 }

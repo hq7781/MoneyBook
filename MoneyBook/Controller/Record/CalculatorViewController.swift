@@ -158,7 +158,6 @@ class CalculatorViewController: UIViewController {
     @IBAction func refreshButtonDidTap(_ sender: UIButton) {
         defaultInfo()
     }
-    
 
     //MARK: - ========== privete methods ==========
     func getResults(str : String) {

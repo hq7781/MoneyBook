@@ -8,9 +8,8 @@
 
 import UIKit
 
-
-class AgreementViewController: UIPageViewController /* UIViewController */, UIScrollViewDelegate {
-    private var pageControl: UIPageControl!
+class AgreementViewController: UIPageViewController {
+    fileprivate var pageControl: UIPageControl!
     private var scrollView: UIScrollView!
 
     override func viewDidLoad() {
@@ -83,6 +82,9 @@ class AgreementViewController: UIPageViewController /* UIViewController */, UISc
         self.view.addSubview(pageControl)
         
     }
+}
+
+extension AgreementViewController: UIScrollViewDelegate {
     
     //MARK: - ========== UIScrollViewDelegate ==========
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

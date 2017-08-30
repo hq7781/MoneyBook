@@ -10,12 +10,11 @@ import UIKit
 import LineSDK  // for Line Login
 
 class SigninViewController: UIViewController {
-    var myLabel: UILabel!
-    
-    @IBOutlet weak var labelSignin: UILabel!
-    @IBOutlet weak var buttonSignin: UIButton!
-    
-    
+
+    var hintLabel: UILabel!
+    @IBOutlet weak var signinLabel: UILabel!
+    @IBOutlet weak var signinButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,43 +44,46 @@ class SigninViewController: UIViewController {
     }
     */
     func showDefaultUserView() {
-        // 背景色を設定.
-        labelSignin.backgroundColor = UIColor.orange
-        labelSignin.layer.masksToBounds = true
-        labelSignin.layer.cornerRadius = 75.0
-        labelSignin.textColor = UIColor.white
-        labelSignin.shadowColor = UIColor.gray
-        labelSignin.font = UIFont.systemFont(ofSize: CGFloat(30))
-        labelSignin.textAlignment = NSTextAlignment.center
-        labelSignin.layer.position = CGPoint(x: self.view.bounds.width/2, y: 300)
-        
-        self.setMyLabel(text: "Sign in Please!", point: CGPoint(x: 0, y: 50))
-
-        //let buttonSignin: UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
-        buttonSignin.backgroundColor = UIColor.blue
-        buttonSignin.setTitle("ログイン", for: UIControlState())
-        buttonSignin.setTitleColor(UIColor.white, for: UIControlState())
-        buttonSignin.layer.masksToBounds = true
-        buttonSignin.layer.cornerRadius = 20.0
-        buttonSignin.layer.position = CGPoint(x: self.view.bounds.width / 2, y:self.view.bounds.height-200)
-        //buttonSignin.addTarget(self, action: #selector(self.checkSuccess), for: .touchUpInside)
-        //self.view.addSubview(buttonSignin)
+        self.setSinginLabel(text: "Sign in", point: CGPoint(x: self.view.bounds.width/2, y: 300))
+        self.setHintLabel(text: "Sign in Please!", point: CGPoint(x: 0, y: 50))
+        self.setSinginButton()
     }
-    
-    func setMyLabel(text: NSString, point: CGPoint){
-        //let
-        myLabel = UILabel(frame: CGRect(x: point.x, y: point.y, width:self.view.bounds.width, height:50))
-        myLabel.backgroundColor = UIColor.orange
-        myLabel.layer.masksToBounds = true
-        myLabel.layer.cornerRadius = 10.0
-        myLabel.textColor = UIColor.white
-        myLabel.shadowColor = UIColor.gray
-        myLabel.textAlignment = NSTextAlignment.center
-        myLabel.font = UIFont.systemFont(ofSize: 14)
-        myLabel.text = text as String
-        myLabel.numberOfLines = 2
+    func setSinginLabel(text: NSString, point: CGPoint) {
+        // 背景色を設定.
+        signinLabel.backgroundColor = UIColor.orange
+        signinLabel.layer.masksToBounds = true
+        signinLabel.layer.cornerRadius = 75.0
+        signinLabel.textColor = UIColor.white
+        signinLabel.shadowColor = UIColor.gray
+        signinLabel.font = UIFont.systemFont(ofSize: CGFloat(30))
+        signinLabel.textAlignment = NSTextAlignment.center
+        signinLabel.layer.position = point
+    }
+    func setHintLabel(text: NSString, point: CGPoint) {
+        hintLabel = UILabel(frame: CGRect(x: point.x, y: point.y, width:self.view.bounds.width, height:50))
+        hintLabel.backgroundColor = UIColor.orange
+        hintLabel.layer.masksToBounds = true
+        hintLabel.layer.cornerRadius = 10.0
+        hintLabel.textColor = UIColor.white
+        hintLabel.shadowColor = UIColor.gray
+        hintLabel.textAlignment = NSTextAlignment.center
+        hintLabel.font = UIFont.systemFont(ofSize: 14)
+        hintLabel.text = text as String
+        hintLabel.numberOfLines = 2
         
-        self.view.addSubview(myLabel)
+        self.view.addSubview(hintLabel)
+    }
+
+    func setSinginButton() {
+        //let signinButton: UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+        signinButton.backgroundColor = UIColor.blue
+        signinButton.setTitle("ログイン", for: UIControlState())
+        signinButton.setTitleColor(UIColor.white, for: UIControlState())
+        signinButton.layer.masksToBounds = true
+        signinButton.layer.cornerRadius = 20.0
+        signinButton.layer.position = CGPoint(x: self.view.bounds.width / 2, y:self.view.bounds.height-200)
+        //signinButton.addTarget(self, action: #selector(self.checkSuccess), for: .touchUpInside)
+        //self.view.addSubview(signinButton)
     }
     
     // MARK: - show Opreation View

@@ -15,15 +15,10 @@ protocol SpentViewControllerDelegate {
     func reloadData()
 }
 
-class SpentViewController: UIViewController, UITableViewDataSource,UITableViewDelegate, SpentViewControllerDelegate {
-    //MARK: - ========== internal methods ==========
-    internal func reloadData() {
-    //    data = DB.share().queryIndex()
-        //print(data)
-        tableView.reloadData()
-    }
+class SpentViewController: UIViewController {
+
     //MARK: - ==========  var define ==========
-    var delegate : RecordsViewControllerDelegate? = nil
+    fileprivate var delegate : RecordsViewControllerDelegate? = nil
     @IBOutlet var tableView: UITableView!
     
     @IBOutlet var addButton: UIButton!
@@ -41,8 +36,7 @@ class SpentViewController: UIViewController, UITableViewDataSource,UITableViewDe
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    //MARK: - ========== Init methods ==========
+
     //MARK: - ========== IBACtions ==========
     @IBAction func backDidTap(_ sender: UIButton) {
         _ = self.navigationController?.popViewController(animated: true)
@@ -54,7 +48,27 @@ class SpentViewController: UIViewController, UITableViewDataSource,UITableViewDe
         secondViewController.delegate = self as SpentViewControllerDelegate
         self.navigationController?.pushViewController(secondViewController, animated: true)
     }
-    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
+/// MARK: - SpentViewControllerDelegate
+extension SpentViewController: SpentViewControllerDelegate {
+    internal func reloadData() {
+        tableView.reloadData()
+    }
+}
+
+/// MARK: - UITableViewDataSource,UITableViewDelegate
+extension SpentViewController: UITableViewDataSource,UITableViewDelegate {
     //MARK: - ========== UITableViewDelegate ==========
     func numberOfSections(in tableView: UITableView) -> Int {
         return 7 //data.count
@@ -78,15 +92,4 @@ class SpentViewController: UIViewController, UITableViewDataSource,UITableViewDe
         self.delegate?.sendValue(value: (currentCell.textLabel?.text)!, view: D_spentVC_name)
         _ = self.navigationController?.popViewController(animated: true)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
