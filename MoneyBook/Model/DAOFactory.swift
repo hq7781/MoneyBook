@@ -56,7 +56,7 @@ class DAOFactory: NSObject {
     /// - Returns: Connection instance if successful, nil otherwise.
     private func connect() -> FMDatabase? {
         let db = FMDatabase(path: self.filePath)
-        return (db?.open())! ? db : nil
+        return (db.open()) ? db : nil
     }
     
     /// Get the path of database file.

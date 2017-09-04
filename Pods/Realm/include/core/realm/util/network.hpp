@@ -1195,7 +1195,7 @@ public:
     /// will have become connected to the remote socket. It must be in the
     /// closed state (Socket::is_open()) when async_accept() is called.
     ///
-    /// \param handlerndler Upon completion, the remote peer endpoint will have been
+    /// \param ep Upon completion, the remote peer endpoint will have been
     /// assigned to this variable.
     template<class H> void async_accept(Socket& sock, H handler);
     template<class H> void async_accept(Socket& sock, Endpoint& ep, H handler);

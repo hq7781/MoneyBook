@@ -18,7 +18,7 @@ protocol SpentViewControllerDelegate {
 class SpentViewController: UIViewController {
 
     //MARK: - ==========  var define ==========
-    fileprivate var delegate : RecordsViewControllerDelegate? = nil
+    var delegate : RecordsViewControllerDelegate? = nil
     @IBOutlet var tableView: UITableView!
     
     @IBOutlet var addButton: UIButton!

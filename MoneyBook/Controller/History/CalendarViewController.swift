@@ -87,10 +87,11 @@ class CalendarViewController : UIViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: listButton)
     }
+    
     func onClickPushListView() {
-        let listViewVC = CalendarViewController()
+        let listViewVC = HistoryMasterViewController()
         let nav = MainNavigationController(rootViewController: listViewVC)
-        present(nav, animated: true, completion: nil)
+        present(nav, animated:true, completion:nil)
     }
     
     private func randomizeDotmarkers() {

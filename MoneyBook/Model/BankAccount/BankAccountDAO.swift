@@ -77,7 +77,7 @@ class BankAccountDAO: NSObject {
     //MARK: - ========== Sqlite opreation methods ==========
     /// Create the table.
     func create() {
-        self.db.executeUpdate(BankAccountDAO.SQLCreate, withArgumentsIn: nil)
+        self.db.executeUpdate(BankAccountDAO.SQLCreate, withArgumentsIn: [])
     }
     
     /// Add the Bank Account.
@@ -95,7 +95,7 @@ class BankAccountDAO: NSObject {
         var bankAccount: BankAccount? = nil
         if self.db.executeUpdate(BankAccountDAO.SQLInsert, withArgumentsIn: [
             bankActive, bankName, branchName, bankCode, branceCode, accountName, accountNumber, accountType, savings, currencyType, updatedDate,]) {
-            let bankAccountId = db.lastInsertRowId()
+            let bankAccountId = db.lastInsertRowId
             
             bankAccount = BankAccount(bankAccountId:  Int(bankAccountId),
                           bankActive:   bankActive,
@@ -119,20 +119,20 @@ class BankAccountDAO: NSObject {
     
     func read() -> Array<BankAccount> {
         var bankaccounts = Array<BankAccount>()
-        if let results = self.db.executeQuery(BankAccountDAO.SQLSelect, withArgumentsIn: nil) {
+        if let results = self.db.executeQuery(BankAccountDAO.SQLSelect, withArgumentsIn: []) {
             while results.next() {
                 let bankaccount = BankAccount(bankAccountId: results.long(forColumnIndex: 0),
                                   bankActive:   results.bool(forColumnIndex:1),
-                                  bankName:     results.string(forColumnIndex: 2),
-                                  branchName:   results.string(forColumnIndex: 3),
-                                  //bankCode:     results.string(forColumnIndex: 4),
-                                  //branceCode:   results.string(forColumnIndex: 5),
-                                  accountName:  results.string(forColumnIndex: 6),
-                                  accountNumber:results.string(forColumnIndex: 7),
-                                  accountType:  results.string(forColumnIndex: 8),
+                                  bankName:     results.string(forColumnIndex: 2)!,
+                                  branchName:   results.string(forColumnIndex: 3)!,
+                                  //bankCode:     results.string(forColumnIndex: 4)!,
+                                  //branceCode:   results.string(forColumnIndex: 5)!,
+                                  accountName:  results.string(forColumnIndex: 6)!,
+                                  accountNumber:results.string(forColumnIndex: 7)!,
+                                  accountType:  results.string(forColumnIndex: 8)!,
                                   savings:      results.longLongInt(forColumnIndex: 9),
-                                  currencyType: results.string(forColumnIndex: 10),
-                                  updatedDate:  results.date(forColumnIndex: 11))
+                                  currencyType: results.string(forColumnIndex: 10)!,
+                                  updatedDate:  results.date(forColumnIndex: 11)!)
                 
                 bankaccounts.append(bankaccount)
             }

@@ -75,7 +75,7 @@ class EventDAO: NSObject {
     //MARK: - ========== Sqlite opreation methods ==========
     /// Create the table.
     func create() {
-        self.db.executeUpdate(EventDAO.SQLCreate, withArgumentsIn: nil)
+        self.db.executeUpdate(EventDAO.SQLCreate, withArgumentsIn: [])
     }
     
     /// Add the Event.
@@ -93,7 +93,7 @@ class EventDAO: NSObject {
         if self.db.executeUpdate(EventDAO.SQLInsert, withArgumentsIn: [
             eventType, eventCategory, eventSubCategory, eventAccountType, eventMemo, eventPayment, currencyType, userName, recodedDate, modifiedDate,
             ]) {
-            let eventId = db.lastInsertRowId()
+            let eventId = db.lastInsertRowId
             
             event = Event(eventId:          Int(eventId),
                           eventType:        eventType,
@@ -115,19 +115,19 @@ class EventDAO: NSObject {
     /// - Returns: Readed events.
     func read() -> Array<Event> {
         var events = Array<Event>()
-        if let results = self.db.executeQuery(EventDAO.SQLSelect, withArgumentsIn: nil) {
+        if let results = self.db.executeQuery(EventDAO.SQLSelect, withArgumentsIn: []) {
             while results.next() {
                 let event = Event(eventId:          results.long(forColumnIndex: 0),
                                   eventType:        results.bool(forColumnIndex:1),
-                                  eventCategory:    results.string(forColumnIndex: 2),
-                                  eventSubCategory: results.string(forColumnIndex: 3),
-                                  eventAccountType: results.string(forColumnIndex: 4),
-                                  eventMemo:        results.string(forColumnIndex: 5),
+                                  eventCategory:    results.string(forColumnIndex: 2)!,
+                                  eventSubCategory: results.string(forColumnIndex: 3)!,
+                                  eventAccountType: results.string(forColumnIndex: 4)!,
+                                  eventMemo:        results.string(forColumnIndex: 5)!,
                                   eventPayment:     results.longLongInt(forColumnIndex: 6),
-                                  currencyType:     results.string(forColumnIndex: 7),
-                                  userName:         results.string(forColumnIndex: 8),
-                                  recodedDate:      results.date(forColumnIndex: 9),
-                                  modifiedDate:     results.date(forColumnIndex: 10))
+                                  currencyType:     results.string(forColumnIndex: 7)!,
+                                  userName:         results.string(forColumnIndex: 8)!,
+                                  recodedDate:      results.date(forColumnIndex: 9)!,
+                                  modifiedDate:     results.date(forColumnIndex: 10)!)
                 
                 events.append(event)
             }
