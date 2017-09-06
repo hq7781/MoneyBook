@@ -12,7 +12,7 @@ import CVCalendar
 class CalendarViewController : UIViewController {
     
     struct Color {
-        static let selectedText = UIColor.white
+        static let selectedText = UIColor.darkGray
         static let text = UIColor.black
         static let textDisabled = UIColor.gray
         static let selectionBackground = UIColor.enixColorWith( 20, 20, 100, alpha: 1.0)
@@ -22,11 +22,11 @@ class CalendarViewController : UIViewController {
         static let sundaySelectionBackground = UIColor.enixColorWith( 120, 120, 100, alpha: 1.0)
         
     }
-    var menuView: CVCalendarMenuView!
-    var calendarView: CVCalendarView!
-    var monthLabel: UILabel!
-    var daysOutSwitch: UISwitch!
-    var listButton: TextImageButton!
+    @IBOutlet weak var menuView: CVCalendarMenuView!
+    @IBOutlet weak var calendarView: CVCalendarView!
+    @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var daysOutSwitch: UISwitch!
+//    @IBOutlet weak var listButton: TextImageButton!
     
     fileprivate var randomNumberOfDotmarkersForDay = [Int]()
     var shouldShowDaysOut = true
@@ -49,33 +49,26 @@ class CalendarViewController : UIViewController {
         setupCalendarViewUI()
     }
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setToolbarHidden(false, animated: false)
+        //self.navigationController?.setToolbarHidden(false, animated: false)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        self.menuView.commitMenuViewUpdate()
-        self.calendarView.commitCalendarViewUpdate()
+        menuView.commitMenuViewUpdate()
+        calendarView.commitCalendarViewUpdate()
     }
     func setupCalendarViewUI() {
-        // CVCalendarMenuView initialization with frame
-        self.menuView = CVCalendarMenuView(frame: CGRectMake(0, 0, 300, 15))
-        // CVCalendarView initialization with frame
-        self.calendarView = CVCalendarView(frame: CGRectMake(0, 20, 300, 450))
-        self.calendarView.calendarAppearanceDelegate = self
-        self.calendarView.animatorDelegate = self
-        self.menuView.menuViewDelegate = self
-        self.calendarView.calendarDelegate = self
-        
+
         if let currentCalendar = currentCalendar {
             monthLabel.text = CVDate(date: Date(), calendar: currentCalendar).globalDescription
         }
         randomizeDotmarkers()
         
-        showListViewUI()
+        //showListViewUI()
     }
     ////
+    /*
     func showListViewUI() {
         listButton = TextImageButton(frame: CGRect.CGRectMake(40, 300, 80, 44))
         listButton.setTitle("List", for: .normal)
@@ -93,6 +86,7 @@ class CalendarViewController : UIViewController {
         let nav = MainNavigationController(rootViewController: listViewVC)
         present(nav, animated:true, completion:nil)
     }
+     */
     
     private func randomizeDotmarkers() {
         randomNumberOfDotmarkersForDay = [Int]()
@@ -116,6 +110,7 @@ class CalendarViewController : UIViewController {
         randomizeDotmarkers()
     }
 }
+
 // MARK: - CVCalendarViewDelegate & CVCalendarMenuViewDelegate
 extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     // Required method
@@ -191,7 +186,7 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
         }
     }
 
-    func topMarker(shouldDisplayOnDayView dayView: DayView) -> Bool {
+    func topMarker(shouldDisplayOnDayView dayView: CVCalendarDayView) -> Bool {
         return true
     }
     func weekdaySymbolType() -> WeekdaySymbolType {
@@ -353,6 +348,7 @@ extension CalendarViewController {
         calendarView.loadNextView()
     }
 }
+
 extension CalendarViewController {
     func toggleMonthViewWithMonthOffset(offset: Int) {
         guard let currentCalendar = currentCalendar else {
@@ -364,6 +360,7 @@ extension CalendarViewController {
         let resultDate = currentCalendar.date(from: components)!
         self.calendarView.toggleViewWithDate(resultDate)
     }
+    
     func didShowPreviousMonthView(_ date: Date) {
         guard let currentCalendar = currentCalendar else {
             return
@@ -385,150 +382,3 @@ extension CalendarViewController {
 }
 // MARK: - Conveniuence API
 
-
-//import JTAppleCalendar
-/*
-class CalendarViewController: UIViewController {
-    
-    @IBOutlet weak var calendarView: JTAppleCalendarView!
-    
-    var listButton: TextImageButton!
-    
-    lazy var dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
-        dateFormatter.dateFormat = "hh:mm"
-        return dateFormatter
-    }()
-    
-    let persianDateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = Calendar(identifier: .persian)
-        dateFormatter.dateFormat = "yyyy/MM/dd"
-        return dateFormatter
-    }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        setupCalendarView()
-        calendarView.calendarDataSource = self
-        calendarView.calendarDelegate = self
-        
-        showListViewUI()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    func handleCellSelected(cell: JTAppleCell?, cellState: CellState){
-        guard let validCell = cell as? CalendarCell else { return }
-        if validCell.isSelected {
-            validCell.selectedView.isHidden = false
-        } else {
-            validCell.selectedView.isHidden = true
-        }
-    }
-    
-    func handleCellTextColor(cell: JTAppleCell?, cellState: CellState){
-        guard let validCell = cell as? CalendarCell else { return }
-        if validCell.isSelected {
-            validCell.dateLabel.textColor = UIColor.white
-        } else {
-            let today = Date()
-            persianDateFormatter.dateFormat = "yyyy MM dd"
-            let todayDateStr = persianDateFormatter.string(from: today)
-            let test = persianDateFormatter.string(from: today)
-            dateFormatter.dateFormat = "yyyy MM dd"
-            let cellDateStr = dateFormatter.string(from: cellState.date)
-            
-            if todayDateStr == cellDateStr {
-                validCell.dateLabel.textColor = UIColor.yellow
-            } else {
-                if cellState.dateBelongsTo == .thisMonth {
-                    validCell.dateLabel.textColor = UIColor.white
-                } else { //i.e. case it belongs to inDate or outDate
-                    validCell.dateLabel.textColor = UIColor.gray
-                }
-            }
-        }
-    }
-    
-    
-    func setupCalendarView(){
-        //Setup calendar spacing
-        calendarView.minimumLineSpacing = 0
-        calendarView.minimumInteritemSpacing = 0
-        
-    }
-    
-    ////
-    func showListViewUI() {
-        listButton = TextImageButton(frame: CGRect.CGRectMake(40, 300, 80, 44))
-        
-        listButton.setTitle("List", for: .normal)
-        listButton.titleLabel?.font = theme.appNaviItemFont
-        listButton.setTitleColor(UIColor.black, for: UIControlState.normal)
-        listButton.setImage(UIImage(named:"home_down"), for: .normal)
-        listButton.addTarget(self, action: #selector(onClickPushListView),
-                                 for:UIControlEvents.touchUpInside)
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: listButton)
-    }
-    func onClickPushListView() {
-        let listViewVC = CalendarViewController()
-        let nav = MainNavigationController(rootViewController: listViewVC)
-        present(nav, animated: true, completion: nil)
-    }
-}
-
-extension CalendarViewController: JTAppleCalendarViewDataSource {
-    func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
-        
-        let persianCalendar = Calendar(identifier: .persian)
-        
-        let testFotmatter = DateFormatter()
-        testFotmatter.dateFormat = "yyyy/MM/dd"
-        testFotmatter.timeZone = persianCalendar.timeZone
-        testFotmatter.locale = persianCalendar.locale
-        
-        let startDate = testFotmatter.date(from: "2017/01/01")!
-        let endDate = testFotmatter.date(from: "2017/09/30")!
-        
-        
-        let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate, numberOfRows: nil, calendar: persianCalendar, generateInDates: nil, generateOutDates: nil, firstDayOfWeek: nil, hasStrictBoundaries: nil)
-        return parameters
-    }
-}
-
-extension CalendarViewController: JTAppleCalendarViewDelegate {
-    func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
-        let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "mainInfo_CalenderCell", for: indexPath) as! CellView
-        cell.dayLabel.text = cellState.text
-        
-        handleCellSelected(cell: cell, cellState: cellState)
-        handleCellTextColor(cell: cell, cellState: cellState)
-        
-        return cell
-    }
-    
-    func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        print(cellState.dateBelongsTo)
-        handleCellSelected(cell: cell, cellState: cellState)
-        handleCellTextColor(cell: cell, cellState: cellState)
-    }
-    
-    func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        handleCellSelected(cell: cell, cellState: cellState)
-        handleCellTextColor(cell: cell, cellState: cellState)
-    }
-}
-
-class CalendarCell: JTAppleCell {
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var selectedView: UIView!
-}
-*/
