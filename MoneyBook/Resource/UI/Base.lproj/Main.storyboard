@@ -810,7 +810,7 @@
             </objects>
             <point key="canvasLocation" x="3481" y="84"/>
         </scene>
-        <!--Calendar View-->
+        <!--Calendar Appearance Delegate-->
         <scene sceneID="Vp5-I5-H8J">
             <objects>
                 <viewController title="Calendar View" id="Pnm-Sf-Y8S" customClass="CalendarViewController" customModule="MoneyBook" customModuleProvider="target" sceneMemberID="viewController">
@@ -827,7 +827,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.85134156419999996" green="0.81529230429999999" blue="0.3067589282" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="menuViewDelegate" destination="XRK-Xf-Zg2" id="J1r-9E-180"/>
+                                    <outlet property="menuViewDelegate" destination="Pnm-Sf-Y8S" id="h5s-Ry-9Oz"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d53-4I-98f" customClass="CVCalendarView" customModule="CVCalendar">
@@ -835,14 +835,15 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.84490813899999995" green="1" blue="0.94144714330000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="calendarAppearanceDelegate" destination="XRK-Xf-Zg2" id="dPo-Ou-VZE"/>
-                                    <outlet property="calendarDelegate" destination="XRK-Xf-Zg2" id="KgJ-RC-eHZ"/>
+                                    <outlet property="calendarAppearanceDelegate" destination="Pnm-Sf-Y8S" id="oSR-xB-ufJ"/>
+                                    <outlet property="calendarDelegate" destination="Pnm-Sf-Y8S" id="Ayu-wf-S8o"/>
                                 </connections>
                             </view>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1bh-PB-ccO">
                                 <rect key="frame" x="307" y="585" width="51" height="31"/>
                                 <connections>
                                     <action selector="switchChangedWithSender:" destination="InX-f2-zNp" eventType="valueChanged" id="OjE-MH-Dxg"/>
+                                    <action selector="switchChangedWithSender:" destination="Pnm-Sf-Y8S" eventType="valueChanged" id="oHc-x8-qJN"/>
                                 </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NyY-Mb-8g8">
@@ -862,6 +863,7 @@
                                 <state key="normal" title="&lt;"/>
                                 <connections>
                                     <action selector="loadPreviousWithSender:" destination="InX-f2-zNp" eventType="touchUpInside" id="fAL-UK-XaM"/>
+                                    <action selector="loadPreviousWithSender:" destination="Pnm-Sf-Y8S" eventType="touchUpInside" id="oM1-uV-gmc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FvU-YR-a1n">
@@ -871,6 +873,7 @@
                                 </constraints>
                                 <state key="normal" title="&gt;"/>
                                 <connections>
+                                    <action selector="loadNextWithSender:" destination="Pnm-Sf-Y8S" eventType="touchUpInside" id="EpJ-QX-FWC"/>
                                     <action selector="loadNextWithSender:" destination="InX-f2-zNp" eventType="touchUpInside" id="ThJ-SD-RxC"/>
                                 </connections>
                             </button>
@@ -916,7 +919,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="calendarView" destination="d53-4I-98f" id="cav-BS-roD"/>
+                        <outlet property="calendarView" destination="d53-4I-98f" id="ovl-0V-Sag"/>
                         <outlet property="daysOutSwitch" destination="1bh-PB-ccO" id="7Ud-PS-Jv3"/>
                         <outlet property="menuView" destination="lGa-qh-12o" id="Fz5-ma-rNm"/>
                         <outlet property="monthLabel" destination="NyY-Mb-8g8" id="cYW-0B-vLU"/>
