@@ -27,6 +27,9 @@ class CalendarViewController : UIViewController {
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var daysOutSwitch: UISwitch!
 //    @IBOutlet weak var listButton: TextImageButton!
+    @IBOutlet weak var weekButtonItem: UIBarButtonItem!
+    @IBOutlet weak var MonthButtonItem: UIBarButtonItem!
+    @IBOutlet weak var todayButtonItem: UIBarButtonItem!
     
     fileprivate var randomNumberOfDotmarkersForDay = [Int]()
     var shouldShowDaysOut = true
@@ -46,6 +49,8 @@ class CalendarViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.backgroundColor = UIColor.blue
+        self.navigationItem.title = "Calendar"
         setupCalendarViewUI()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -64,7 +69,6 @@ class CalendarViewController : UIViewController {
             monthLabel.text = CVDate(date: Date(), calendar: currentCalendar).globalDescription
         }
         randomizeDotmarkers()
-        
         //showListViewUI()
     }
     ////
@@ -108,6 +112,15 @@ class CalendarViewController : UIViewController {
     @IBAction func refreshmonth(sender: AnyObject) {
         calendarView.contentController.refreshPresentedMonth()
         randomizeDotmarkers()
+    }
+    @IBAction func onWeekButtonItem(_ sender: Any) {
+        calendarView.changeMode(.weekView)
+    }
+    @IBAction func onMonthButtonItem(_ sender: Any) {
+        calendarView.changeMode(.monthView)
+    }
+    @IBAction func todayButtonItem(_ sender: Any) {
+        calendarView.toggleCurrentDayView()
     }
 }
 
@@ -331,15 +344,6 @@ extension CalendarViewController: CVCalendarViewAppearanceDelegate {
 extension CalendarViewController {
     @IBAction func switchChanged(sender: UISwitch) {
         calendarView.changeDaysOutShowingState(shouldShow: sender.isOn)
-    }
-    @IBAction func todayMonthView() {
-        calendarView.toggleCurrentDayView()
-    }
-    @IBAction func toWeekView(sender: AnyObject) {
-        calendarView.changeMode(.weekView)
-    }
-    @IBAction func toMonthView(sender: AnyObject) {
-        calendarView.changeMode(.monthView)
     }
     @IBAction func loadPrevious(sender: AnyObject) {
         calendarView.loadPreviousView()

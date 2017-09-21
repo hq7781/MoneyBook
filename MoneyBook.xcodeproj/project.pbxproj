@@ -1028,6 +1028,8 @@
 		B0A873021EB7446E00A82C0C /* tree_filemanager_open@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0A86F611EB7446C00A82C0C /* tree_filemanager_open@2x.png */; };
 		B0A873031EB7446E00A82C0C /* write.png in Resources */ = {isa = PBXBuildFile; fileRef = B0A86F621EB7446C00A82C0C /* write.png */; };
 		B0A873041EB7446E00A82C0C /* write@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0A86F631EB7446C00A82C0C /* write@2x.png */; };
+		B0B9BA631F62D61600570789 /* Entry.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B9BA621F62D61600570789 /* Entry.storyboard */; };
+		B0B9BA661F62D6CE00570789 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B9BA651F62D6CE00570789 /* EntryViewController.swift */; };
 		FCDFE97834411C3AAD7BEA32 /* Pods_MoneyBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB408967DBB5FC91A47E3C8E /* Pods_MoneyBook.framework */; };
 /* End PBXBuildFile section */
 
@@ -2077,6 +2079,8 @@
 		B0A86F611EB7446C00A82C0C /* tree_filemanager_open@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tree_filemanager_open@2x.png"; sourceTree = "<group>"; };
 		B0A86F621EB7446C00A82C0C /* write.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = write.png; sourceTree = "<group>"; };
 		B0A86F631EB7446C00A82C0C /* write@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "write@2x.png"; sourceTree = "<group>"; };
+		B0B9BA621F62D61600570789 /* Entry.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Entry.storyboard; path = MoneyBook/Resource/UI/Entry.storyboard; sourceTree = SOURCE_ROOT; };
+		B0B9BA651F62D6CE00570789 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntryViewController.swift; path = Controller/Entry/EntryViewController.swift; sourceTree = "<group>"; };
 		B4709F5471E773456DF6E011 /* Pods-MoneyBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoneyBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-MoneyBook/Pods-MoneyBook.release.xcconfig"; sourceTree = "<group>"; };
 		B8549BECF978AE63FE96D05A /* Pods-MoneyBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoneyBook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MoneyBook/Pods-MoneyBook.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2150,11 +2154,12 @@
 			isa = PBXGroup;
 			children = (
 				8692B8001EE55F13005CCE03 /* LaunchScreen.storyboard */,
-				8692B8021EE55F13005CCE03 /* Main.storyboard */,
-				8692B7EC1EE556D0005CCE03 /* InputOutgoMoneyView.xib */,
 				8692B7EE1EE556E0005CCE03 /* Startup.storyboard */,
-				8692B7EA1EE556B7005CCE03 /* InputInComeMoneyView.xib */,
+				8692B8021EE55F13005CCE03 /* Main.storyboard */,
+				B0B9BA621F62D61600570789 /* Entry.storyboard */,
 				B07885FD1F42A9B000C2524A /* Setting.storyboard */,
+				8692B7EC1EE556D0005CCE03 /* InputOutgoMoneyView.xib */,
+				8692B7EA1EE556B7005CCE03 /* InputInComeMoneyView.xib */,
 			);
 			name = UI;
 			path = MoneyBook/Resource/UI;
@@ -2334,6 +2339,7 @@
 			children = (
 				868013DE1F26ED9E000A2302 /* Main */,
 				9C24D5DB1EDB28DB0003EC75 /* Startup */,
+				B0B9BA641F62D68100570789 /* Entry */,
 				B0A86B841EB611AB00A82C0C /* Records */,
 				B0A86B851EB611B500A82C0C /* Analysis */,
 				B0A86B831EB6115500A82C0C /* History */,
@@ -3528,6 +3534,14 @@
 			path = top;
 			sourceTree = "<group>";
 		};
+		B0B9BA641F62D68100570789 /* Entry */ = {
+			isa = PBXGroup;
+			children = (
+				B0B9BA651F62D6CE00570789 /* EntryViewController.swift */,
+			);
+			name = Entry;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -4581,6 +4595,7 @@
 				B0A86F9A1EB7446C00A82C0C /* week_pm_normal@2x.png in Resources */,
 				B0A8714B1EB7446D00A82C0C /* _old_mail_expand.png in Resources */,
 				B0A870201EB7446C00A82C0C /* ico16_1089@2x.png in Resources */,
+				B0B9BA631F62D61600570789 /* Entry.storyboard in Resources */,
 				B0A871DD1EB7446D00A82C0C /* MoconaviLaunch-Landscape@2x~iphone.png in Resources */,
 				B0A86F891EB7446C00A82C0C /* calendar_cell_selected.png in Resources */,
 				B0A871B91EB7446D00A82C0C /* mail_fw.png in Resources */,
@@ -4699,6 +4714,7 @@
 				868013DB1F25B3D9000A2302 /* AppBase.swift in Sources */,
 				B07886051F42FF0200C2524A /* ProductManager.swift in Sources */,
 				86516CD21F4C276C001AC26F /* CalendarViewController.swift in Sources */,
+				B0B9BA661F62D6CE00570789 /* EntryViewController.swift in Sources */,
 				86516CDF1F55470E001AC26F /* BankAccountDAO.swift in Sources */,
 				868013E21F2709A9000A2302 /* CityViewController.swift in Sources */,
 				8680120B1F1DE81C000A2302 /* ShareModel.swift in Sources */,

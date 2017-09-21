@@ -11,15 +11,15 @@ import Persei
 
 let k_CELLNAME_AnalysisMenuTableViewCell: String = "AnalysisMenuCell"
 
-class AnalysisViewController: UITableViewController /*UIViewController*/ {
+class AnalysisViewController: UIViewController {
 
     fileprivate var pageControl: UIPageControl!
     fileprivate var scrollView: UIScrollView!
 
     fileprivate var menu: MenuView!
     @IBOutlet weak var imageView: UIImageView!
-    //@IBOutlet weak var tableView: UITableView!
-    //@IBOutlet weak var AnalysisMenuCell: UITableViewCell!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var AnalysisMenuCell: UITableViewCell!
     
     //MARK: - ========== override methods ==========
     override func viewDidLoad() {
@@ -131,27 +131,32 @@ class AnalysisViewController: UITableViewController /*UIViewController*/ {
         self.view.addSubview(pageControl)
         
     }
-    
-    // MARK: - ========== UIScrollViewDelegate ==========
-    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+}
+
+// MARK: - ========== UIScrollViewDelegate ==========
+extension AnalysisViewController: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         // スクロール数が1ページ分になったら時.
         if fmod(scrollView.contentOffset.x, scrollView.frame.maxX) == 0 {
             // ページの場所を切り替える.
             pageControl.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.maxX)
         }
     }
-    
-    // MARK: - ========== UITableViewDelegate, UITableViewDataSource ==========
-    override func numberOfSections(in tableView: UITableView) -> Int {
+}
+
+// MARK: - ========== UITableViewDelegate, UITableViewDataSource ==========
+extension AnalysisViewController: UITableViewDelegate, UITableViewDataSource{
+
+    func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     /// Tells the data source to return the number of rows in a given section of a table view.
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 1
     }
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: k_CELLNAME_AnalysisMenuTableViewCell, for: indexPath) as? AnalysisMenuTableViewCell
             //let cell = self.AnalysisMenuCell as UITableViewCell
@@ -163,13 +168,13 @@ class AnalysisViewController: UITableViewController /*UIViewController*/ {
         return UITableViewCell()
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexPath = tableView.indexPathForSelectedRow
         _ = tableView.cellForRow(at: indexPath!)!
         
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return self.view.frame.size.height / 12
     }
 }
